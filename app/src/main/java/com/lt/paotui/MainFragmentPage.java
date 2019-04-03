@@ -103,10 +103,10 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
         list_path.add("http://ww4.sinaimg.cn/large/006uZZy8jw1faic259ohaj30ci08c74r.jpg");
         list_path.add("http://ww4.sinaimg.cn/large/006uZZy8jw1faic2b16zuj30ci08cwf4.jpg");
         list_path.add("http://ww4.sinaimg.cn/large/006uZZy8jw1faic2e7vsaj30ci08cglz.jpg");
-        list_title.add("好好学习");
-        list_title.add("天天向上");
-        list_title.add("热爱劳动");
-        list_title.add("不搞对象");
+        list_title.add("好好学 习");
+        list_title.add("天天向 上");
+        list_title.add("热爱劳 动");
+        list_title.add("不搞对 象");
         //设置内置样式，共有六种可以点入方法内逐一体验使用。
         //banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
         banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
