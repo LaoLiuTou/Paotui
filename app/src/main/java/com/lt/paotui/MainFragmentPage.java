@@ -1,6 +1,7 @@
 package com.lt.paotui;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,21 +9,32 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.lt.paotui.utils.Config;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 /**
  * Created by Administrator on 2019/4/2.
@@ -33,6 +45,11 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
     private Unbinder unbinder;
     @BindView(R.id.banner)
     Banner banner;
+    @BindView(R.id.sroll_text)
+    TextView sroll_text;
+    @BindView(R.id.top_bar_title)
+    TextView top_bar_title;
+
     private ArrayList<String> list_path;
     private ArrayList<String> list_title;
 
@@ -47,10 +64,36 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initView();
+        initBanner();
+        sroll_text.setText("2019-03-28 共有1000用户  用户***，支付车费5元，成功立减2元。");
+        Drawable icon = getResources().getDrawable(R.mipmap.tongzhi2);
+        icon.setBounds(10,0,70,60);
+        top_bar_title.setCompoundDrawables(icon, null, null, null);
+        top_bar_title.setText("  打车支付     立减2元  ");
     }
 
-    private void initView() {
+    private void initBanner() {
+
+        /*OkHttpClient okHttpClient = new OkHttpClient();
+        FormBody formBody = new FormBody.Builder()
+                .add("name", "dsd")
+                .build();
+        Request request = new Request.Builder().url(Config.url)
+                .addHeader("Home", "china")// 自定义的header
+                .post(formBody)
+                .build();
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                // TODO: 17-1-4  请求失败
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                // TODO: 17-1-4 请求成功
+            }
+        });*/
+
         //放图片地址的集合
         list_path = new ArrayList<>();
         //放标题的集合
@@ -100,6 +143,45 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
             Glide.with(context).load((String) path).into(imageView);
         }
     }
+
+
+    //监听事件
+    @OnClick({R.id.first1,R.id.first2,R.id.first3,R.id.second1,R.id.second2,R.id.second3,R.id.third1,R.id.third2,R.id.third3})//多个控件可以一起发在里面进行监听
+    public void sayHi(View view) {
+        switch (view.getId()) {
+            case R.id.first1:
+
+                break;
+            case R.id.first2:
+
+                break;
+            case R.id.first3:
+
+                break;
+            case R.id.second1:
+
+                break;
+            case R.id.second2:
+
+                break;
+            case R.id.second3:
+
+                break;
+            case R.id.third1:
+
+                break;
+            case R.id.third2:
+
+                break;
+            case R.id.third3:
+
+                break;
+            default:
+                break;
+        }
+
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

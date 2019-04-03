@@ -27,13 +27,10 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Fragment> fragmentPages;
     private MainFragmentPage mainfragmentPage;
-    private FragmentPage fragmentPage2;
-    private FragmentPage fragmentPage3;
-    private FragmentPage fragmentPage4;
-    private FragmentPage fragmentPage5;
+    private MyFragmentPage myFragmentPage;
 
-    private String[] titles = {"附近", "动态", "消息", "发现", "我的"};
-    private int[] imgs = {R.drawable.nav_nearby_selector, R.drawable.nav_circle_selector, R.drawable.nav_message_selector, R.drawable.nav_find_selector, R.drawable.nav_me_selector};
+    private String[] titles = {"首页",  "我的"};
+    private int[] imgs = {R.drawable.nav_main_selector, R.drawable.nav_me_selector};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor( ContextCompat.getColor(this,R.color.colorAccent));
+            getWindow().setStatusBarColor( ContextCompat.getColor(this,R.color.color_title_bg));
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT
                 && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
@@ -86,16 +83,10 @@ public class MainActivity extends AppCompatActivity {
     {
         fragmentPages = new ArrayList<>();
         mainfragmentPage = new MainFragmentPage();
-        fragmentPage2 = new FragmentPage();
-        fragmentPage3 = new FragmentPage();
-        fragmentPage4 = new FragmentPage();
-        fragmentPage5 = new FragmentPage();
+        myFragmentPage = new MyFragmentPage();
 
         fragmentPages.add(mainfragmentPage);
-        fragmentPages.add(fragmentPage2);
-        fragmentPages.add(fragmentPage3);
-        fragmentPages.add(fragmentPage4);
-        fragmentPages.add(fragmentPage5);
+        fragmentPages.add(myFragmentPage);
 
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), fragmentPages);
         viewPager.setAdapter(viewPagerAdapter);
@@ -105,9 +96,6 @@ public class MainActivity extends AppCompatActivity {
     {
         tabLayoutView.setDotsCount(0, 1);
         tabLayoutView.setDotsCount(1, 0);
-        tabLayoutView.setDotsCount(2, 3);
-        tabLayoutView.setDotsCount(3, 0);
-        tabLayoutView.setDotsCount(4, 5);
     }
 
 
