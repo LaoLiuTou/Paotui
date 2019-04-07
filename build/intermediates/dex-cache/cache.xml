@@ -3,192 +3,210 @@
 
     <item
         is-multidex="false"
-        jar="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="867dad63c33388ff8c7644b236579355036d075f">
-        <dex dex="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_d08f8c9ce8702a1971377d4cdb16e8c8286b96d4.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Administrator.WIN7U-20160530R\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.7.0\9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4\glide-3.7.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
-        <dex dex="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\pre-dexed\debug\glide-3.7.0_82aed288a222ea8d91a0122c031cb37c73c0c056.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="F:\AS\Android\AndroidSdk\extras\android\m2repository\com\android\support\support-annotations\24.2.1\support-annotations-24.2.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
-        <dex dex="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\pre-dexed\debug\support-annotations-24.2.1_a3294410c43dab958a158e0b6d4e105f61b8bd22.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Administrator.WIN7U-20160530R\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.8.0\5ea7af56cc7c567ed9856d99efb30740e9b17ff\okio-1.8.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="05ea7af56cc7c567ed9856d99efb30740e9b17ff">
-        <dex dex="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\pre-dexed\debug\okio-1.8.0_2237287d1676215447355ef6827def30975c6730.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-24.2.1_6a5755384b8ac21b4a88c7e99f117f368a34d384.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\exploded-aar\com.youth.banner\banner\1.4.9\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="5f49fbc1bda3fa9073a82dd87de3e1ceea24268d">
-        <dex dex="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\pre-dexed\debug\com.youth.banner-banner-1.4.9_8edee6a0c6ec7df152df1aa1b331b8c18b5bead1.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
-        <dex dex="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\pre-dexed\debug\com.android.support-support-media-compat-24.2.1_26f717029e744937d554d625146e463807bc18a9.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.2.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
-        <dex dex="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-24.2.1_1bb1d38ae7d82f1a0a6d1f1dfc674de8a8911879.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Administrator.WIN7U-20160530R\.gradle\caches\modules-2\files-2.1\com.jakewharton\butterknife-annotations\8.1.0\d6854f42bfb4098d3d2358d93201307b9f1cc95d\butterknife-annotations-8.1.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d6854f42bfb4098d3d2358d93201307b9f1cc95d">
-        <dex dex="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\pre-dexed\debug\butterknife-annotations-8.1.0_9b014ea20f27f29215dcf9cc2f79cb41516dbd30.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
-        <dex dex="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-24.2.1_70eead8506e5adb54d19828727bfe5152dc36fd5.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\exploded-aar\com.jakewharton\butterknife\8.1.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d4ab8678882571a0a6f19c47a826ecbce5b4f42b">
-        <dex dex="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\pre-dexed\debug\com.jakewharton-butterknife-8.1.0_20df66b01d90f153bb2cc9b5cb400ccb3ee57308.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
-        <dex dex="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\pre-dexed\debug\com.android.support-support-fragment-24.2.1_f2ca6154d2136aa1c16a549460fcfa76768d8649.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
-        <dex dex="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_bdadf0ab509dfd0110f1705bc7fe464e02b6f8bb.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
-        <dex dex="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_a029411923ca491786eb91888b9e929c8f6143e5.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Administrator.WIN7U-20160530R\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.3.1\19047bdb6a4fc00a44124f64ca98e88fc204e7e3\okhttp-3.3.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="19047bdb6a4fc00a44124f64ca98e88fc204e7e3">
-        <dex dex="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\pre-dexed\debug\okhttp-3.3.1_c08190135b2a1fe921fb15805b4d364583ea1331.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
-        <dex dex="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-24.2.1_a07f02f8a571dff0eeb03de321bc794f952cfae5.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
-        <dex dex="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-24.2.1_1f1518c76684685c49ac49c74709ea35ed3a2fd8.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jar="E:\Android\workspace\Paotui\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
-        <dex dex="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_9c28454937e87372425e95bc82e0fe30899bb0b3.jar" />
+        <dex dex="E:\Android\workspace\Paotui\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_f29fa898c07370b1158fe73b7fcf91071b67a4f4.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jar="E:\Android\workspace\Paotui\app\build\intermediates\exploded-aar\com.jakewharton\butterknife\8.1.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
-        <dex dex="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_e165ee75aee25a20660a1842f9e9d896aad35f8c.jar" />
+        sha1="d4ab8678882571a0a6f19c47a826ecbce5b4f42b">
+        <dex dex="E:\Android\workspace\Paotui\app\build\intermediates\pre-dexed\debug\com.jakewharton-butterknife-8.1.0_dc7f502603933f3959980edd4f43704ea1fe8a00.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.2.1\jars\classes.jar"
+        jar="E:\Android\gradle\caches\modules-2\files-2.1\com.google.zxing\core\3.3.0\73c49077166faa4c3c0059c5f583d1d7bd1475fe\core-3.3.0.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
-        <dex dex="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-24.2.1_2099f2c9bf4b394af77f3ff5cff2f1bf5c891149.jar" />
+        sha1="73c49077166faa4c3c0059c5f583d1d7bd1475fe">
+        <dex dex="E:\Android\workspace\Paotui\app\build\intermediates\pre-dexed\debug\core-3.3.0_9f38e7cd718e7455444abc7afb4202fcdf802025.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\classes.jar"
+        jar="E:\Android\workspace\Paotui\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
+        <dex dex="E:\Android\workspace\Paotui\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_138b074b0af48c13b7a7a36b506ca27b622db5d2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Android\workspace\Paotui\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
+        <dex dex="E:\Android\workspace\Paotui\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-24.2.1_4857e594d83716fefd6a5035e27e81cdd801c281.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Android\workspace\Paotui\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
+        <dex dex="E:\Android\workspace\Paotui\app\build\intermediates\pre-dexed\debug\com.android.support-support-fragment-24.2.1_f123aa80a9d26cd099ba61ab41c50484fe05e7d5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Android\workspace\Paotui\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="867dad63c33388ff8c7644b236579355036d075f">
+        <dex dex="E:\Android\workspace\Paotui\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_521ef0dcf05b2b48af7f48d6a6b71dd6480571f5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Android\gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.7.0\9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4\glide-3.7.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
+        <dex dex="E:\Android\workspace\Paotui\app\build\intermediates\pre-dexed\debug\glide-3.7.0_777b86d9ded6e0bccc2beec028c988852454720d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\24.2.1\support-annotations-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
+        <dex dex="E:\Android\workspace\Paotui\app\build\intermediates\pre-dexed\debug\support-annotations-24.2.1_c7390fe4ba7b3a40010d77160f48f6b98bc28321.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Android\workspace\Paotui\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
-        <dex dex="F:\Workspaces\AndroidStudio\Paotui\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-24.2.1_ba55605c179a526d70845b3a7c1d53ade02f0c58.jar" />
+        <dex dex="E:\Android\workspace\Paotui\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-24.2.1_a956c30f0ee7e8da58b7bc46c4a009d7dd81ca06.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Android\workspace\Paotui\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
+        <dex dex="E:\Android\workspace\Paotui\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-24.2.1_ed9933bda4882e5bc2ce84ea1347aa6864aa7c82.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Android\gradle\caches\modules-2\files-2.1\com.jakewharton\butterknife-annotations\8.1.0\d6854f42bfb4098d3d2358d93201307b9f1cc95d\butterknife-annotations-8.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d6854f42bfb4098d3d2358d93201307b9f1cc95d">
+        <dex dex="E:\Android\workspace\Paotui\app\build\intermediates\pre-dexed\debug\butterknife-annotations-8.1.0_225938d021d9fb6ecd6a2dc854d86b29d103d402.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Android\workspace\Paotui\app\build\intermediates\exploded-aar\Paotui\zxing-simplify\unspecified\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="53620befdeb7998836e1c15da1f75b341996c9e8">
+        <dex dex="E:\Android\workspace\Paotui\app\build\intermediates\pre-dexed\debug\Paotui-zxing-simplify-unspecified_3d2ab68fe08df79536c0dfc9c1fe2618cedd9c94.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Android\workspace\Paotui\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="E:\Android\workspace\Paotui\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-24.2.1_c9fe57fdfc0156664e70532638e0576b127ff855.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Android\workspace\Paotui\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
+        <dex dex="E:\Android\workspace\Paotui\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_ed51539c7c9113ae567e92917cb1b8484ec6d3a2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Android\workspace\Paotui\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
+        <dex dex="E:\Android\workspace\Paotui\app\build\intermediates\pre-dexed\debug\com.android.support-support-media-compat-24.2.1_eda630c5fc2d647e296f6d0499e63389db8e6a07.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Android\workspace\Paotui\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
+        <dex dex="E:\Android\workspace\Paotui\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-24.2.1_f49d059941587fdf44520ef846ae201115fc246f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Android\gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.3.1\19047bdb6a4fc00a44124f64ca98e88fc204e7e3\okhttp-3.3.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="19047bdb6a4fc00a44124f64ca98e88fc204e7e3">
+        <dex dex="E:\Android\workspace\Paotui\app\build\intermediates\pre-dexed\debug\okhttp-3.3.1_ee83d19ca307ee6e0e833c896684a3fb755f0a04.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Android\gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.8.0\5ea7af56cc7c567ed9856d99efb30740e9b17ff\okio-1.8.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="05ea7af56cc7c567ed9856d99efb30740e9b17ff">
+        <dex dex="E:\Android\workspace\Paotui\app\build\intermediates\pre-dexed\debug\okio-1.8.0_98508b46e0a5d4f8605aebc793456c74ebb9a366.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Android\workspace\Paotui\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
+        <dex dex="E:\Android\workspace\Paotui\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-24.2.1_5f7727a57b8746332c0a6cf66c183b2cf83f33bc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Android\workspace\Paotui\app\build\intermediates\exploded-aar\com.youth.banner\banner\1.4.9\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="5f49fbc1bda3fa9073a82dd87de3e1ceea24268d">
+        <dex dex="E:\Android\workspace\Paotui\app\build\intermediates\pre-dexed\debug\com.youth.banner-banner-1.4.9_2c3989f7c609d40dcce0d04ddb47884af5dbec3e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Android\workspace\Paotui\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
+        <dex dex="E:\Android\workspace\Paotui\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-24.2.1_a86937dda49f9ed3f85128afaf79f1aab9f3f8fa.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Android\workspace\Paotui\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
+        <dex dex="E:\Android\workspace\Paotui\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_3079c626eb16b3f5bf8e6949c1e850bc8dc6a4d8.jar" />
     </item>
 
 </items>

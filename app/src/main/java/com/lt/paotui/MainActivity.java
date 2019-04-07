@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         tabLayoutView.setDataSource(titles, imgs, 0);
         tabLayoutView.setImageStyle(25, 25);
-        tabLayoutView.setTextStyle(12, R.color.color_999999,R.color.color_ff78a3);
+        tabLayoutView.setTextStyle(12, R.color.color_999999,R.color.color_title_bg);
         tabLayoutView.initDatas();
         setDots();
         tabLayoutView.setOnItemOnclickListener(new TabLayoutView.OnItemOnclickListener() {
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void setDots()
     {
-        tabLayoutView.setDotsCount(0, 1);
+        tabLayoutView.setDotsCount(0, 0);
         tabLayoutView.setDotsCount(1, 0);
     }
 

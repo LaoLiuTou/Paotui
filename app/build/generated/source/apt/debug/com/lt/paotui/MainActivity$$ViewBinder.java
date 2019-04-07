@@ -21,8 +21,8 @@ public class MainActivity$$ViewBinder<T extends MainActivity> implements ViewBin
     protected InnerUnbinder(T target, Finder finder, Object source) {
       this.target = target;
 
-      target.viewPager = finder.findRequiredViewAsType(source, 2131492957, "field 'viewPager'", ViewPager.class);
-      target.tabLayoutView = finder.findRequiredViewAsType(source, 2131492958, "field 'tabLayoutView'", TabLayoutView.class);
+      target.viewPager = finder.findRequiredViewAsType(source, 2131558517, "field 'viewPager'", ViewPager.class);
+      target.tabLayoutView = finder.findRequiredViewAsType(source, 2131558518, "field 'tabLayoutView'", TabLayoutView.class);
     }
 
     @Override
