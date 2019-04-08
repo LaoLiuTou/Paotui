@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -18,8 +20,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
 import com.github.shenyuanqing.zxingsimplify.zxing.Activity.CaptureActivity;
+import com.lt.paotui.utils.Config;
 import com.lt.paotui.utils.Constant;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -27,12 +31,21 @@ import com.youth.banner.Transformer;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -64,7 +77,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initBanner();
+        getBannerData();
         sroll_text.setText("2019-03-28 共有1000用户  用户***，支付车费5元，成功立减2元。");
         Drawable icon = getResources().getDrawable(R.mipmap.tongzhi2);
         icon.setBounds(10,0,70,60);
@@ -72,41 +85,77 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
         top_bar_title.setText("  打车支付     立减2元  ");
     }
 
-    private void initBanner() {
+    /**
+     * 接收解析后传过来的数据
+     */
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            //Object model = (Object) msg.obj;
+            switch (msg.what){
+                case Config.FAILURE_CODE:
+                    Toast.makeText(getActivity(),"获取主页轮播图失败!!!",Toast.LENGTH_LONG);
+                    break;
+                case Config.SUCCESS_CODE:
+                    initBanner();
+                    break;
+            }
+            super.handleMessage(msg);
+        }
+    };
 
-        /*OkHttpClient okHttpClient = new OkHttpClient();
+    private void getBannerData(){
+        final Message message=Message.obtain();
+        //放图片地址的集合
+        list_path = new ArrayList<>();
+        //放标题的集合
+        list_title = new ArrayList<>();
+
+        OkHttpClient okHttpClient = new OkHttpClient();
         FormBody formBody = new FormBody.Builder()
-                .add("name", "dsd")
+                .add("page", "1")
+                .add("size", "4")
                 .build();
-        Request request = new Request.Builder().url(Config.url)
-                .addHeader("Home", "china")// 自定义的header
+        Request request = new Request.Builder().url(Config.url+"/listBanner")
+                //.addHeader("Home", "china")// 自定义的header
                 .post(formBody)
                 .build();
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 // TODO: 17-1-4  请求失败
+                message.what=Config.FAILURE_CODE;
+                //message.obj=data;
+                handler.sendMessage(message);
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 // TODO: 17-1-4 请求成功
+                Map resultMap = JSON.parseObject(response.body().string());
+                if(resultMap.get("status").equals("0")){
+                    Map dataMap= (Map)resultMap.get("msg");
+                    int totleNum=Integer.parseInt(dataMap.get("num").toString());
+                    List<Map<String,String>> dataList=(List<Map<String,String>>)dataMap.get("data");
+                    for(Map<String,String> temp :dataList){
+                        list_path.add(temp.get("image"));
+                        list_title.add(temp.get("title"));
+                    }
+                }
+                else{
+                     
+                    Toast.makeText(getActivity(),"wrong!!!",Toast.LENGTH_LONG);
+                }
+                message.what=Config.SUCCESS_CODE;
+                //message.obj=data;
+                handler.sendMessage(message);
+
             }
-        });*/
+        });
+    }
 
-        //放图片地址的集合
-        list_path = new ArrayList<>();
-        //放标题的集合
-        list_title = new ArrayList<>();
+    private void initBanner() {
 
-        list_path.add("http://ww4.sinaimg.cn/large/006uZZy8jw1faic21363tj30ci08ct96.jpg");
-        list_path.add("http://ww4.sinaimg.cn/large/006uZZy8jw1faic259ohaj30ci08c74r.jpg");
-        list_path.add("http://ww4.sinaimg.cn/large/006uZZy8jw1faic2b16zuj30ci08cwf4.jpg");
-        list_path.add("http://ww4.sinaimg.cn/large/006uZZy8jw1faic2e7vsaj30ci08cglz.jpg");
-        list_title.add("好好学 习");
-        list_title.add("天天向 上");
-        list_title.add("热爱劳 动");
-        list_title.add("不搞对 象");
         //设置内置样式，共有六种可以点入方法内逐一体验使用。
         //banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
         banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
