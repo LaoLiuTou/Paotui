@@ -94,7 +94,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
             //Object model = (Object) msg.obj;
             switch (msg.what){
                 case Config.FAILURE_CODE:
-                    Toast.makeText(getActivity(),"获取主页轮播图失败!!!",Toast.LENGTH_LONG);
+                    Toast.makeText(getActivity(),"获取主页轮播图失败!!!",Toast.LENGTH_LONG).show();
                     break;
                 case Config.SUCCESS_CODE:
                     initBanner();
@@ -196,7 +196,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
 
     //监听事件
     @OnClick({R.id.top_left_btn,R.id.first1,R.id.first2,R.id.first3,R.id.second1,R.id.second2,R.id.second3,R.id.third1,R.id.third2,R.id.third3})//多个控件可以一起发在里面进行监听
-    public void sayHi(View view) {
+    public void btnClick(View view) {
         switch (view.getId()) {
             case R.id.top_left_btn:
                 startQrCode();
