@@ -561,11 +561,13 @@
              >
 
             <ImageView
+                android:id="@+id/news1"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:scaleType="fitXY"
                 android:src="@mipmap/news1" />
             <ImageView
+                android:id="@+id/news2"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:scaleType="fitXY"

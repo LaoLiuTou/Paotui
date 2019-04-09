@@ -62,6 +62,10 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
     TextView sroll_text;
     @BindView(R.id.top_bar_title)
     TextView top_bar_title;
+    @BindView(R.id.news1)
+    ImageView news1;
+    @BindView(R.id.news2)
+    ImageView news2;
 
     private ArrayList<String> list_path;
     private ArrayList<String> list_title;
@@ -77,12 +81,15 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getBannerData();
-        sroll_text.setText("2019-03-28 共有1000用户  用户***，支付车费5元，成功立减2元。");
+
+        //sroll_text.setText("2019-03-28 共有1000用户  用户***，支付车费5元，成功立减2元。");
         Drawable icon = getResources().getDrawable(R.mipmap.tongzhi2);
         icon.setBounds(10,0,70,60);
         top_bar_title.setCompoundDrawables(icon, null, null, null);
-        top_bar_title.setText("  打车支付     立减2元  ");
+        //top_bar_title.setText("  打车支付     立减2元  ");
+        getTitleData();
+        getBannerData();
+        getNewsData();
     }
 
     /**
@@ -93,17 +100,96 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
         public void handleMessage(Message msg) {
             //Object model = (Object) msg.obj;
             switch (msg.what){
-                case Config.FAILURE_CODE:
+                case 0://轮播图成功
+                    initBanner();
+                    break;
+                case 1://轮播图失败
                     Toast.makeText(getActivity(),"获取主页轮播图失败!!!",Toast.LENGTH_LONG).show();
                     break;
-                case Config.SUCCESS_CODE:
-                    initBanner();
+                case 2://标题成功
+                    List<Map<String,String>> dataList=(List<Map<String,String>>)msg.obj;
+                    for(Map<String,String> temp:dataList){
+                        if(temp.get("property")!=null&&temp.get("property").equals("title")){
+                            top_bar_title.setText(temp.get("value"));
+                        }
+                        else if(temp.get("property")!=null&&temp.get("property").equals("roll")){
+                            sroll_text.setText(temp.get("value"));
+                        }
+
+                    }
+                    break;
+                case 3://标题失败
+                    Toast.makeText(getActivity(),"获取标题失败!!!",Toast.LENGTH_LONG).show();
+                    break;
+                case 4://标题成功
+
+                    List<Map<String,String>> newsDataList=(List<Map<String,String>>)msg.obj;
+                    for(int index=0;index<newsDataList.size();index++){
+                        String str=Config.url+newsDataList.get(index).get("image");
+                        if(index==0){
+                            Glide.with(getContext()).load(Config.url+newsDataList.get(index).get("image")).into(news1);
+                        }
+                        else if(index==1){
+                            Glide.with(getContext()).load(Config.url+newsDataList.get(index).get("image")).into(news2);
+                        }
+
+                    }
+
+                    break;
+                case 5://标题失败
+                    Toast.makeText(getActivity(),"获取图片新闻失败!!!",Toast.LENGTH_LONG).show();
+                    break;
+                default:
                     break;
             }
             super.handleMessage(msg);
         }
     };
+    private void getTitleData(){
+        final Message message=Message.obtain();
+        //放图片地址的集合
+        list_path = new ArrayList<>();
+        //放标题的集合
+        list_title = new ArrayList<>();
 
+        OkHttpClient okHttpClient = new OkHttpClient();
+        FormBody formBody = new FormBody.Builder()
+                .build();
+        Request request = new Request.Builder().url(Config.url+"/allConfigure")
+                .addHeader("source", Config.REQUEST_HEADER)// 自定义的header
+                .post(formBody)
+                .build();
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                // TODO: 17-1-4  请求失败
+                message.what=3;
+                //message.obj=data;
+                handler.sendMessage(message);
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                // TODO: 17-1-4 请求成功
+                Map resultMap = JSON.parseObject(response.body().string());
+                if(resultMap.get("status").equals("0")){
+                    List<Map<String,String>> dataList=(List<Map<String,String>>)resultMap.get("msg");
+                    /*for(Map<String,String> temp :dataList){
+                        list_path.add(temp.get("image"));
+                        list_title.add(temp.get("title"));
+                    }*/
+                    message.what=2;
+                    message.obj=dataList;
+                    handler.sendMessage(message);
+                }
+                else{
+                    message.what=3;
+                    handler.sendMessage(message);
+                }
+
+
+            }
+        });
+    }
     private void getBannerData(){
         final Message message=Message.obtain();
         //放图片地址的集合
@@ -117,18 +203,17 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 .add("size", "4")
                 .build();
         Request request = new Request.Builder().url(Config.url+"/listBanner")
-                //.addHeader("Home", "china")// 自定义的header
+                .addHeader("source", Config.REQUEST_HEADER)// 自定义的header
                 .post(formBody)
                 .build();
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 // TODO: 17-1-4  请求失败
-                message.what=Config.FAILURE_CODE;
+                message.what=1;
                 //message.obj=data;
                 handler.sendMessage(message);
             }
-
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 // TODO: 17-1-4 请求成功
@@ -141,15 +226,53 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                         list_path.add(temp.get("image"));
                         list_title.add(temp.get("title"));
                     }
+                    message.what=0;
+                    handler.sendMessage(message);
                 }
                 else{
-                     
-                    Toast.makeText(getActivity(),"wrong!!!",Toast.LENGTH_LONG);
+                    message.what=1;
+                    handler.sendMessage(message);
                 }
-                message.what=Config.SUCCESS_CODE;
+            }
+        });
+    }
+
+    private void getNewsData(){
+        final Message message=Message.obtain();
+
+        OkHttpClient okHttpClient = new OkHttpClient();
+        FormBody formBody = new FormBody.Builder()
+                .add("page", "1")
+                .add("size", "2")
+                .build();
+        Request request = new Request.Builder().url(Config.url+"/listNews")
+                .addHeader("source", Config.REQUEST_HEADER)// 自定义的header
+                .post(formBody)
+                .build();
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                // TODO: 17-1-4  请求失败
+                message.what=5;
                 //message.obj=data;
                 handler.sendMessage(message);
-
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                // TODO: 17-1-4 请求成功
+                Map resultMap = JSON.parseObject(response.body().string());
+                if(resultMap.get("status").equals("0")){
+                    Map dataMap= (Map)resultMap.get("msg");
+                    int totleNum=Integer.parseInt(dataMap.get("num").toString());
+                    List<Map<String,String>> dataList=(List<Map<String,String>>)dataMap.get("data");
+                    message.what=4;
+                    message.obj=dataList;
+                    handler.sendMessage(message);
+                }
+                else{
+                    message.what=5;
+                    handler.sendMessage(message);
+                }
             }
         });
     }
@@ -177,7 +300,6 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 .setOnBannerListener(this)
                 //必须最后调用的方法，启动轮播图。
                 .start();
-
 
     }
     //轮播图的监听方法
