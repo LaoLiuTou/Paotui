@@ -68,7 +68,6 @@ public class MyFragmentPage extends Fragment  {
 
     private void initUserinfo(){
         Map userInfo = JSON.parseObject(SPUtils.get(getContext(),"userinfo","{}").toString());
-
         username.setText(userInfo.get("phone").toString());
 
     }
