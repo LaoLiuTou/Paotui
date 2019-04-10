@@ -3,8 +3,7 @@
     package="com.lt.paotui">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,8 +17,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- 定义FileProvider 7.0版本更新 -->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.lt.paotui.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
         <activity android:name=".MainActivity"/>
         <activity android:name=".activity.RegisterActivity"/>
+        <activity android:name=".activity.OrderItemActivity"/>
     </application>
 
 </manifest>

@@ -49,7 +49,10 @@ public class MyFragmentPage extends Fragment  {
     private Unbinder unbinder;
     @BindView(R.id.username)
     TextView username;
-
+    @BindView(R.id.yue)
+    TextView yue;
+    @BindView(R.id.header)
+    ImageView header;
 
     @Nullable
     @Override
@@ -69,7 +72,8 @@ public class MyFragmentPage extends Fragment  {
     private void initUserinfo(){
         Map userInfo = JSON.parseObject(SPUtils.get(getContext(),"userinfo","{}").toString());
         username.setText(userInfo.get("phone").toString());
-
+        yue.setText(userInfo.get("balance").toString());
+        Glide.with(getContext()).load(Config.url+userInfo.get("header").toString()).into(header);
     }
 
 

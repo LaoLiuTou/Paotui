@@ -1,7 +1,10 @@
 package com.lt.paotui;
 
 import android.annotation.TargetApi;
+import android.content.pm.PackageManager;
 import android.os.Build;
+import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
@@ -9,13 +12,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 
+import com.alibaba.fastjson.JSON;
+import com.lt.paotui.utils.Config;
+import com.lt.paotui.utils.update.UpdateApk;
+import com.lt.paotui.utils.update.UpdateBean;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
     @BindView(R.id.viewpager)
@@ -76,7 +95,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
     private void initFragments()
@@ -99,6 +117,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    // Activity中
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+    {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        // 获取到Activity下的Fragment
+        List<Fragment> fragments = getSupportFragmentManager().getFragments();
+        if (fragments == null)
+        {
+            return;
+        }
+        // 查找在Fragment中onRequestPermissionsResult方法并调用
+        for (Fragment fragment : fragments)
+        {
+            if (fragment != null)
+            {
+                // 这里就会调用我们Fragment中的onRequestPermissionsResult方法
+                fragment.onRequestPermissionsResult(requestCode, permissions, grantResults);
+            }
+        }
+    }
 
 
 

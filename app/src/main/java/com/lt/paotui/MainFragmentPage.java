@@ -1,10 +1,14 @@
 package com.lt.paotui;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,10 +16,13 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.FileProvider;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,14 +30,25 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
 import com.github.shenyuanqing.zxingsimplify.zxing.Activity.CaptureActivity;
+import com.hb.dialog.dialog.ConfirmDialog;
+import com.hb.dialog.myDialog.MyAlertDialog;
+import com.hb.dialog.myDialog.MyAlertInputDialog;
+import com.lt.paotui.activity.LoginActivity;
+import com.lt.paotui.activity.OrderItemActivity;
 import com.lt.paotui.utils.Config;
 import com.lt.paotui.utils.Constant;
+import com.lt.paotui.utils.SPUtils;
+import com.lt.paotui.utils.UpdateUtil;
+import com.lt.paotui.utils.update.CommonUtil;
+import com.lt.paotui.utils.update.UpdateApk;
+import com.lt.paotui.utils.update.UpdateBean;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +72,7 @@ import static android.app.Activity.RESULT_OK;
  */
 
 public class MainFragmentPage extends Fragment implements OnBannerListener {
-
+    private ProgressDialog progressDialog;
     private Unbinder unbinder;
     @BindView(R.id.banner)
     Banner banner;
@@ -62,6 +80,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
     TextView sroll_text;
     @BindView(R.id.top_bar_title)
     TextView top_bar_title;
+
     @BindView(R.id.news1)
     ImageView news1;
     @BindView(R.id.news2)
@@ -69,7 +88,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
 
     private ArrayList<String> list_path;
     private ArrayList<String> list_title;
-
+    UpdateBean updateBean = new UpdateBean();
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -90,8 +109,36 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
         getTitleData();
         getBannerData();
         getNewsData();
-    }
 
+        checkVersion();
+    }
+    private void checkVersion(){
+
+        OkHttpClient okHttpClient = new OkHttpClient();
+        FormBody formBody = new FormBody.Builder()
+                .build();
+        Request request = new Request.Builder().url(Config.url+"/version/version.json")
+                .addHeader("source", Config.REQUEST_HEADER)// 自定义的header
+                .post(formBody)
+                .build();
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String versionStr=response.body().string();
+                Map resultMap = JSON.parseObject(versionStr);
+                updateBean.setMessage(resultMap.get("message").toString());
+                updateBean.setTitle("立即更新");
+                updateBean.setUrl(resultMap.get("url").toString());
+                updateBean.setVersionCode(Integer.parseInt(resultMap.get("versionCode").toString()));
+                updateBean.setVersionName(resultMap.get("version").toString());
+                UpdateApk.UpdateVersion(getContext(), updateBean);
+            }
+        });
+    }
     /**
      * 接收解析后传过来的数据
      */
@@ -138,6 +185,14 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                     break;
                 case 5://标题失败
                     Toast.makeText(getActivity(),"获取图片新闻失败!!!",Toast.LENGTH_LONG).show();
+                    break;
+                case 6://订单成功
+                    Intent intent = new Intent();
+                    intent.setClass(getActivity(), OrderItemActivity.class);
+                    startActivity(intent);
+                    break;
+                case 7://订单失败
+                    Toast.makeText(getActivity(),"提交订单失败!!!",Toast.LENGTH_LONG).show();
                     break;
                 default:
                     break;
@@ -223,7 +278,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                     int totleNum=Integer.parseInt(dataMap.get("num").toString());
                     List<Map<String,String>> dataList=(List<Map<String,String>>)dataMap.get("data");
                     for(Map<String,String> temp :dataList){
-                        list_path.add(temp.get("image"));
+                        list_path.add(Config.url+temp.get("image"));
                         list_title.add(temp.get("title"));
                     }
                     message.what=0;
@@ -324,38 +379,62 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 startQrCode();
                 break;
             case R.id.first1:
-
+                showAlterDialog();
                 break;
             case R.id.first2:
-
+                showAlterDialog();
                 break;
             case R.id.first3:
-
+                showAlterDialog();
                 break;
             case R.id.second1:
-
+                showAlterDialog();
                 break;
             case R.id.second2:
-
+                showAlterDialog();
                 break;
             case R.id.second3:
-
+                showAlterDialog();
                 break;
-            case R.id.third1:
 
-                break;
-            case R.id.third2:
-
-                break;
-            case R.id.third3:
-
-                break;
             default:
                 break;
         }
 
     }
+    private void showAlterDialog(){
+        MyAlertDialog myAlertDialog = new MyAlertDialog(getContext()).builder()
+                .setTitle("确认吗？")
+                .setMsg("即将拨打服务电话")
+                .setPositiveButton("确认", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        callPhone("5059898");
+                    }
+                }).setNegativeButton("取消", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
+                    }
+                });
+        myAlertDialog.show();
+
+    }
+
+    /**
+     * 拨打电话（直接拨打电话）
+     * @param phoneNum 电话号码
+     */
+    public void callPhone(String phoneNum){
+        /*Intent intent = new Intent(Intent.ACTION_CALL);
+        Uri data = Uri.parse("tel:" + phoneNum);
+        intent.setData(data);
+        startActivity(intent);*/
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        Uri data = Uri.parse("tel:" + phoneNum);
+        intent.setData(data);
+        startActivity(intent);
+    }
 
     // 开始扫码
     private void startQrCode() {
@@ -381,17 +460,102 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
         //扫描结果回调
         if (requestCode == Constant.REQ_QR_CODE && resultCode == RESULT_OK) {
             Bundle bundle = data.getExtras();
-            String scanResult = bundle.getString(Constant.INTENT_EXTRA_KEY_QR_SCAN);
-            //将扫描出的信息显示出来
-            //tvResult.setText(scanResult);
-            Toast.makeText(getActivity(), scanResult, Toast.LENGTH_LONG).show();
+            //String scanResult = bundle.getString(Constant.INTENT_EXTRA_KEY_QR_SCAN);
+            //Toast.makeText(MainActivity.this, data.getStringExtra("barCode"), Toast.LENGTH_LONG).show();
+            Map resultMap = JSON.parseObject(data.getStringExtra("barCode"));
+            String driver="";
+            if(resultMap.containsKey("driver")){
+                driver=resultMap.get("driver").toString();
+                //将扫描出的信息显示出来
+                showInputDialog(driver);
+
+            }
+            else{
+                Toast.makeText(getActivity(), "无效的扫描结果！", Toast.LENGTH_LONG).show();
+            }
+
+
         }
+    }
+    private void showInputDialog(final String driver) {
+        final MyAlertInputDialog myAlertInputDialog = new MyAlertInputDialog(getContext()).builder()
+                .setTitle("请输入要支付的金额")
+                .setEditText("");
+        myAlertInputDialog.setPositiveButton("确认", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(CommonUtil.isMoney(myAlertInputDialog.getResult())){
+                    Map userInfo = JSON.parseObject(SPUtils.get(getContext(),"userinfo","{}").toString());
+                    String cus_id=userInfo.get("id").toString();
+                    addOrder(cus_id,myAlertInputDialog.getResult(),driver);
+                    myAlertInputDialog.dismiss();
+                }
+                else{
+                    Toast.makeText(getActivity(), "无效的金额！", Toast.LENGTH_LONG).show();
+                }
+
+
+            }
+        }).setNegativeButton("取消", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                myAlertInputDialog.dismiss();
+            }
+        });
+        myAlertInputDialog.show();
+
+
+    }
+    private void addOrder(String cus_id,String price,String driver){
+        final Message message=Message.obtain();
+
+        OkHttpClient okHttpClient = new OkHttpClient();
+        FormBody formBody = new FormBody.Builder()
+                .add("cus_id", cus_id)
+                .add("price", price)
+                .add("driver", driver)
+                .build();
+        Request request = new Request.Builder().url(Config.url+"/addOrders")
+                .addHeader("source", Config.REQUEST_HEADER)// 自定义的header
+                .post(formBody)
+                .build();
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                // TODO: 17-1-4  请求失败
+                message.what=7;
+                //message.obj=data;
+                handler.sendMessage(message);
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                // TODO: 17-1-4 请求成功
+                Map resultMap = JSON.parseObject(response.body().string());
+                if(resultMap.get("status").equals("0")){
+                    message.what=6;
+                    handler.sendMessage(message);
+                }
+                else{
+                    message.what=7;
+                    handler.sendMessage(message);
+                }
+            }
+        });
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
         switch (requestCode) {
+            case 1000:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    UpdateApk.UpdateVersion(getContext(), updateBean);
+                } else {
+                    Toast.makeText(getContext(), "请在应用管理中打开“存储权限”访问权限,否则无法正常使用！", Toast.LENGTH_SHORT).show();
+                }
+                break;
             case Constant.REQ_PERM_CAMERA:
                 // 摄像头权限申请
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -412,9 +576,9 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                     Toast.makeText(getActivity(), "请至权限中心打开本应用的文件读写权限", Toast.LENGTH_LONG).show();
                 }
                 break;
+
         }
     }
-
 
     @Override
     public void onDestroyView() {

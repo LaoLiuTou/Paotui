@@ -16,4 +16,6 @@
     <color name="color_left_bg">#ffffff</color>
     <color name="color_right_bg">#f8f8f8</color>
     <color name="color_divider">#e8e7e7</color>
+    <color name="common_cheat_board">#7f000000</color>
+    <color name="update_background">#7f000000</color>
 </resources>

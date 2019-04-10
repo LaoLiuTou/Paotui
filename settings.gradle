@@ -1,1 +1,2 @@
 include ':app', ':zxing-simplify'
+include ':app', ':base_dialog'
