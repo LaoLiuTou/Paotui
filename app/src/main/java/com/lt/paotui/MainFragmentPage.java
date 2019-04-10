@@ -34,7 +34,7 @@ import com.hb.dialog.dialog.ConfirmDialog;
 import com.hb.dialog.myDialog.MyAlertDialog;
 import com.hb.dialog.myDialog.MyAlertInputDialog;
 import com.lt.paotui.activity.LoginActivity;
-import com.lt.paotui.activity.OrderItemActivity;
+import com.lt.paotui.activity.OrderDetailActivity;
 import com.lt.paotui.utils.Config;
 import com.lt.paotui.utils.Constant;
 import com.lt.paotui.utils.SPUtils;
@@ -187,12 +187,14 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                     Toast.makeText(getActivity(),"获取图片新闻失败!!!",Toast.LENGTH_LONG).show();
                     break;
                 case 6://订单成功
+
                     Intent intent = new Intent();
-                    intent.setClass(getActivity(), OrderItemActivity.class);
+                    intent.setClass(getActivity(), OrderDetailActivity.class);
+                    intent.putExtra("order_id", msg.obj.toString());
                     startActivity(intent);
                     break;
                 case 7://订单失败
-                    Toast.makeText(getActivity(),"提交订单失败!!!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),msg.obj.toString(),Toast.LENGTH_LONG).show();
                     break;
                 default:
                     break;
@@ -525,7 +527,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
             public void onFailure(Call call, IOException e) {
                 // TODO: 17-1-4  请求失败
                 message.what=7;
-                //message.obj=data;
+                message.obj="提交订单失败！";
                 handler.sendMessage(message);
             }
             @Override
@@ -534,10 +536,12 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 Map resultMap = JSON.parseObject(response.body().string());
                 if(resultMap.get("status").equals("0")){
                     message.what=6;
+                    message.obj=resultMap.get("msg").toString();
                     handler.sendMessage(message);
                 }
                 else{
                     message.what=7;
+                    message.obj=resultMap.get("msg").toString();
                     handler.sendMessage(message);
                 }
             }

@@ -29,7 +29,7 @@
         </provider>
         <activity android:name=".MainActivity"/>
         <activity android:name=".activity.RegisterActivity"/>
-        <activity android:name=".activity.OrderItemActivity"/>
+        <activity android:name=".activity.OrderDetailActivity"/>
     </application>
 
 </manifest>
