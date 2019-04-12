@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapterViewHolder> {
-    private List<Map<String,String>> list;
+    private List<Map> list;
     private int largeCardHeight, smallCardHeight;
 
     // 利用接口 -> 给RecyclerView设置点击事件
@@ -29,7 +29,7 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
 
     }
 
-    public SimpleAdapter(List<Map<String,String>> list, Context context) {
+    public SimpleAdapter(List<Map> list, Context context) {
         this.list = list;
         largeCardHeight = DensityUtil.dip2px(context, 150);
         smallCardHeight = DensityUtil.dip2px(context, 100);
@@ -37,14 +37,14 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
 
     @Override
     public void onBindViewHolder(SimpleAdapterViewHolder holder,final int position, boolean isItem) {
-        Map<String,String> item = list.get(position);
+        Map item = list.get(position);
 
 
 
-        holder.ordernum.setText(item.get("ordernum"));
-        holder.driver.setText(item.get("driver"));
-        holder.status.setText(item.get("status").equals("0")?"已完成":"未完成");
-        holder.pay_dt.setText(item.get("pay_dt"));
+        holder.ordernum.setText(item.get("ordernum").toString());
+        holder.driver.setText(item.get("driver").toString());
+        holder.status.setText(item.get("status").toString().equals("0")?"已完成":"未完成");
+        holder.pay_dt.setText(item.get("pay_dt").toString());
         ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
         if (layoutParams instanceof StaggeredGridLayoutManager.LayoutParams) {
             holder.rootView.getLayoutParams().height = position % 2 != 0 ? largeCardHeight : smallCardHeight;
@@ -77,7 +77,7 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
         return new SimpleAdapterViewHolder(view, false);
     }
 
-    public void setData(List<Map<String,String>> list) {
+    public void setData(List<Map> list) {
         this.list = list;
         notifyDataSetChanged();
     }

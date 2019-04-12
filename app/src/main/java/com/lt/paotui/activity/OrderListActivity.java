@@ -43,7 +43,7 @@ public class OrderListActivity extends Activity   {
     @BindView(R.id.xrefreshview)
     XRefreshView xRefreshView;
     SimpleAdapter adapter;
-    List<Map<String,String>> listData = new ArrayList<Map<String,String>>();
+    List<Map> listData = new ArrayList<>();
     LinearLayoutManager layoutManager;
     private int mLoadCount = 0;
     private boolean isList = true;//false 为grid布局
@@ -117,7 +117,7 @@ public class OrderListActivity extends Activity   {
                 if(resultMap.get("status").equals("0")){
                     Map dataMap= (Map)resultMap.get("msg");
                     int totleNum=Integer.parseInt(dataMap.get("num").toString());
-                    List<Map<String,String>> tempData=(List<Map<String,String>>)dataMap.get("data");
+                    List tempData=(List)dataMap.get("data");
                     if(tempData.size()==0){
                         message.what=2;
                         //message.obj=resultMap.get("msg");
@@ -206,8 +206,7 @@ public class OrderListActivity extends Activity   {
             public void onItemClick(int position) {
                 Intent intent = new Intent();
                 intent.setClass(OrderListActivity.this, OrderDetailActivity.class);
-                Map<String,String> temp=listData.get(position);
-                String order_id=temp.get("id");
+                String order_id=listData.get(position).get("id").toString();
                 intent.putExtra("order_id", order_id);
                 startActivity(intent);
             }
