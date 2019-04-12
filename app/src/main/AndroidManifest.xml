@@ -30,6 +30,7 @@
         <activity android:name=".MainActivity"/>
         <activity android:name=".activity.RegisterActivity"/>
         <activity android:name=".activity.OrderDetailActivity"/>
+        <activity android:name=".activity.OrderListActivity"/>
     </application>
 
 </manifest>

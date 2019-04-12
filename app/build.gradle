@@ -25,6 +25,11 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:24.2.1'
+    //RecyclerView and CardView
+    compile 'com.android.support:cardview-v7:24.2.1'
+    //    compile 'com.android.support:recyclerview-v7:25.3.1'
+    //Fresco
+    compile 'com.facebook.fresco:fresco:1.2.0'
     testCompile 'junit:junit:4.12'
     compile  'com.youth.banner:banner:1.4.9'
     compile 'com.github.bumptech.glide:glide:3.7.0'
@@ -33,5 +38,6 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.3.1'
     compile project(path: ':zxing-simplify')
     compile project(path: ':base_dialog')
+    compile project(path: ':xrefreshview')
     compile 'com.alibaba:fastjson:1.1.55.android'
 }
