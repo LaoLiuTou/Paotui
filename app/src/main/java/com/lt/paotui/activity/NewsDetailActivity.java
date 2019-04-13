@@ -8,16 +8,20 @@ import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.andview.refreshview.XRefreshView;
 import com.andview.refreshview.XRefreshViewFooter;
+import com.bumptech.glide.Glide;
 import com.lt.paotui.R;
-import com.lt.paotui.adapter.SimpleAdapter;
+import com.lt.paotui.adapter.NewsAdapter;
+import com.lt.paotui.adapter.NewsDetailAdapter;
 import com.lt.paotui.utils.Config;
-import com.lt.paotui.utils.SPUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,16 +42,20 @@ import okhttp3.Response;
  * Created by Administrator on 2019/4/12.
  */
 
-public class OrderListActivity extends Activity   {
+public class NewsDetailActivity extends Activity   {
+
     @BindView(R.id.top_bar_title)
     TextView top_bar_title;
-
+    @BindView(R.id.title)
+    TextView title;
+    @BindView(R.id.c_dt)
+    TextView c_dt;
     @BindView(R.id.recycler_view_test_rv)
     RecyclerView recyclerView;
     @BindView(R.id.xrefreshview)
     XRefreshView xRefreshView;
-    SimpleAdapter adapter;
-    List<Map> listData = new ArrayList<>();
+    NewsDetailAdapter adapter;
+    List<String> listData = new ArrayList<>();
     LinearLayoutManager layoutManager;
     private int mLoadCount = 0;
     private boolean isList = true;//false 为grid布局
@@ -56,11 +64,12 @@ public class OrderListActivity extends Activity   {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order_list);
+        setContentView(R.layout.activity_news_detail);
         ButterKnife.bind(this);
         page=1;
         getOrderData(page,size);
-        top_bar_title.setText("订单列表");
+        top_bar_title.setText("资讯详情");
+
     }
     /**
      * 接收解析后传过来的数据
@@ -71,17 +80,23 @@ public class OrderListActivity extends Activity   {
             //Object model = (Object) msg.obj;
             switch (msg.what){
                 case 0:
-                    initListView();
+                    Map model = (Map) msg.obj;
+                    title.setText(model.get("title").toString());
+                    c_dt.setText(model.get("c_dt").toString());
+
+                    if(model.get("content")!=null){
+                        initListView();
+                    }
+
                     xRefreshView.stopRefresh();
                     xRefreshView.stopLoadMore(true);
 
-                    break;
-                case 1:
-                    Toast.makeText(OrderListActivity.this, msg.obj.toString(),Toast.LENGTH_LONG).show();
-                    break;
-                case 2:
                     xRefreshView.setLoadComplete(true);
                     break;
+                case 1:
+                    Toast.makeText(NewsDetailActivity.this, msg.obj.toString(),Toast.LENGTH_LONG).show();
+                    break;
+
 
                 default:
                     break;
@@ -91,18 +106,15 @@ public class OrderListActivity extends Activity   {
     };
     private void getOrderData(final int page,int size){
         xRefreshView.startRefresh();
-        Map userInfo = JSON.parseObject(SPUtils.get(OrderListActivity.this,"userinfo","{}").toString());
-        final  String cus_id=userInfo.get("id").toString();
-
+        Intent intent = getIntent();
+        String news_id = intent.getStringExtra("news_id");
         final Message message=Message.obtain();
 
         OkHttpClient okHttpClient = new OkHttpClient();
         FormBody formBody = new FormBody.Builder()
-                .add("page", page+"")
-                .add("size", size+"")
-                .add("cud_id", cus_id)
+                .add("id", news_id)
                 .build();
-        Request request = new Request.Builder().url(Config.url+"/listOrders")
+        Request request = new Request.Builder().url(Config.url+"/selectNews")
                 .addHeader("source", Config.REQUEST_HEADER)// 自定义的header
                 .post(formBody)
                 .build();
@@ -120,24 +132,14 @@ public class OrderListActivity extends Activity   {
                 Map resultMap = JSON.parseObject(response.body().string());
                 if(resultMap.get("status").equals("0")){
                     Map dataMap= (Map)resultMap.get("msg");
-                    int totleNum=Integer.parseInt(dataMap.get("num").toString());
-                    List tempData=(List)dataMap.get("data");
-                    if(tempData.size()==0){
-                        message.what=2;
-                        //message.obj=resultMap.get("msg");
-                        handler.sendMessage(message);
+                    if(dataMap.get("content")!=null){
+                        listData= JSONObject.parseArray(dataMap.get("content").toString(),String.class);
                     }
-                    else{
-                        if (page == 1) {
-                            listData=tempData;
-                        }
-                        else{
-                            listData.addAll(tempData);
-                        }
-                        message.what=0;
-                        //message.obj=resultMap.get("msg");
-                        handler.sendMessage(message);
-                    }
+
+                    message.what=0;
+                    message.obj=dataMap;
+                    handler.sendMessage(message);
+
 
                 }
                 else{
@@ -151,7 +153,7 @@ public class OrderListActivity extends Activity   {
     }
 
     private void initListView(){
-        adapter = new SimpleAdapter(listData, this);
+        adapter = new NewsDetailAdapter(listData, this);
         // 设置静默加载模式
 //        xRefreshView1.setSilenceLoadMore();
         layoutManager = new LinearLayoutManager(this);
@@ -205,16 +207,16 @@ public class OrderListActivity extends Activity   {
             }
         });
         // 设置数据后就要给RecyclerView设置点击事件
-        adapter.setOnItemClickListener(new SimpleAdapter.ItemClickListener() {
+       /* adapter.setOnItemClickListener(new NewsAdapter.ItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 Intent intent = new Intent();
-                intent.setClass(OrderListActivity.this, OrderDetailActivity.class);
+                intent.setClass(NewsDetailActivity.this, OrderDetailActivity.class);
                 String order_id=listData.get(position).get("id").toString();
                 intent.putExtra("order_id", order_id);
                 startActivity(intent);
             }
-        });
+        });*/
     }
     @OnClick({R.id.top_back_btn})
     public void btnClick(View view) {

@@ -15,6 +15,7 @@ import com.alibaba.fastjson.JSON;
 import com.andview.refreshview.XRefreshView;
 import com.andview.refreshview.XRefreshViewFooter;
 import com.lt.paotui.R;
+import com.lt.paotui.adapter.NewsAdapter;
 import com.lt.paotui.adapter.SimpleAdapter;
 import com.lt.paotui.utils.Config;
 import com.lt.paotui.utils.SPUtils;
@@ -38,15 +39,15 @@ import okhttp3.Response;
  * Created by Administrator on 2019/4/12.
  */
 
-public class OrderListActivity extends Activity   {
+public class NewsListActivity extends Activity   {
+
     @BindView(R.id.top_bar_title)
     TextView top_bar_title;
-
     @BindView(R.id.recycler_view_test_rv)
     RecyclerView recyclerView;
     @BindView(R.id.xrefreshview)
     XRefreshView xRefreshView;
-    SimpleAdapter adapter;
+    NewsAdapter adapter;
     List<Map> listData = new ArrayList<>();
     LinearLayoutManager layoutManager;
     private int mLoadCount = 0;
@@ -60,7 +61,7 @@ public class OrderListActivity extends Activity   {
         ButterKnife.bind(this);
         page=1;
         getOrderData(page,size);
-        top_bar_title.setText("订单列表");
+        top_bar_title.setText("资讯列表");
     }
     /**
      * 接收解析后传过来的数据
@@ -77,7 +78,7 @@ public class OrderListActivity extends Activity   {
 
                     break;
                 case 1:
-                    Toast.makeText(OrderListActivity.this, msg.obj.toString(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(NewsListActivity.this, msg.obj.toString(),Toast.LENGTH_LONG).show();
                     break;
                 case 2:
                     xRefreshView.setLoadComplete(true);
@@ -91,18 +92,17 @@ public class OrderListActivity extends Activity   {
     };
     private void getOrderData(final int page,int size){
         xRefreshView.startRefresh();
-        Map userInfo = JSON.parseObject(SPUtils.get(OrderListActivity.this,"userinfo","{}").toString());
-        final  String cus_id=userInfo.get("id").toString();
-
+        Intent intent = getIntent();
+        String type = intent.getStringExtra("type");
         final Message message=Message.obtain();
 
         OkHttpClient okHttpClient = new OkHttpClient();
         FormBody formBody = new FormBody.Builder()
                 .add("page", page+"")
                 .add("size", size+"")
-                .add("cud_id", cus_id)
+                .add("type", type)
                 .build();
-        Request request = new Request.Builder().url(Config.url+"/listOrders")
+        Request request = new Request.Builder().url(Config.url+"/listNews")
                 .addHeader("source", Config.REQUEST_HEADER)// 自定义的header
                 .post(formBody)
                 .build();
@@ -151,7 +151,7 @@ public class OrderListActivity extends Activity   {
     }
 
     private void initListView(){
-        adapter = new SimpleAdapter(listData, this);
+        adapter = new NewsAdapter(listData, this);
         // 设置静默加载模式
 //        xRefreshView1.setSilenceLoadMore();
         layoutManager = new LinearLayoutManager(this);
@@ -205,13 +205,13 @@ public class OrderListActivity extends Activity   {
             }
         });
         // 设置数据后就要给RecyclerView设置点击事件
-        adapter.setOnItemClickListener(new SimpleAdapter.ItemClickListener() {
+        adapter.setOnItemClickListener(new NewsAdapter.ItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 Intent intent = new Intent();
-                intent.setClass(OrderListActivity.this, OrderDetailActivity.class);
+                intent.setClass(NewsListActivity.this, NewsDetailActivity.class);
                 String order_id=listData.get(position).get("id").toString();
-                intent.putExtra("order_id", order_id);
+                intent.putExtra("news_id", order_id);
                 startActivity(intent);
             }
         });

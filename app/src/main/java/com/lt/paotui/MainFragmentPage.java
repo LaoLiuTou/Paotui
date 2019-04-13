@@ -34,7 +34,9 @@ import com.hb.dialog.dialog.ConfirmDialog;
 import com.hb.dialog.myDialog.MyAlertDialog;
 import com.hb.dialog.myDialog.MyAlertInputDialog;
 import com.lt.paotui.activity.LoginActivity;
+import com.lt.paotui.activity.NewsListActivity;
 import com.lt.paotui.activity.OrderDetailActivity;
+import com.lt.paotui.activity.OrderListActivity;
 import com.lt.paotui.utils.Config;
 import com.lt.paotui.utils.Constant;
 import com.lt.paotui.utils.SPUtils;
@@ -108,7 +110,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
         //top_bar_title.setText("  打车支付     立减2元  ");
         getTitleData();
         getBannerData();
-        getNewsData();
+        //getNewsData();
 
         checkVersion();
     }
@@ -374,8 +376,9 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
 
 
     //监听事件
-    @OnClick({R.id.top_left_btn,R.id.first1,R.id.first2,R.id.first3,R.id.second1,R.id.second2,R.id.second3,R.id.third1,R.id.third2,R.id.third3})//多个控件可以一起发在里面进行监听
+    @OnClick({R.id.top_left_btn,R.id.first1,R.id.first2,R.id.first3,R.id.second1,R.id.second2,R.id.second3,R.id.third1,R.id.third2,R.id.third3,R.id.news1,R.id.news2})//多个控件可以一起发在里面进行监听
     public void btnClick(View view) {
+        Intent intent = new Intent();
         switch (view.getId()) {
             case R.id.top_left_btn:
                 startQrCode();
@@ -397,6 +400,17 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 break;
             case R.id.second3:
                 showAlterDialog();
+                break;
+            case R.id.news1:
+
+                intent.setClass(getActivity(), NewsListActivity.class);
+                intent.putExtra("type", "1");
+                startActivity(intent);
+                break;
+            case R.id.news2:
+                intent.setClass(getActivity(), NewsListActivity.class);
+                intent.putExtra("type", "2");
+                startActivity(intent);
                 break;
 
             default:
