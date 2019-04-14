@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
 import com.github.shenyuanqing.zxingsimplify.zxing.Activity.CaptureActivity;
+import com.hb.dialog.dialog.LoadingDialog;
 import com.lt.paotui.MainActivity;
 import com.lt.paotui.R;
 import com.lt.paotui.utils.Config;
@@ -106,6 +107,9 @@ public class LoginActivity extends Activity {
 
 
     private void login(){
+        final LoadingDialog loadingDialog = new LoadingDialog(this);
+        loadingDialog.setMessage("正在加载...");
+        loadingDialog.show();
         final Message message=Message.obtain();
         OkHttpClient okHttpClient = new OkHttpClient();
         FormBody formBody = new FormBody.Builder()
@@ -120,6 +124,7 @@ public class LoginActivity extends Activity {
             @Override
             public void onFailure(Call call, IOException e) {
                 // TODO: 17-1-4  请求失败
+                loadingDialog.dismiss();
                 message.what=1;
                 message.obj="请求失败！";
                 handler.sendMessage(message);
@@ -127,6 +132,7 @@ public class LoginActivity extends Activity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 // TODO: 17-1-4 请求成功
+                loadingDialog.dismiss();
                 Map resultMap = JSON.parseObject(response.body().string());
                 if(resultMap.get("status").equals("0")){
                     //Map<String,String> userMap=(Map<String,String>)resultMap.get("msg");

@@ -10,13 +10,13 @@
 
     <EditText
         android:drawableLeft="@android:drawable/ic_menu_myplaces"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:ems="10"
         android:id="@+id/username"
         android:layout_alignParentTop="true"
-        android:hint="请输入您的用户名"
+        android:hint="请输入您的手机号"
         android:layout_marginTop="100dp"
          />
 
@@ -24,7 +24,7 @@
 
     <EditText
         android:drawableLeft="@android:drawable/ic_lock_idle_lock"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="60dp"
         android:inputType="textPassword"
         android:ems="10"
@@ -37,7 +37,7 @@
 
     <EditText
         android:drawableLeft="@android:drawable/ic_lock_idle_lock"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="60dp"
         android:inputType="textPassword"
         android:ems="10"
@@ -45,20 +45,47 @@
         android:layout_below="@+id/password"
         android:layout_centerHorizontal="true"
         android:hint="请确认您的密码" />
+    <LinearLayout
+        android:id="@+id/codelin"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_below="@+id/re_password">
+        <EditText
+            android:id="@+id/idcode"
+            android:drawableLeft="@android:drawable/sym_action_email"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:inputType="number"
+            android:ems="10"
+            android:layout_weight="1"
+            android:layout_centerHorizontal="true"
+            android:hint="请输入验证码" />
+        <Button
+            android:id="@+id/sendcode"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:text="发送验证码"
+            android:textColor="#ffffff"
+            android:textSize="14dp"
+            android:background="@color/color_title_bg"
+             />
+    </LinearLayout>
 
     <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
         android:text="确定"
         android:id="@+id/btn_submit"
         android:textColor="#ffffff"
         android:textSize="16dp"
         android:background="@color/color_title_bg"
-        android:layout_below="@+id/re_password"
+        android:layout_below="@+id/codelin"
         android:layout_marginTop="20dp" />
     <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
         android:text="取消"
         android:id="@+id/btn_cancel"
         android:textColor="#ffffff"

@@ -100,7 +100,7 @@ public class OrderListActivity extends Activity   {
         FormBody formBody = new FormBody.Builder()
                 .add("page", page+"")
                 .add("size", size+"")
-                .add("cud_id", cus_id)
+                .add("cus_id", cus_id)
                 .build();
         Request request = new Request.Builder().url(Config.url+"/listOrders")
                 .addHeader("source", Config.REQUEST_HEADER)// 自定义的header

@@ -20,13 +20,13 @@
             android:textColor="@color/color_white"
             />
         <!--搜索图标-->
-        <ImageView
+       <!-- <ImageView
             android:id="@+id/top_right_btn"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginRight="8dp"
-            android:src="@mipmap/saoyisao"/>
+            android:src="@mipmap/saoyisao"/>-->
  </RelativeLayout>
 </RelativeLayout>

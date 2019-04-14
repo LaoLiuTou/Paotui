@@ -115,7 +115,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
         checkVersion();
     }
     private void checkVersion(){
-
+        final Message message=Message.obtain();
         OkHttpClient okHttpClient = new OkHttpClient();
         FormBody formBody = new FormBody.Builder()
                 .build();
@@ -131,13 +131,10 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String versionStr=response.body().string();
-                Map resultMap = JSON.parseObject(versionStr);
-                updateBean.setMessage(resultMap.get("message").toString());
-                updateBean.setTitle("立即更新");
-                updateBean.setUrl(resultMap.get("url").toString());
-                updateBean.setVersionCode(Integer.parseInt(resultMap.get("versionCode").toString()));
-                updateBean.setVersionName(resultMap.get("version").toString());
-                UpdateApk.UpdateVersion(getContext(), updateBean);
+                message.what=8;
+                message.obj=versionStr;
+                handler.sendMessage(message);
+
             }
         });
     }
@@ -197,6 +194,16 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                     break;
                 case 7://订单失败
                     Toast.makeText(getActivity(),msg.obj.toString(),Toast.LENGTH_LONG).show();
+                    break;
+                case 8://订单失败
+                    String versionStr=msg.obj.toString();
+                    Map resultMap = JSON.parseObject(versionStr);
+                    updateBean.setMessage(resultMap.get("message").toString());
+                    updateBean.setTitle("立即更新");
+                    updateBean.setUrl(resultMap.get("url").toString());
+                    updateBean.setVersionCode(Integer.parseInt(resultMap.get("versionCode").toString()));
+                    updateBean.setVersionName(resultMap.get("version").toString());
+                    UpdateApk.UpdateVersion(getContext(), updateBean);
                     break;
                 default:
                     break;

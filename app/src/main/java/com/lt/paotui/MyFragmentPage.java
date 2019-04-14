@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
+import com.hb.dialog.myDialog.MyAlertDialog;
 import com.lt.paotui.activity.LoginActivity;
 import com.lt.paotui.activity.OrderListActivity;
 import com.lt.paotui.utils.Config;
@@ -93,7 +94,7 @@ public class MyFragmentPage extends Fragment  {
                     Map userInfo = JSON.parseObject(SPUtils.get(getContext(),"userinfo","{}").toString());
                     username.setText(userInfo.get("phone").toString());
                     yue.setText(userInfo.get("balance").toString());
-                    Glide.with(getContext()).load(Config.url+userInfo.get("header").toString()).into(header);
+                    Glide.with(getContext()).load(Config.url+userInfo.get("header").toString()).placeholder(R.mipmap.header).error(R.mipmap.header).into(header);
                     break;
                 case 1:
                     Toast.makeText(getContext(), "同步用户信息失败！",Toast.LENGTH_LONG).show();
@@ -110,7 +111,8 @@ public class MyFragmentPage extends Fragment  {
         Map userInfo = JSON.parseObject(SPUtils.get(getContext(),"userinfo","{}").toString());
         username.setText(userInfo.get("phone").toString());
         yue.setText(userInfo.get("balance").toString());
-        Glide.with(getContext()).load(Config.url+userInfo.get("header").toString()).into(header);
+
+        Glide.with(getContext()).load(Config.url+userInfo.get("header").toString()).placeholder(R.mipmap.header).error(R.mipmap.header).into(header);
 
         final Message message=Message.obtain();
 
@@ -151,18 +153,35 @@ public class MyFragmentPage extends Fragment  {
     //监听事件
     @OnClick({R.id.myinfo,R.id.logout,R.id.zfjl})
     public void btnClick(View view) {
-        Intent intent = new Intent();
+
         switch (view.getId()) {
             case R.id.myinfo:
 
                 break;
             case R.id.logout:
-                SPUtils.clear(getContext());
-                intent.setClass(getActivity(), LoginActivity.class);
-                startActivity(intent);
-                getActivity().finish();
+                MyAlertDialog myAlertDialog = new MyAlertDialog(getContext()).builder()
+                        .setTitle("确认吗？")
+                        .setMsg("即将退出登录")
+                        .setPositiveButton("确认", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                SPUtils.clear(getContext());
+                                Intent intent = new Intent();
+                                intent.setClass(getActivity(), LoginActivity.class);
+                                startActivity(intent);
+                                getActivity().finish();
+                            }
+                        }).setNegativeButton("取消", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                            }
+                        });
+                myAlertDialog.show();
+
                 break;
             case R.id.zfjl:
+                Intent intent = new Intent();
                 intent.setClass(getActivity(), OrderListActivity.class);
                 startActivity(intent);
                 break;
