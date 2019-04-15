@@ -19,6 +19,7 @@ import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
 import com.hb.dialog.myDialog.MyAlertDialog;
 import com.lt.paotui.activity.LoginActivity;
+import com.lt.paotui.activity.MyinfoActivity;
 import com.lt.paotui.activity.OrderListActivity;
 import com.lt.paotui.utils.Config;
 import com.lt.paotui.utils.SPUtils;
@@ -151,12 +152,13 @@ public class MyFragmentPage extends Fragment  {
 
 
     //监听事件
-    @OnClick({R.id.myinfo,R.id.logout,R.id.zfjl})
+    @OnClick({R.id.myinfo,R.id.logout,R.id.zfjl,R.id.yjzf,R.id.xggrxx,R.id.ghsjh})
     public void btnClick(View view) {
-
+        Intent intent = new Intent();
         switch (view.getId()) {
             case R.id.myinfo:
-
+                intent.setClass(getActivity(), MyinfoActivity.class);
+                startActivity(intent);
                 break;
             case R.id.logout:
                 MyAlertDialog myAlertDialog = new MyAlertDialog(getContext()).builder()
@@ -181,9 +183,19 @@ public class MyFragmentPage extends Fragment  {
 
                 break;
             case R.id.zfjl:
-                Intent intent = new Intent();
+
                 intent.setClass(getActivity(), OrderListActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.yjzf:
+
+                break;
+            case R.id.xggrxx:
+                intent.setClass(getActivity(), MyinfoActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.ghsjh:
+
                 break;
 
             default:

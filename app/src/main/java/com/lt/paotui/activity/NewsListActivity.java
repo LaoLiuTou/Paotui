@@ -61,7 +61,9 @@ public class NewsListActivity extends Activity   {
         ButterKnife.bind(this);
         page=1;
         getOrderData(page,size);
-        top_bar_title.setText("资讯列表");
+        Intent intent = getIntent();
+        String title = intent.getStringExtra("title");
+        top_bar_title.setText(title);
     }
     /**
      * 接收解析后传过来的数据

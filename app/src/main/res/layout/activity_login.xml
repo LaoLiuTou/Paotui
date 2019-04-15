@@ -18,7 +18,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:id="@+id/username"
             android:drawableLeft="@android:drawable/ic_menu_myplaces"
             android:hint="请输入您的用户名"

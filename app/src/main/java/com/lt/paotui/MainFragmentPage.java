@@ -195,7 +195,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 case 7://订单失败
                     Toast.makeText(getActivity(),msg.obj.toString(),Toast.LENGTH_LONG).show();
                     break;
-                case 8://订单失败
+                case 8:////更新
                     String versionStr=msg.obj.toString();
                     Map resultMap = JSON.parseObject(versionStr);
                     updateBean.setMessage(resultMap.get("message").toString());
@@ -204,6 +204,12 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                     updateBean.setVersionCode(Integer.parseInt(resultMap.get("versionCode").toString()));
                     updateBean.setVersionName(resultMap.get("version").toString());
                     UpdateApk.UpdateVersion(getContext(), updateBean);
+                    break;
+                case 9://拨打电话记录
+                    callPhone(msg.obj.toString());
+                    break;
+                case 10://拨打电话记录
+                    Toast.makeText(getActivity(),"系统忙，请重试！",Toast.LENGTH_LONG).show();
                     break;
                 default:
                     break;
@@ -383,40 +389,107 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
 
 
     //监听事件
-    @OnClick({R.id.top_left_btn,R.id.first1,R.id.first2,R.id.first3,R.id.second1,R.id.second2,R.id.second3,R.id.third1,R.id.third2,R.id.third3,R.id.news1,R.id.news2})//多个控件可以一起发在里面进行监听
+    @OnClick({R.id.top_left_btn,R.id.first1,R.id.first2,R.id.first3,
+            R.id.second1,R.id.second2,R.id.second3,
+            R.id.third1,R.id.third2,R.id.third3,
+            R.id.fourth1,R.id.fourth2,R.id.fourth3,
+            R.id.fifth1,R.id.fifth2,R.id.fifth3,
+            R.id.news1,R.id.news2,R.id.news3})//多个控件可以一起发在里面进行监听
     public void btnClick(View view) {
         Intent intent = new Intent();
+        String [] phonenumbers={"5059898","5059696"};
+        int random=0;
         switch (view.getId()) {
             case R.id.top_left_btn:
                 startQrCode();
                 break;
             case R.id.first1:
-                showAlterDialog();
+                showAlterDialog("帮我买","5051111");
                 break;
             case R.id.first2:
-                showAlterDialog();
+                showAlterDialog("帮我送","5051111");
                 break;
             case R.id.first3:
-                showAlterDialog();
+                showAlterDialog("帮我取","5051111");
                 break;
             case R.id.second1:
-                showAlterDialog();
+                random=((int)(1+Math.random()*(10-1+1)))%2;
+                showAlterDialog("一键叫车",phonenumbers[random]);
                 break;
             case R.id.second2:
-                showAlterDialog();
+                startQrCode();
                 break;
             case R.id.second3:
-                showAlterDialog();
+                intent.setClass(getActivity(), OrderListActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.third1:
+
+                break;
+            case R.id.third2:
+                intent.setClass(getActivity(), NewsListActivity.class);
+                intent.putExtra("type", "4");
+                intent.putExtra("title", "宽带业务");
+                startActivity(intent);
+                break;
+            case R.id.third3:
+                intent.setClass(getActivity(), NewsListActivity.class);
+                intent.putExtra("type", "5");
+                intent.putExtra("title", "套餐资讯");
+                startActivity(intent);
+                break;
+            case R.id.fourth1:
+                intent.setClass(getActivity(), NewsListActivity.class);
+                intent.putExtra("type", "6");
+                intent.putExtra("title", "每日报价");
+                startActivity(intent);
+                break;
+            case R.id.fourth2:
+                intent.setClass(getActivity(), NewsListActivity.class);
+                intent.putExtra("type", "7");
+                intent.putExtra("title", "二手机收售");
+                startActivity(intent);
+                break;
+            case R.id.fourth3:
+                intent.setClass(getActivity(), NewsListActivity.class);
+                intent.putExtra("type", "8");
+                intent.putExtra("title", "靓号");
+                startActivity(intent);
+                break;
+            case R.id.fifth1:
+                intent.setClass(getActivity(), NewsListActivity.class);
+                intent.putExtra("type", "9");
+                intent.putExtra("title", "招聘");
+                startActivity(intent);
+                break;
+            case R.id.fifth2:
+                intent.setClass(getActivity(), NewsListActivity.class);
+                intent.putExtra("type", "10");
+                intent.putExtra("title", "饮食");
+                startActivity(intent);
+                break;
+            case R.id.fifth3:
+                intent.setClass(getActivity(), NewsListActivity.class);
+                intent.putExtra("type", "11");
+                intent.putExtra("title", "靓号收集");
+                startActivity(intent);
                 break;
             case R.id.news1:
-
                 intent.setClass(getActivity(), NewsListActivity.class);
                 intent.putExtra("type", "1");
+                intent.putExtra("title", "电信资讯");
                 startActivity(intent);
                 break;
             case R.id.news2:
                 intent.setClass(getActivity(), NewsListActivity.class);
                 intent.putExtra("type", "2");
+                intent.putExtra("title", "免费抽奖");
+                startActivity(intent);
+                break;
+            case R.id.news3:
+                intent.setClass(getActivity(), NewsListActivity.class);
+                intent.putExtra("type", "3");
+                intent.putExtra("title", "政府资讯");
                 startActivity(intent);
                 break;
 
@@ -425,14 +498,15 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
         }
 
     }
-    private void showAlterDialog(){
+    private void showAlterDialog(final String type,final String phonenum){
         MyAlertDialog myAlertDialog = new MyAlertDialog(getContext()).builder()
                 .setTitle("确认吗？")
                 .setMsg("即将拨打服务电话")
                 .setPositiveButton("确认", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        callPhone("5059898");
+                        addRecordData(type,phonenum);
+                        //callPhone(phonenum);
                     }
                 }).setNegativeButton("取消", new View.OnClickListener() {
                     @Override
@@ -457,6 +531,45 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
         Uri data = Uri.parse("tel:" + phoneNum);
         intent.setData(data);
         startActivity(intent);
+    }
+
+    private void addRecordData(String type,final String phone){
+        Map userInfo = JSON.parseObject(SPUtils.get(getContext(),"userinfo","{}").toString());
+        final Message message=Message.obtain();
+
+        OkHttpClient okHttpClient = new OkHttpClient();
+        FormBody formBody = new FormBody.Builder()
+                .add("cus_id", userInfo.get("id").toString())
+                .add("type", type)
+                .add("phone", phone)
+                .build();
+        Request request = new Request.Builder().url(Config.url+"/addDialrecord")
+                .addHeader("source", Config.REQUEST_HEADER)// 自定义的header
+                .post(formBody)
+                .build();
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                // TODO: 17-1-4  请求失败
+                message.what=10;
+                //message.obj=data;
+                handler.sendMessage(message);
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                // TODO: 17-1-4 请求成功
+                Map resultMap = JSON.parseObject(response.body().string());
+                if(resultMap.get("status").equals("0")){
+                    message.what=9;
+                    message.obj=phone;
+                    handler.sendMessage(message);
+                }
+                else{
+                    message.what=10;
+                    handler.sendMessage(message);
+                }
+            }
+        });
     }
 
     // 开始扫码
@@ -501,8 +614,10 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
         }
     }
     private void showInputDialog(final String driver) {
+        Map userInfo = JSON.parseObject(SPUtils.get(getContext(),"userinfo","{}").toString());
+
         final MyAlertInputDialog myAlertInputDialog = new MyAlertInputDialog(getContext()).builder()
-                .setTitle("请输入要支付的金额")
+                .setTitle("请输入要支付的金额"+"\n"+"可用代金券："+userInfo.get("balance").toString())
                 .setEditText("");
         myAlertInputDialog.setPositiveButton("确认", new View.OnClickListener() {
             @Override

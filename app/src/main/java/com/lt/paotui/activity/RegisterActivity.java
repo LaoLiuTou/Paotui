@@ -95,9 +95,9 @@ public class RegisterActivity extends Activity {
                 else if(!password.getText().toString().equals(re_password.getText().toString())){
                     Toast.makeText(RegisterActivity.this, "两次输入的密码不一致！",Toast.LENGTH_LONG).show();
                 }
-               /* else if(code.equals("")||!code.equals(idcode.getText().toString())){
+                else if(code.equals("")||!code.equals(idcode.getText().toString())){
                     Toast.makeText(RegisterActivity.this, "验证码错误！",Toast.LENGTH_LONG).show();
-                }*/
+                }
                 else{
                     register();
                 }
