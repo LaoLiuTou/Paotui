@@ -4,13 +4,14 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".activity.LoginActivity">
+        <activity android:name=".activity.LaunchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,12 +29,14 @@
                 android:resource="@xml/filepaths" />
         </provider>
         <activity android:name=".MainActivity"/>
+        <activity android:name=".activity.LoginActivity"/>
         <activity android:name=".activity.RegisterActivity"/>
         <activity android:name=".activity.OrderDetailActivity"/>
         <activity android:name=".activity.OrderListActivity"/>
         <activity android:name=".activity.NewsListActivity"/>
         <activity android:name=".activity.NewsDetailActivity"/>
         <activity android:name=".activity.MyinfoActivity"/>
+        <activity android:name=".activity.BannerDetailActivity"/>
     </application>
 
 </manifest>

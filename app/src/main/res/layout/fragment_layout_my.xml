@@ -22,7 +22,8 @@
                 android:id="@+id/myinfo"
                 android:background="@drawable/layout_my_selected_bg"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:clickable="true">
                 <ImageView
                     android:id="@+id/header"
                     android:layout_width="64dp"
@@ -58,6 +59,34 @@
                     android:textSize="14dp"
                     android:layout_marginTop="60dp"
                     android:layout_marginLeft="140dp"/>
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/right" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/unlogin_myinfo"
+                android:background="@drawable/layout_my_selected_bg"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:clickable="true">
+
+                <TextView
+                    android:id="@+id/logintbn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="点击登录"
+                    android:textSize="20dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="60dp"/>
+
                 <ImageView
                     android:layout_width="16dp"
                     android:layout_height="16dp"

@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.lt.paotui.utils.Config;
+import com.lt.paotui.utils.SPUtils;
 import com.lt.paotui.utils.update.UpdateApk;
 import com.lt.paotui.utils.update.UpdateBean;
 
@@ -106,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentPages.add(mainfragmentPage);
         fragmentPages.add(myFragmentPage);
+
 
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), fragmentPages);
         viewPager.setAdapter(viewPagerAdapter);

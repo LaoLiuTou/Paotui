@@ -31,15 +31,19 @@ import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
 import com.github.shenyuanqing.zxingsimplify.zxing.Activity.CaptureActivity;
 import com.hb.dialog.dialog.ConfirmDialog;
+import com.hb.dialog.dialog.LoadingDialog;
 import com.hb.dialog.myDialog.MyAlertDialog;
 import com.hb.dialog.myDialog.MyAlertInputDialog;
+import com.lt.paotui.activity.BannerDetailActivity;
 import com.lt.paotui.activity.LoginActivity;
+import com.lt.paotui.activity.MyinfoActivity;
 import com.lt.paotui.activity.NewsListActivity;
 import com.lt.paotui.activity.OrderDetailActivity;
 import com.lt.paotui.activity.OrderListActivity;
 import com.lt.paotui.utils.Config;
 import com.lt.paotui.utils.Constant;
 import com.lt.paotui.utils.SPUtils;
+import com.lt.paotui.utils.SystemUtil;
 import com.lt.paotui.utils.UpdateUtil;
 import com.lt.paotui.utils.update.CommonUtil;
 import com.lt.paotui.utils.update.UpdateApk;
@@ -90,6 +94,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
 
     private ArrayList<String> list_path;
     private ArrayList<String> list_title;
+    private ArrayList<String> list_id;
     UpdateBean updateBean = new UpdateBean();
     @Nullable
     @Override
@@ -98,7 +103,14 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
         unbinder = ButterKnife.bind(this, view);
         return view;
     }
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
 
+        if (isVisibleToUser) {
+            getTitleData();
+        }
+    }
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -111,8 +123,44 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
         getTitleData();
         getBannerData();
         //getNewsData();
-
         checkVersion();
+
+        if(!(boolean)SPUtils.get(getContext(),"isinstall",false)){
+            sendSysInfo();
+        }
+    }
+
+    private void sendSysInfo(){
+
+        OkHttpClient okHttpClient = new OkHttpClient();
+        FormBody formBody = new FormBody.Builder()
+                .add("devicebrand", SystemUtil.getDeviceBrand())
+                .add("systemmodel", SystemUtil.getSystemModel())
+                .add("systemversion", SystemUtil.getSystemVersion())
+                //.add("imei", SystemUtil.getIMEI(getApplicationContext()))
+                .build();
+        Request request = new Request.Builder().url(Config.url+"/addInstallinfo")
+                .addHeader("source", Config.REQUEST_HEADER)// 自定义的header
+                .post(formBody)
+                .build();
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                // TODO: 17-1-4  请求失败
+
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                // TODO: 17-1-4 请求成功
+                Map resultMap = JSON.parseObject(response.body().string());
+                if(resultMap.get("status").equals("0")){
+                    SPUtils.put(getContext(),"isinstall",true);
+                }
+                else{
+
+                }
+            }
+        });
     }
     private void checkVersion(){
         final Message message=Message.obtain();
@@ -153,7 +201,8 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                     Toast.makeText(getActivity(),"获取主页轮播图失败!!!",Toast.LENGTH_LONG).show();
                     break;
                 case 2://标题成功
-                    List<Map<String,String>> dataList=(List<Map<String,String>>)msg.obj;
+                    SPUtils.put(getContext(),"sysconfig",msg.obj.toString());
+                    List<Map> dataList=JSON.parseArray(SPUtils.get(getContext(),"sysconfig","{}").toString(),Map.class);
                     for(Map<String,String> temp:dataList){
                         if(temp.get("property")!=null&&temp.get("property").equals("title")){
                             top_bar_title.setText(temp.get("value"));
@@ -219,10 +268,6 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
     };
     private void getTitleData(){
         final Message message=Message.obtain();
-        //放图片地址的集合
-        list_path = new ArrayList<>();
-        //放标题的集合
-        list_title = new ArrayList<>();
 
         OkHttpClient okHttpClient = new OkHttpClient();
         FormBody formBody = new FormBody.Builder()
@@ -244,13 +289,13 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 // TODO: 17-1-4 请求成功
                 Map resultMap = JSON.parseObject(response.body().string());
                 if(resultMap.get("status").equals("0")){
-                    List<Map<String,String>> dataList=(List<Map<String,String>>)resultMap.get("msg");
+                    //List<Map<String,String>> dataList=(List<Map<String,String>>)resultMap.get("msg");
                     /*for(Map<String,String> temp :dataList){
                         list_path.add(temp.get("image"));
                         list_title.add(temp.get("title"));
                     }*/
                     message.what=2;
-                    message.obj=dataList;
+                    message.obj=resultMap.get("msg");
                     handler.sendMessage(message);
                 }
                 else{
@@ -268,6 +313,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
         list_path = new ArrayList<>();
         //放标题的集合
         list_title = new ArrayList<>();
+        list_id = new ArrayList<>();
 
         OkHttpClient okHttpClient = new OkHttpClient();
         FormBody formBody = new FormBody.Builder()
@@ -293,10 +339,11 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 if(resultMap.get("status").equals("0")){
                     Map dataMap= (Map)resultMap.get("msg");
                     int totleNum=Integer.parseInt(dataMap.get("num").toString());
-                    List<Map<String,String>> dataList=(List<Map<String,String>>)dataMap.get("data");
-                    for(Map<String,String> temp :dataList){
-                        list_path.add(Config.url+temp.get("image"));
-                        list_title.add(temp.get("title"));
+                    List<Map> dataList=(List<Map>)dataMap.get("data");
+                    for(Map temp :dataList){
+                        list_path.add(Config.url+temp.get("image").toString());
+                        list_title.add(temp.get("title").toString());
+                        list_id.add(temp.get("id").toString());
                     }
                     message.what=0;
                     handler.sendMessage(message);
@@ -309,45 +356,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
         });
     }
 
-    private void getNewsData(){
-        final Message message=Message.obtain();
 
-        OkHttpClient okHttpClient = new OkHttpClient();
-        FormBody formBody = new FormBody.Builder()
-                .add("page", "1")
-                .add("size", "2")
-                .build();
-        Request request = new Request.Builder().url(Config.url+"/listNews")
-                .addHeader("source", Config.REQUEST_HEADER)// 自定义的header
-                .post(formBody)
-                .build();
-        okHttpClient.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                // TODO: 17-1-4  请求失败
-                message.what=5;
-                //message.obj=data;
-                handler.sendMessage(message);
-            }
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                // TODO: 17-1-4 请求成功
-                Map resultMap = JSON.parseObject(response.body().string());
-                if(resultMap.get("status").equals("0")){
-                    Map dataMap= (Map)resultMap.get("msg");
-                    int totleNum=Integer.parseInt(dataMap.get("num").toString());
-                    List<Map<String,String>> dataList=(List<Map<String,String>>)dataMap.get("data");
-                    message.what=4;
-                    message.obj=dataList;
-                    handler.sendMessage(message);
-                }
-                else{
-                    message.what=5;
-                    handler.sendMessage(message);
-                }
-            }
-        });
-    }
 
     private void initBanner() {
 
@@ -377,7 +386,11 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
     //轮播图的监听方法
     @Override
     public void OnBannerClick(int position) {
-        Log.i("tag", "你点了第"+position+"张轮播图");
+        Intent intent = new Intent();
+        intent.setClass(getActivity(), BannerDetailActivity.class);
+        String banner_id=list_id.get(position).toString();
+        intent.putExtra("banner_id", banner_id);
+        startActivity(intent);
     }
     //自定义的图片加载器
     private class MyLoader extends ImageLoader {
@@ -401,27 +414,68 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
         int random=0;
         switch (view.getId()) {
             case R.id.top_left_btn:
-                startQrCode();
+                if((boolean)SPUtils.get(getContext(),"islogin",false)){
+                    startQrCode();
+                }
+                else{
+                    showUnloginDialog();
+                }
                 break;
             case R.id.first1:
-                showAlterDialog("帮我买","5051111");
+                if((boolean)SPUtils.get(getContext(),"islogin",false)){
+                    showAlterDialog("帮我买","5051111");
+                }
+                else{
+                    showUnloginDialog();
+                }
+
                 break;
             case R.id.first2:
-                showAlterDialog("帮我送","5051111");
+                if((boolean)SPUtils.get(getContext(),"islogin",false)){
+                    showAlterDialog("帮我送","5051111");
+                }
+                else{
+                    showUnloginDialog();
+                }
+
                 break;
             case R.id.first3:
-                showAlterDialog("帮我取","5051111");
+                if((boolean)SPUtils.get(getContext(),"islogin",false)){
+                    showAlterDialog("帮我取","5051111");
+                }
+                else{
+                    showUnloginDialog();
+                }
+
                 break;
             case R.id.second1:
-                random=((int)(1+Math.random()*(10-1+1)))%2;
-                showAlterDialog("一键叫车",phonenumbers[random]);
+                if((boolean)SPUtils.get(getContext(),"islogin",false)){
+                    random=((int)(1+Math.random()*(10-1+1)))%2;
+                    showAlterDialog("一键叫车",phonenumbers[random]);
+                }
+                else{
+                    showUnloginDialog();
+                }
+
                 break;
             case R.id.second2:
-                startQrCode();
+                if((boolean)SPUtils.get(getContext(),"islogin",false)){
+                    startQrCode();
+                }
+                else{
+                    showUnloginDialog();
+                }
+
                 break;
             case R.id.second3:
-                intent.setClass(getActivity(), OrderListActivity.class);
-                startActivity(intent);
+                if((boolean)SPUtils.get(getContext(),"islogin",false)){
+                    intent.setClass(getActivity(), OrderListActivity.class);
+                    startActivity(intent);
+                }
+                else{
+                    showUnloginDialog();
+                }
+
                 break;
             case R.id.third1:
 
@@ -497,6 +551,25 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 break;
         }
 
+    }
+    private void showUnloginDialog(){
+        MyAlertDialog myAlertDialog = new MyAlertDialog(getContext()).builder()
+                .setTitle("未登录")
+                .setMsg("即将前往登录")
+                .setPositiveButton("确认", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent();
+                        intent.setClass(getActivity(), LoginActivity.class);
+                        getActivity().startActivity(intent);
+                    }
+                }).setNegativeButton("取消", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+        myAlertDialog.show();
     }
     private void showAlterDialog(final String type,final String phonenum){
         MyAlertDialog myAlertDialog = new MyAlertDialog(getContext()).builder()
@@ -615,8 +688,33 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
     }
     private void showInputDialog(final String driver) {
         Map userInfo = JSON.parseObject(SPUtils.get(getContext(),"userinfo","{}").toString());
+        List<Map> dataList=JSON.parseArray(SPUtils.get(getContext(),"sysconfig","{}").toString(),Map.class);
+        String tempprice="1";
+        for(Map<String,String> temp:dataList){
+            if(temp.get("property")!=null&&temp.get("property").equals("price")){
+                tempprice=temp.get("value");
+            }
+        }
+        final String price=tempprice;
+        MyAlertDialog myAlertDialog = new MyAlertDialog(getContext()).builder()
+                .setTitle("确认吗？")
+                .setMsg("即将使用"+price+"元代金券"+"\n"+"可用代金券："+userInfo.get("balance").toString())
+                .setPositiveButton("确认", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Map userInfo = JSON.parseObject(SPUtils.get(getContext(),"userinfo","{}").toString());
+                        String cus_id=userInfo.get("id").toString();
+                        addOrder(cus_id,price,driver);
+                    }
+                }).setNegativeButton("取消", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
-        final MyAlertInputDialog myAlertInputDialog = new MyAlertInputDialog(getContext()).builder()
+                    }
+                });
+        myAlertDialog.show();
+
+        /*final MyAlertInputDialog myAlertInputDialog = new MyAlertInputDialog(getContext()).builder()
                 .setTitle("请输入要支付的金额"+"\n"+"可用代金券："+userInfo.get("balance").toString())
                 .setEditText("");
         myAlertInputDialog.setPositiveButton("确认", new View.OnClickListener() {
@@ -641,13 +739,15 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 myAlertInputDialog.dismiss();
             }
         });
-        myAlertInputDialog.show();
+        myAlertInputDialog.show();*/
 
 
     }
     private void addOrder(String cus_id,String price,String driver){
+        final LoadingDialog loadingDialog = new LoadingDialog(getContext());
+        loadingDialog.setMessage("正在提交...");
+        loadingDialog.show();
         final Message message=Message.obtain();
-
         OkHttpClient okHttpClient = new OkHttpClient();
         FormBody formBody = new FormBody.Builder()
                 .add("cus_id", cus_id)
@@ -662,6 +762,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
             @Override
             public void onFailure(Call call, IOException e) {
                 // TODO: 17-1-4  请求失败
+                loadingDialog.dismiss();
                 message.what=7;
                 message.obj="提交订单失败！";
                 handler.sendMessage(message);
@@ -669,6 +770,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 // TODO: 17-1-4 请求成功
+                loadingDialog.dismiss();
                 Map resultMap = JSON.parseObject(response.body().string());
                 if(resultMap.get("status").equals("0")){
                     message.what=6;

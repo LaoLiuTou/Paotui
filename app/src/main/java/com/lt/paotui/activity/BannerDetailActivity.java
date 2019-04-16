@@ -7,23 +7,20 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
-import com.github.shenyuanqing.zxingsimplify.zxing.Activity.CaptureActivity;
 import com.hb.dialog.dialog.LoadingDialog;
 import com.lt.paotui.MainActivity;
 import com.lt.paotui.R;
 import com.lt.paotui.utils.Config;
-import com.lt.paotui.utils.Constant;
 import com.lt.paotui.utils.MD5Util;
 import com.lt.paotui.utils.SPUtils;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -36,22 +33,22 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class LoginActivity extends Activity {
-    @BindView(R.id.username)
-    EditText username;
-    @BindView(R.id.password)
-    EditText password;
+public class BannerDetailActivity extends Activity {
+    @BindView(R.id.banner_title)
+    TextView title;
+    @BindView(R.id.banner_image)
+    ImageView image;
+    @BindView(R.id.banner_content)
+    TextView content;
+    @BindView(R.id.top_bar_title)
+    TextView top_bar_title;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_banner_detail);
         ButterKnife.bind(this);
-        /*if((boolean)SPUtils.get(this,"islogin",false)){
-            Intent intent = new Intent();
-            intent.setClass(LoginActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        }*/
+        top_bar_title.setText("详情");
+        getDetail();
     }
     /**
      * 接收解析后传过来的数据
@@ -62,15 +59,14 @@ public class LoginActivity extends Activity {
             //Object model = (Object) msg.obj;
             switch (msg.what){
                 case 0:
-                    SPUtils.put(LoginActivity.this,"islogin",true);
-                    SPUtils.put(LoginActivity.this,"userinfo",msg.obj.toString());
-                    //Intent intent = new Intent();
-                    //intent.setClass(LoginActivity.this, MainActivity.class);
-                    //startActivity(intent);
-                    finish();
+                    Map detailMap = (Map)msg.obj;
+                    title.setText(detailMap.get("title").toString());
+                    content.setText(detailMap.get("content").toString());
+                    Glide.with(BannerDetailActivity.this).load(Config.url+detailMap.get("image").toString()).into(image);
+
                     break;
                 case 1:
-                    Toast.makeText(LoginActivity.this, msg.obj.toString(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(BannerDetailActivity.this, msg.obj.toString(),Toast.LENGTH_LONG).show();
                     break;
 
                 default:
@@ -79,24 +75,13 @@ public class LoginActivity extends Activity {
             super.handleMessage(msg);
         }
     };
-    @OnClick({R.id.btn_login,R.id.btn_register})
+    @OnClick({R.id.top_back_btn})
     public void btnClick(View view) {
 
 
         switch (view.getId()) {
-            case R.id.btn_login:
-                if(username.getText()!=null&&password.getText()!=null){
-                    login();
-                }
-                else{
-                    Toast.makeText(LoginActivity.this, "用户名或密码不能为空！",Toast.LENGTH_LONG).show();
-                }
-                break;
-            case R.id.btn_register:
-                Intent intent = new Intent();
-                intent.setClass(this, RegisterActivity.class);
-                startActivity(intent);
-
+            case R.id.top_back_btn:
+                finish();
                 break;
 
             default:
@@ -104,18 +89,18 @@ public class LoginActivity extends Activity {
         }
     }
 
-
-    private void login(){
+    private void getDetail(){
         final LoadingDialog loadingDialog = new LoadingDialog(this);
         loadingDialog.setMessage("正在加载...");
         loadingDialog.show();
+        Intent intent = getIntent();
+        String banner_id = intent.getStringExtra("banner_id");
         final Message message=Message.obtain();
         OkHttpClient okHttpClient = new OkHttpClient();
         FormBody formBody = new FormBody.Builder()
-                .add("phone", username.getText().toString())
-                .add("password", MD5Util.MD5(password.getText().toString()))
+                .add("id", banner_id)
                 .build();
-        Request request = new Request.Builder().url(Config.url+"/loginCustomer")
+        Request request = new Request.Builder().url(Config.url+"/selectBanner")
                 .addHeader("source", Config.REQUEST_HEADER)// 自定义的header
                 .post(formBody)
                 .build();

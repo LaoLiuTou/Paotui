@@ -1,34 +1,38 @@
-package com.lt.paotui.activity;
+package com.lt.paotui;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
-import com.github.shenyuanqing.zxingsimplify.zxing.Activity.CaptureActivity;
 import com.hb.dialog.dialog.LoadingDialog;
-import com.lt.paotui.MainActivity;
-import com.lt.paotui.R;
+import com.hb.dialog.myDialog.MyAlertDialog;
+import com.lt.paotui.activity.LoginActivity;
+import com.lt.paotui.activity.MyinfoActivity;
+import com.lt.paotui.activity.OrderListActivity;
+import com.lt.paotui.activity.RegisterActivity;
 import com.lt.paotui.utils.Config;
-import com.lt.paotui.utils.Constant;
 import com.lt.paotui.utils.MD5Util;
 import com.lt.paotui.utils.SPUtils;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -36,23 +40,27 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class LoginActivity extends Activity {
+/**
+ * Created by Administrator on 2019/4/2.
+ */
+
+public class LoginFragmentPage extends Fragment  {
+
+    private Unbinder unbinder;
     @BindView(R.id.username)
     EditText username;
     @BindView(R.id.password)
     EditText password;
+
+    @Nullable
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        ButterKnife.bind(this);
-        /*if((boolean)SPUtils.get(this,"islogin",false)){
-            Intent intent = new Intent();
-            intent.setClass(LoginActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        }*/
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_login, null);
+        unbinder = ButterKnife.bind(this, view);
+        return view;
     }
+
+
     /**
      * 接收解析后传过来的数据
      */
@@ -62,15 +70,15 @@ public class LoginActivity extends Activity {
             //Object model = (Object) msg.obj;
             switch (msg.what){
                 case 0:
-                    SPUtils.put(LoginActivity.this,"islogin",true);
-                    SPUtils.put(LoginActivity.this,"userinfo",msg.obj.toString());
-                    //Intent intent = new Intent();
-                    //intent.setClass(LoginActivity.this, MainActivity.class);
-                    //startActivity(intent);
-                    finish();
+                    SPUtils.put(getContext(),"islogin",true);
+                    SPUtils.put(getContext(),"userinfo",msg.obj.toString());
+                    Intent intent = new Intent();
+                    intent.setClass(getContext(), MainActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
                     break;
                 case 1:
-                    Toast.makeText(LoginActivity.this, msg.obj.toString(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), msg.obj.toString(),Toast.LENGTH_LONG).show();
                     break;
 
                 default:
@@ -89,12 +97,12 @@ public class LoginActivity extends Activity {
                     login();
                 }
                 else{
-                    Toast.makeText(LoginActivity.this, "用户名或密码不能为空！",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "用户名或密码不能为空！",Toast.LENGTH_LONG).show();
                 }
                 break;
             case R.id.btn_register:
                 Intent intent = new Intent();
-                intent.setClass(this, RegisterActivity.class);
+                intent.setClass(getContext(), RegisterActivity.class);
                 startActivity(intent);
 
                 break;
@@ -106,7 +114,7 @@ public class LoginActivity extends Activity {
 
 
     private void login(){
-        final LoadingDialog loadingDialog = new LoadingDialog(this);
+        final LoadingDialog loadingDialog = new LoadingDialog(getContext());
         loadingDialog.setMessage("正在加载...");
         loadingDialog.show();
         final Message message=Message.obtain();

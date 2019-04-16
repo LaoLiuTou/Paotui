@@ -11,7 +11,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,7 +60,12 @@ public class MyFragmentPage extends Fragment  {
     TextView yue;
     @BindView(R.id.header)
     ImageView header;
-
+    @BindView(R.id.myinfo)
+    RelativeLayout myinfo;
+    @BindView(R.id.unlogin_myinfo)
+    RelativeLayout unlogin_myinfo;
+    @BindView(R.id.logout)
+    Button logout;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -68,14 +75,34 @@ public class MyFragmentPage extends Fragment  {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        onVisible();
+    }
+
+    @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
+
         if (isVisibleToUser) {
-            getUserData();
+            onVisible();
         }
     }
 
+    protected void onVisible(){
+        if((boolean)SPUtils.get(getContext(),"islogin",false)){
+            myinfo.setVisibility(View.VISIBLE);
+            logout.setVisibility(View.VISIBLE);
+            unlogin_myinfo.setVisibility(View.GONE);
+            getUserData();
 
+        }
+        else{
+            myinfo.setVisibility(View.GONE);
+            logout.setVisibility(View.GONE);
+            unlogin_myinfo.setVisibility(View.VISIBLE);
+        }
+    }
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -152,13 +179,17 @@ public class MyFragmentPage extends Fragment  {
 
 
     //监听事件
-    @OnClick({R.id.myinfo,R.id.logout,R.id.zfjl,R.id.yjzf,R.id.xggrxx,R.id.ghsjh})
+    @OnClick({R.id.myinfo,R.id.logout,R.id.zfjl,R.id.yjzf,R.id.xggrxx,R.id.ghsjh,R.id.unlogin_myinfo})
     public void btnClick(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
             case R.id.myinfo:
                 intent.setClass(getActivity(), MyinfoActivity.class);
-                startActivity(intent);
+                getActivity().startActivity(intent);
+                break;
+            case R.id.unlogin_myinfo:
+                intent.setClass(getActivity(), LoginActivity.class);
+                getActivity().startActivity(intent);
                 break;
             case R.id.logout:
                 MyAlertDialog myAlertDialog = new MyAlertDialog(getContext()).builder()
@@ -168,10 +199,13 @@ public class MyFragmentPage extends Fragment  {
                             @Override
                             public void onClick(View v) {
                                 SPUtils.clear(getContext());
-                                Intent intent = new Intent();
+                                myinfo.setVisibility(View.GONE);
+                                logout.setVisibility(View.GONE);
+                                unlogin_myinfo.setVisibility(View.VISIBLE);
+                                /*Intent intent = new Intent();
                                 intent.setClass(getActivity(), LoginActivity.class);
-                                startActivity(intent);
-                                getActivity().finish();
+                                getActivity().startActivity(intent);
+                                getActivity().finish();*/
                             }
                         }).setNegativeButton("取消", new View.OnClickListener() {
                             @Override
@@ -184,15 +218,27 @@ public class MyFragmentPage extends Fragment  {
                 break;
             case R.id.zfjl:
 
-                intent.setClass(getActivity(), OrderListActivity.class);
-                startActivity(intent);
+                if((boolean)SPUtils.get(getContext(),"islogin",false)){
+                    intent.setClass(getActivity(), OrderListActivity.class);
+                    getActivity().startActivity(intent);
+                }
+                else{
+                    showUnloginDialog();
+                }
+
                 break;
             case R.id.yjzf:
 
                 break;
             case R.id.xggrxx:
-                intent.setClass(getActivity(), MyinfoActivity.class);
-                startActivity(intent);
+
+                if((boolean)SPUtils.get(getContext(),"islogin",false)){
+                    intent.setClass(getActivity(), MyinfoActivity.class);
+                    getActivity().startActivity(intent);
+                }
+                else{
+                    showUnloginDialog();
+                }
                 break;
             case R.id.ghsjh:
 
@@ -204,6 +250,25 @@ public class MyFragmentPage extends Fragment  {
 
     }
 
+    private void showUnloginDialog(){
+        MyAlertDialog myAlertDialog = new MyAlertDialog(getContext()).builder()
+                .setTitle("未登录")
+                .setMsg("即将前往登录")
+                .setPositiveButton("确认", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent();
+                        intent.setClass(getActivity(), LoginActivity.class);
+                        getActivity().startActivity(intent);
+                    }
+                }).setNegativeButton("取消", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+        myAlertDialog.show();
+    }
     @Override
     public void onDestroyView() {
         super.onDestroyView();
