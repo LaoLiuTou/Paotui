@@ -5,5 +5,5 @@
     <!--点击状态是颜色-->
     <item android:drawable="@color/color_eeeeee" android:state_pressed="true" />
     <!--默认颜色-->
-    <item android:drawable="@color/color_right_bg" />
+    <item android:drawable="@color/color_white" />
 </selector>

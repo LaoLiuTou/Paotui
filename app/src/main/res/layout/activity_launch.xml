@@ -3,11 +3,17 @@
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="便民一号线"
+        android:layout_margin="40dp"
+        android:gravity="center"
+        android:textSize="36sp"/>
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:src="@mipmap/launch"
-        android:scaleType="fitXY"
         android:adjustViewBounds="true"/>
 
 </LinearLayout>

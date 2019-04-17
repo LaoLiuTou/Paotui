@@ -20,12 +20,11 @@
             android:background="@color/color_white"
             android:divider="@drawable/dividers_6">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/header"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:layout_margin="10dp"
-                    android:scaleType="fitXY"
                     android:src="@mipmap/touxiang" />
 
         </LinearLayout>

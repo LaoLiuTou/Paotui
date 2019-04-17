@@ -2,591 +2,472 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/main_background">
         <include layout="@layout/top_bar_main"/>
+
         <!-- banner-->
         <com.youth.banner.Banner
-            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/banner"
             android:layout_width="match_parent"
-            android:layout_height="150dp" />
-        <!-- 走马灯-->
+            android:layout_height="150dp"
+            android:layout_marginTop="50dp"/>
+        <TextView
+            android:id="@+id/yjjc"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="180dp"
+            android:layout_marginLeft="120dp"
+            android:layout_marginRight="120dp"
+            android:gravity="center"
+            android:background="@drawable/corner_view_btn"
+            android:textColor="@color/color_white"
+            android:text="一键叫车"
+            android:textSize="18sp"
+            />
+
+        <!-- 滚动-->
+         <RelativeLayout
+             android:id="@+id/srollnews"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+             android:background="@drawable/corner_view"
+             android:layout_marginLeft="10dp"
+             android:layout_marginRight="10dp"
+              android:layout_marginTop="230dp" >
+             <TextView
+                 android:id="@+id/day"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="5dp"
+                 android:layout_marginLeft="10dp"
+                 android:text="17"
+                 android:textSize="20sp"
+                 />
+             <TextView
+                 android:id="@+id/month"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginBottom="5dp"
+                 android:layout_marginLeft="10dp"
+                 android:layout_below="@+id/day"
+                 android:text="四月"
+                 android:textSize="14sp"
+                 />
+             <LinearLayout
+                 android:layout_width="1dp"
+                 android:layout_height="64dp"
+                 android:layout_marginLeft="50dp"
+                 android:background="@color/main_background">
+
+             </LinearLayout>
+             <TextView
+                 android:id="@+id/sroll_text"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="10dp"
+                 android:layout_marginLeft="65dp"/>
+             <TextView
+                 android:id="@+id/sroll_text2"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="30dp"
+                 android:layout_marginLeft="65dp"/>
+         </RelativeLayout>
+        <!--第一行-->
         <LinearLayout
+            android:id="@+id/firstmenus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="vertical"
-            android:showDividers="beginning"
-            android:divider="@drawable/dividers_1">
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/corner_view"
+            android:layout_below="@+id/srollnews"
+            android:layout_marginTop="1dp"
+            android:orientation="horizontal">
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:background="@drawable/layout_selected_bg"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:id="@+id/first1">
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/first1" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="帮我买"
+                    android:layout_marginTop="5dp"
+                    android:textSize="16dp"
+                    android:layout_marginBottom="10dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:background="@drawable/layout_selected_bg"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:id="@+id/first2">
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/first2" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="帮我送"
+                    android:layout_marginTop="5dp"
+                    android:textSize="16dp"
+                    android:layout_marginBottom="10dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:background="@drawable/layout_selected_bg"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:id="@+id/first3">
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/first3" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="帮我取"
+                    android:layout_marginTop="5dp"
+                    android:textSize="16dp"
+                    android:layout_marginBottom="10dp"/>
+            </LinearLayout>
+        </LinearLayout>
+        <!--第二行-->
+        <LinearLayout
+            android:id="@+id/secondmenus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/firstmenus"
+            android:gravity="center"
+            android:background="@color/color_white"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:background="@drawable/layout_selected_bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:id="@+id/kdyw">
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_margin="5dp"
+                    android:layout_marginTop="10dp"
                     android:scaleType="fitXY"
-                    android:src="@mipmap/tongzhi5" />
+                    android:src="@mipmap/second1" />
                 <TextView
-                    android:id="@+id/sroll_text"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:ellipsize="marquee"
-                    android:focusable="true"
-                    android:singleLine="true"
-                    android:marqueeRepeatLimit="marquee_forever"
-                    android:focusableInTouchMode="true"
-                    android:text=""
-                    android:textSize="16dp"/>
-
+                    android:text="宽带业务"
+                    android:layout_marginTop="5dp"
+                    android:textSize="14dp"
+                    android:layout_marginBottom="10dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:background="@drawable/layout_selected_bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:id="@+id/tczx">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/second2" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="套餐资讯"
+                    android:layout_marginTop="5dp"
+                    android:textSize="14dp"
+                    android:layout_marginBottom="10dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:background="@drawable/layout_selected_bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:id="@+id/sjbj">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/second3" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="手机报价"
+                    android:layout_marginTop="5dp"
+                    android:textSize="14dp"
+                    android:layout_marginBottom="10dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:background="@drawable/layout_selected_bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:id="@+id/esjss">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/second4" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="二手机收售 "
+                    android:layout_marginTop="5dp"
+                    android:textSize="14dp"
+                    android:layout_marginBottom="10dp"/>
             </LinearLayout>
         </LinearLayout>
-        <!--菜单-->
+        <!--第三行-->
         <LinearLayout
+            android:id="@+id/thirdmenus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:showDividers="beginning|middle|end"
-            android:divider="@drawable/dividers_3">
-
-            <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_below="@+id/secondmenus"
+            android:background="@color/color_white"
             android:gravity="center"
             android:orientation="horizontal">
-                <LinearLayout
-                    android:layout_width="90dp"
+            <LinearLayout
+                android:background="@drawable/layout_selected_bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:id="@+id/lhsj">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/third1" />
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical"
+                    android:text="靓号收集"
+                    android:layout_marginTop="5dp"
+                    android:textSize="14dp"
+                    android:layout_marginBottom="10dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:background="@drawable/layout_selected_bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:id="@+id/zp">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/third2" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="招聘"
+                    android:layout_marginTop="5dp"
+                    android:textSize="14dp"
+                    android:layout_marginBottom="10dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:background="@drawable/layout_selected_bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:id="@+id/ys">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/third3" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="饮食"
+                    android:layout_marginTop="5dp"
+                    android:textSize="14dp"
+                    android:layout_marginBottom="10dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:background="@drawable/layout_selected_bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:id="@+id/hfcx">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/third4" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="话费查询"
+                    android:layout_marginTop="5dp"
+                    android:textSize="14dp"
+                    android:layout_marginBottom="10dp"/>
+            </LinearLayout>
+        </LinearLayout>
+        <!--第四行-->
+        <LinearLayout
+            android:id="@+id/fourthmenus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/thirdmenus"
+            android:background="@color/color_white"
+            android:paddingTop="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:id="@+id/news1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/layout_selected_bg"
+                android:layout_weight="1">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/main_background"
+                    android:layout_margin="5dp"
+                    android:clickable="true"
                     >
                     <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                         android:scaleType="fitXY"
-                        android:src="@mipmap/first" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="跑腿"
-                        android:textSize="16dp"
-                        android:layout_marginBottom="10dp" />
-                </LinearLayout>
-                <LinearLayout
-                    android:background="@drawable/layout_selected_bg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:id="@+id/first1">
-                    <ImageView
-                        android:layout_width="54dp"
-                        android:layout_height="54dp"
-                         android:scaleType="fitXY"
-                        android:src="@mipmap/first1" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="帮我买"
-                        android:textSize="14dp"
-                        android:layout_marginBottom="10dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:background="@drawable/layout_selected_bg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:id="@+id/first2">
-                    <ImageView
-                        android:layout_width="54dp"
-                        android:layout_height="54dp"
-                         android:scaleType="fitXY"
-                        android:src="@mipmap/first2" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="帮我送"
-                        android:textSize="14dp"
-                        android:layout_marginBottom="10dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:background="@drawable/layout_selected_bg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:id="@+id/first3">
-                    <ImageView
-                        android:layout_width="54dp"
-                        android:layout_height="54dp"
-                         android:scaleType="fitXY"
-                        android:src="@mipmap/first3" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="帮我取"
-                        android:textSize="14dp"
-                        android:layout_marginBottom="10dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:background="@drawable/layout_selected_bg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_weight="1" >
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="10dp"
                         android:scaleType="fitXY"
-                        android:src="@mipmap/right" />
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
-                <LinearLayout
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical" >
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                         android:scaleType="fitXY"
-                        android:src="@mipmap/second" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="出行"
-                        android:textSize="16dp"
-                        android:layout_marginBottom="10dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:background="@drawable/layout_selected_bg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:id="@+id/second1">
-                    <ImageView
-                        android:layout_width="54dp"
-                        android:layout_height="54dp"
-                         android:scaleType="fitXY"
-                        android:src="@mipmap/second1" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="一键叫车"
-                        android:textSize="14dp"
-                        android:layout_marginBottom="10dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:background="@drawable/layout_selected_bg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:id="@+id/second2">
-                    <ImageView
-                        android:layout_width="54dp"
-                        android:layout_height="54dp"
-                         android:scaleType="fitXY"
-                        android:src="@mipmap/second2" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="一键支付"
-                        android:textSize="14dp"
-                        android:layout_marginBottom="10dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:background="@drawable/layout_selected_bg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:id="@+id/second3">
-                    <ImageView
-                        android:layout_width="54dp"
-                        android:layout_height="54dp"
-                         android:scaleType="fitXY"
-                        android:src="@mipmap/second3" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="支付记录"
-                        android:textSize="14dp"
-                        android:layout_marginBottom="10dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:background="@drawable/layout_selected_bg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_weight="1" >
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:scaleType="fitXY"
-                        android:src="@mipmap/right" />
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
-                <LinearLayout
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical" >
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                         android:scaleType="fitXY"
-                        android:src="@mipmap/third" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="电信平台"
-                        android:textSize="16dp"
-                        android:layout_marginBottom="10dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:background="@drawable/layout_selected_bg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:id="@+id/third1">
-                    <ImageView
-                        android:layout_width="54dp"
-                        android:layout_height="54dp"
-                         android:scaleType="fitXY"
-                        android:src="@mipmap/third1" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="话费查询"
-                        android:textSize="14dp"
-                        android:layout_marginBottom="10dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:background="@drawable/layout_selected_bg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:id="@+id/third2">
-                    <ImageView
-                        android:layout_width="54dp"
-                        android:layout_height="54dp"
-                         android:scaleType="fitXY"
-                        android:src="@mipmap/third2" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="宽带业务"
-                        android:textSize="14dp"
-                        android:layout_marginBottom="10dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:background="@drawable/layout_selected_bg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:id="@+id/third3">
-                    <ImageView
-                        android:layout_width="54dp"
-                        android:layout_height="54dp"
-                         android:scaleType="fitXY"
-                        android:src="@mipmap/third3" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="套餐资讯"
-                        android:textSize="14dp"
-                        android:layout_marginBottom="10dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:background="@drawable/layout_selected_bg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_weight="1" >
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:scaleType="fitXY"
-                        android:src="@mipmap/right" />
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
-                <LinearLayout
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical" >
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                         android:scaleType="fitXY"
-                        android:src="@mipmap/fourth" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="手机资讯"
-                        android:textSize="16dp"
-                        android:layout_marginBottom="10dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:background="@drawable/layout_selected_bg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:id="@+id/fourth1">
-                    <ImageView
-                        android:layout_width="54dp"
-                        android:layout_height="54dp"
-                         android:scaleType="fitXY"
                         android:src="@mipmap/fourth1" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="每日报价"
+                        android:layout_marginLeft="50dp"
+                        android:text="电信用户优惠专区"
+                        android:layout_marginTop="10dp"
+                        android:singleLine="true"
                         android:textSize="14dp"
                         android:layout_marginBottom="10dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:background="@drawable/layout_selected_bg"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:text="最新优惠尽在于此"
+                        android:singleLine="true"
+                        android:layout_marginTop="34dp"
+                        android:textSize="12dp"
+                        android:layout_marginBottom="10dp"/>
+                </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/layout_selected_bg"
+                android:layout_weight="1"
+                android:id="@+id/news2">
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
+                    android:layout_margin="5dp"
+                    android:background="@color/main_background"
                     android:layout_weight="1"
                     android:clickable="true"
-                    android:id="@+id/fourth2">
+                    >
                     <ImageView
-                        android:layout_width="54dp"
-                        android:layout_height="54dp"
-                         android:scaleType="fitXY"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="10dp"
+                        android:scaleType="fitXY"
                         android:src="@mipmap/fourth2" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="二手机收售"
+                        android:layout_marginLeft="50dp"
+                        android:text="免费抽大奖"
+                        android:singleLine="true"
+                        android:layout_marginTop="10dp"
                         android:textSize="14dp"
                         android:layout_marginBottom="10dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:background="@drawable/layout_selected_bg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:id="@+id/fourth3">
-                    <ImageView
-                        android:layout_width="54dp"
-                        android:layout_height="54dp"
-                         android:scaleType="fitXY"
-                        android:src="@mipmap/fourth3" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="靓号收集"
-                        android:textSize="14dp"
+                        android:layout_marginLeft="50dp"
+                        android:text="每日奖不停~"
+                        android:singleLine="true"
+                        android:layout_marginTop="34dp"
+                        android:textSize="12dp"
                         android:layout_marginBottom="10dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:background="@drawable/layout_selected_bg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_weight="1" >
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:scaleType="fitXY"
-                        android:src="@mipmap/right" />
-                </LinearLayout>
+                </RelativeLayout>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
-                <LinearLayout
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical" >
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                         android:scaleType="fitXY"
-                        android:src="@mipmap/fifth" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="商家广告"
-                        android:textSize="16dp"
-                        android:layout_marginBottom="10dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:background="@drawable/layout_selected_bg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:id="@+id/fifth1">
-                    <ImageView
-                        android:layout_width="54dp"
-                        android:layout_height="54dp"
-                         android:scaleType="fitXY"
-                        android:src="@mipmap/fifth1" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="招聘"
-                        android:textSize="14dp"
-                        android:layout_marginBottom="10dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:background="@drawable/layout_selected_bg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:id="@+id/fifth2">
-                    <ImageView
-                        android:layout_width="54dp"
-                        android:layout_height="54dp"
-                         android:scaleType="fitXY"
-                        android:src="@mipmap/fifth2" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="饮食"
-                        android:textSize="14dp"
-                        android:layout_marginBottom="10dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:background="@drawable/layout_selected_bg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:id="@+id/fifth3">
-                    <ImageView
-                        android:layout_width="54dp"
-                        android:layout_height="54dp"
-                         android:scaleType="fitXY"
-                        android:src="@mipmap/fifth3" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="靓号收集"
-                        android:textSize="14dp"
-                        android:layout_marginBottom="10dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:background="@drawable/layout_selected_bg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_weight="1" >
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:scaleType="fitXY"
-                        android:src="@mipmap/right" />
-                </LinearLayout>
-            </LinearLayout>
+
         </LinearLayout>
-        <!--图片新闻-->
+        <!--第五行-->
         <LinearLayout
+            android:id="@+id/fifthmenus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/fourthmenus"
+            android:background="@color/color_white"
             android:gravity="center"
-            android:orientation="vertical"
-             >
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                >
-                <ImageView
-                    android:id="@+id/news1"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_weight="1"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/news1"/>
-                <ImageView
-                    android:id="@+id/news2"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_weight="1"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/news2"/>
-            </LinearLayout>
-            <ImageView
-                android:id="@+id/news3"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:scaleType="fitXY"
-                android:src="@mipmap/news3"/>
+            android:orientation="horizontal">
+             <ImageView
+                 android:id="@+id/news3"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:src="@mipmap/fifth1"/>
         </LinearLayout>
-
-    </LinearLayout>
+    </RelativeLayout>
 </ScrollView>

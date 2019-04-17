@@ -87,10 +87,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
     @BindView(R.id.top_bar_title)
     TextView top_bar_title;
 
-    @BindView(R.id.news1)
-    ImageView news1;
-    @BindView(R.id.news2)
-    ImageView news2;
+
 
     private ArrayList<String> list_path;
     private ArrayList<String> list_title;
@@ -216,21 +213,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 case 3://标题失败
                     Toast.makeText(getActivity(),"获取标题失败!!!",Toast.LENGTH_LONG).show();
                     break;
-                case 4://标题成功
 
-                    List<Map<String,String>> newsDataList=(List<Map<String,String>>)msg.obj;
-                    for(int index=0;index<newsDataList.size();index++){
-                        String str=Config.url+newsDataList.get(index).get("image");
-                        if(index==0){
-                            Glide.with(getContext()).load(Config.url+newsDataList.get(index).get("image")).into(news1);
-                        }
-                        else if(index==1){
-                            Glide.with(getContext()).load(Config.url+newsDataList.get(index).get("image")).into(news2);
-                        }
-
-                    }
-
-                    break;
                 case 5://标题失败
                     Toast.makeText(getActivity(),"获取图片新闻失败!!!",Toast.LENGTH_LONG).show();
                     break;
@@ -403,10 +386,9 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
 
     //监听事件
     @OnClick({R.id.top_left_btn,R.id.first1,R.id.first2,R.id.first3,
-            R.id.second1,R.id.second2,R.id.second3,
-            R.id.third1,R.id.third2,R.id.third3,
-            R.id.fourth1,R.id.fourth2,R.id.fourth3,
-            R.id.fifth1,R.id.fifth2,R.id.fifth3,
+            R.id.yjjc,
+            R.id.kdyw,R.id.tczx, R.id.sjbj,R.id.esjss,R.id.lhsj,
+            R.id.zp,R.id.ys,R.id.hfcx,
             R.id.news1,R.id.news2,R.id.news3})//多个控件可以一起发在里面进行监听
     public void btnClick(View view) {
         Intent intent = new Intent();
@@ -448,7 +430,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 }
 
                 break;
-            case R.id.second1:
+            case R.id.yjjc:
                 if((boolean)SPUtils.get(getContext(),"islogin",false)){
                     random=((int)(1+Math.random()*(10-1+1)))%2;
                     showAlterDialog("一键叫车",phonenumbers[random]);
@@ -458,75 +440,51 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 }
 
                 break;
-            case R.id.second2:
-                if((boolean)SPUtils.get(getContext(),"islogin",false)){
-                    startQrCode();
-                }
-                else{
-                    showUnloginDialog();
-                }
 
-                break;
-            case R.id.second3:
-                if((boolean)SPUtils.get(getContext(),"islogin",false)){
-                    intent.setClass(getActivity(), OrderListActivity.class);
-                    startActivity(intent);
-                }
-                else{
-                    showUnloginDialog();
-                }
-
-                break;
-            case R.id.third1:
-
-                break;
-            case R.id.third2:
+            case R.id.kdyw:
                 intent.setClass(getActivity(), NewsListActivity.class);
                 intent.putExtra("type", "4");
                 intent.putExtra("title", "宽带业务");
                 startActivity(intent);
                 break;
-            case R.id.third3:
+            case R.id.tczx:
                 intent.setClass(getActivity(), NewsListActivity.class);
                 intent.putExtra("type", "5");
                 intent.putExtra("title", "套餐资讯");
                 startActivity(intent);
                 break;
-            case R.id.fourth1:
+            case R.id.sjbj:
                 intent.setClass(getActivity(), NewsListActivity.class);
                 intent.putExtra("type", "6");
                 intent.putExtra("title", "每日报价");
                 startActivity(intent);
                 break;
-            case R.id.fourth2:
+            case R.id.esjss:
                 intent.setClass(getActivity(), NewsListActivity.class);
                 intent.putExtra("type", "7");
                 intent.putExtra("title", "二手机收售");
                 startActivity(intent);
                 break;
-            case R.id.fourth3:
+            case R.id.lhsj:
                 intent.setClass(getActivity(), NewsListActivity.class);
-                intent.putExtra("type", "8");
-                intent.putExtra("title", "靓号");
+                intent.putExtra("type", "11");
+                intent.putExtra("title", "靓号收集");
                 startActivity(intent);
                 break;
-            case R.id.fifth1:
+            case R.id.zp:
                 intent.setClass(getActivity(), NewsListActivity.class);
                 intent.putExtra("type", "9");
                 intent.putExtra("title", "招聘");
                 startActivity(intent);
                 break;
-            case R.id.fifth2:
+            case R.id.ys:
                 intent.setClass(getActivity(), NewsListActivity.class);
                 intent.putExtra("type", "10");
                 intent.putExtra("title", "饮食");
                 startActivity(intent);
                 break;
-            case R.id.fifth3:
-                intent.setClass(getActivity(), NewsListActivity.class);
-                intent.putExtra("type", "11");
-                intent.putExtra("title", "靓号收集");
-                startActivity(intent);
+            case R.id.hfcx:
+
                 break;
             case R.id.news1:
                 intent.setClass(getActivity(), NewsListActivity.class);
