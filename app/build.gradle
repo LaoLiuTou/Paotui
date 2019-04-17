@@ -39,5 +39,6 @@ dependencies {
     compile project(path: ':zxing-simplify')
     compile project(path: ':base_dialog')
     compile project(path: ':xrefreshview')
+    compile project(path: ':pictureselector')
     compile 'com.alibaba:fastjson:1.1.55.android'
 }

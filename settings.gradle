@@ -1,3 +1,4 @@
 include ':app', ':zxing-simplify'
 include ':app', ':base_dialog'
 include ':app', ':xrefreshview'
+include ':app', ':pictureselector'

@@ -3,6 +3,7 @@ package com.lt.paotui.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
@@ -22,8 +23,11 @@ import com.lt.paotui.R;
 import com.lt.paotui.utils.Config;
 import com.lt.paotui.utils.MD5Util;
 import com.lt.paotui.utils.SPUtils;
+import com.wildma.pictureselector.ImageUtils;
+import com.wildma.pictureselector.PictureSelector;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -92,7 +96,7 @@ public class MyinfoActivity extends Activity {
 
         switch (view.getId()) {
             case R.id.header:
-                ActionSheetDialog dialog = new ActionSheetDialog(this).builder().setTitle("请选择")
+                /*ActionSheetDialog dialog = new ActionSheetDialog(this).builder().setTitle("请选择")
                         .addSheetItem("相册", null, new ActionSheetDialog.OnSheetItemClickListener() {
                             @Override
                             public void onClick(int which) {
@@ -105,7 +109,10 @@ public class MyinfoActivity extends Activity {
 
                             }
                         });
-                dialog.show();
+                dialog.show();*/
+                PictureSelector
+                        .create(MyinfoActivity.this, PictureSelector.SELECT_REQUEST_CODE)
+                        .selectPicture(true, 200, 200, 1, 1);
                 break;
             case R.id.saveBtn:
                 MyAlertDialog myAlertDialog = new MyAlertDialog(MyinfoActivity.this).builder()
@@ -132,6 +139,17 @@ public class MyinfoActivity extends Activity {
     }
 
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        /*结果回调*/
+        if (requestCode == PictureSelector.SELECT_REQUEST_CODE) {
+            if (data != null) {
+                String picturePath = data.getStringExtra(PictureSelector.PICTURE_PATH);
+                header.setImageBitmap(ImageUtils.getBitmap(picturePath));
+            }
+        }
+    }
     private void update(){
         final LoadingDialog loadingDialog = new LoadingDialog(this);
         loadingDialog.setMessage("正在加载...");
