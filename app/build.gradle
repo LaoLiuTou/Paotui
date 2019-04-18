@@ -42,4 +42,5 @@ dependencies {
     compile project(path: ':pictureselector')
     compile 'com.alibaba:fastjson:1.1.55.android'
     compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile 'com.makeramen:roundedimageview:2.3.0'
 }
