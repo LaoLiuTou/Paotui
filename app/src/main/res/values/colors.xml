@@ -19,4 +19,6 @@
     <color name="common_cheat_board">#7f000000</color>
     <color name="update_background">#7f000000</color>
     <color name="main_background">#f4f4f4</color>
+    <color name="label_red">#f3686d</color>
+    <color name="label_green">#58c396</color>
 </resources>

@@ -13,9 +13,7 @@
             android:id="@+id/banner"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:layout_marginTop="50dp"
-
-            />
+            android:layout_marginTop="50dp"/>
         <TextView
             android:id="@+id/yjjc"
             android:layout_width="match_parent"
@@ -31,53 +29,53 @@
             />
 
         <!-- 滚动-->
-         <RelativeLayout
-             android:id="@+id/srollnews"
+        <RelativeLayout
+            android:id="@+id/srollnews"
             android:layout_width="match_parent"
             android:layout_height="64dp"
-             android:background="@drawable/corner_view"
-             android:layout_marginLeft="10dp"
-             android:layout_marginRight="10dp"
-              android:layout_marginTop="230dp" >
-             <TextView
-                 android:id="@+id/day"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_marginTop="5dp"
-                 android:layout_marginLeft="10dp"
-                 android:text="17"
-                 android:textSize="20sp"
-                 />
-             <TextView
-                 android:id="@+id/month"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_marginBottom="5dp"
-                 android:layout_marginLeft="10dp"
-                 android:layout_below="@+id/day"
-                 android:text="四月"
-                 android:textSize="14sp"
-                 />
-             <LinearLayout
-                 android:layout_width="1dp"
-                 android:layout_height="64dp"
-                 android:layout_marginLeft="50dp"
-                 android:background="@color/main_background">
+            android:background="@drawable/corner_view"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="230dp" >
+            <TextView
+                android:id="@+id/day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:text="17"
+                android:textSize="20sp"
+                />
+            <TextView
+                android:id="@+id/month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_below="@+id/day"
+                android:text="四月"
+                android:textSize="14sp"
+                />
+            <LinearLayout
+                android:layout_width="1dp"
+                android:layout_height="64dp"
+                android:layout_marginLeft="50dp"
+                android:background="@color/main_background">
 
-             </LinearLayout>
-             <TextView
-                 android:id="@+id/sroll_text"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:layout_marginTop="10dp"
-                 android:layout_marginLeft="65dp"/>
-             <TextView
-                 android:id="@+id/sroll_text2"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:layout_marginTop="30dp"
-                 android:layout_marginLeft="65dp"/>
-         </RelativeLayout>
+            </LinearLayout>
+            <TextView
+                android:id="@+id/sroll_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="65dp"/>
+            <TextView
+                android:id="@+id/sroll_text2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="65dp"/>
+        </RelativeLayout>
         <!--第一行-->
         <LinearLayout
             android:id="@+id/firstmenus"
@@ -376,12 +374,13 @@
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
             <LinearLayout
-                android:id="@+id/news1"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/layout_selected_bg"
                 android:layout_weight="1">
                 <RelativeLayout
+                    android:id="@+id/news1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/main_background"
@@ -400,6 +399,7 @@
                         android:layout_marginLeft="50dp"
                         android:text="电信用户优惠专区"
                         android:layout_marginTop="10dp"
+                        android:textColor="@color/label_green"
                         android:singleLine="true"
                         android:textSize="14dp"
                         android:layout_marginBottom="10dp"/>
@@ -419,8 +419,9 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/layout_selected_bg"
                 android:layout_weight="1"
-                android:id="@+id/news2">
+                >
                 <RelativeLayout
+                    android:id="@+id/news2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
@@ -440,6 +441,7 @@
                         android:layout_marginLeft="50dp"
                         android:text="免费抽大奖"
                         android:singleLine="true"
+                        android:textColor="@color/label_green"
                         android:layout_marginTop="10dp"
                         android:textSize="14dp"
                         android:layout_marginBottom="10dp"/>
@@ -465,11 +467,11 @@
             android:background="@color/color_white"
             android:gravity="center"
             android:orientation="horizontal">
-             <ImageView
-                 android:id="@+id/news3"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:src="@mipmap/fifth1"/>
+            <ImageView
+                android:id="@+id/news3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/fifth1"/>
         </LinearLayout>
     </RelativeLayout>
 </ScrollView>

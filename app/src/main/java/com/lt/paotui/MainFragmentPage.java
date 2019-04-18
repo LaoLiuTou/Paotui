@@ -57,6 +57,7 @@ import com.youth.banner.loader.ImageLoader;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -86,6 +87,10 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
     TextView sroll_text;
     @BindView(R.id.top_bar_title)
     TextView top_bar_title;
+    @BindView(R.id.month)
+    TextView month;
+    @BindView(R.id.day)
+    TextView day;
 
 
 
@@ -113,10 +118,15 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
         super.onActivityCreated(savedInstanceState);
 
         //sroll_text.setText("2019-03-28 共有1000用户  用户***，支付车费5元，成功立减2元。");
-        Drawable icon = getResources().getDrawable(R.mipmap.tongzhi2);
+       /* Drawable icon = getResources().getDrawable(R.mipmap.tongzhi2);
         icon.setBounds(10,0,70,60);
-        top_bar_title.setCompoundDrawables(icon, null, null, null);
-        //top_bar_title.setText("  打车支付     立减2元  ");
+        top_bar_title.setCompoundDrawables(icon, null, null, null);*/
+
+
+        Calendar cd = Calendar.getInstance();
+        month.setText(cd.get(Calendar.MONTH)+1+"月");
+        day.setText(cd.get(Calendar.DATE)+"");
+
         getTitleData();
         getBannerData();
         //getNewsData();
