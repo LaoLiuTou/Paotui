@@ -40,6 +40,7 @@ import com.lt.paotui.activity.MyinfoActivity;
 import com.lt.paotui.activity.NewsListActivity;
 import com.lt.paotui.activity.OrderDetailActivity;
 import com.lt.paotui.activity.OrderListActivity;
+import com.lt.paotui.activity.RaffleActivity;
 import com.lt.paotui.utils.Config;
 import com.lt.paotui.utils.Constant;
 import com.lt.paotui.utils.SPUtils;
@@ -504,6 +505,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 break;
             case R.id.news2:
                 intent.setClass(getActivity(), NewsListActivity.class);
+                //intent.setClass(getActivity(), RaffleActivity.class);
                 intent.putExtra("type", "2");
                 intent.putExtra("title", "免费抽奖");
                 startActivity(intent);

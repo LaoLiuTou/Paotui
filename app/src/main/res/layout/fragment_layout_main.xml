@@ -441,7 +441,7 @@
                         android:layout_marginLeft="50dp"
                         android:text="免费抽大奖"
                         android:singleLine="true"
-                        android:textColor="@color/label_green"
+                        android:textColor="@color/label_red"
                         android:layout_marginTop="10dp"
                         android:textSize="14dp"
                         android:layout_marginBottom="10dp"/>

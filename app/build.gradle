@@ -7,8 +7,8 @@ android {
         applicationId "com.lt.paotui"
         minSdkVersion 14
         targetSdkVersion 24
-        versionCode 7
-        versionName "1.7.0"
+        versionCode 10
+        versionName "1.10.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -43,4 +43,5 @@ dependencies {
     compile 'com.alibaba:fastjson:1.1.55.android'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.makeramen:roundedimageview:2.3.0'
+    compile 'com.just.agentweb:agentweb:4.0.3-alpha@aar'
 }
