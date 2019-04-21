@@ -4,15 +4,18 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.just.agentweb.AgentWeb;
 import com.lt.paotui.MainActivity;
 import com.lt.paotui.R;
+import com.lt.paotui.utils.Config;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by Administrator on 2019/4/16.
@@ -36,8 +39,20 @@ public class RaffleActivity extends Activity {
                 //.setReceivedTitleCallback(mCallback) //设置 Web 页面的 title 回调
                 .createAgentWeb()
                 .ready()
-                .go("http://www.jd.com");
+                .go(Config.url+"listNews?page=1&size=10");
 
     }
+    @OnClick({R.id.top_back_btn})
+    public void btnClick(View view) {
 
+
+        switch (view.getId()) {
+            case R.id.top_back_btn:
+                finish();
+                break;
+
+            default:
+                break;
+        }
+    }
 }
