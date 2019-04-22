@@ -642,11 +642,11 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
             //String scanResult = bundle.getString(Constant.INTENT_EXTRA_KEY_QR_SCAN);
             //Toast.makeText(MainActivity.this, data.getStringExtra("barCode"), Toast.LENGTH_LONG).show();
             Map resultMap = JSON.parseObject(data.getStringExtra("barCode"));
-            String driver="";
-            if(resultMap.containsKey("driver")){
-                driver=resultMap.get("driver").toString();
+            String id="";
+            if(resultMap.containsKey("id")&&resultMap.containsKey("number")&&resultMap.containsKey("driver")){
+                id=resultMap.get("id").toString();
                 //将扫描出的信息显示出来
-                showInputDialog(driver);
+                showInputDialog(id);
 
             }
             else{
@@ -656,7 +656,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
 
         }
     }
-    private void showInputDialog(final String driver) {
+    private void showInputDialog(final String id) {
         Map userInfo = JSON.parseObject(SPUtils.get(getContext(),"userinfo","{}").toString());
         List<Map> dataList=JSON.parseArray(SPUtils.get(getContext(),"sysconfig","{}").toString(),Map.class);
         String tempprice="1";
@@ -674,7 +674,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                     public void onClick(View v) {
                         Map userInfo = JSON.parseObject(SPUtils.get(getContext(),"userinfo","{}").toString());
                         String cus_id=userInfo.get("id").toString();
-                        addOrder(cus_id,price,driver);
+                        addOrder(cus_id,price,id);
                     }
                 }).setNegativeButton("取消", new View.OnClickListener() {
                     @Override
@@ -713,7 +713,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
 
 
     }
-    private void addOrder(String cus_id,String price,String driver){
+    private void addOrder(String cus_id,String price,String id){
         final LoadingDialog loadingDialog = new LoadingDialog(getContext());
         loadingDialog.setMessage("正在提交...");
         loadingDialog.show();
@@ -722,7 +722,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
         FormBody formBody = new FormBody.Builder()
                 .add("cus_id", cus_id)
                 .add("price", price)
-                .add("driver", driver)
+                .add("driver", id)
                 .build();
         Request request = new Request.Builder().url(Config.url+"/addOrders")
                 .addHeader("source", Config.REQUEST_HEADER)// 自定义的header

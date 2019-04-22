@@ -46,6 +46,10 @@ public class OrderDetailActivity extends Activity {
     TextView note;
     @BindView(R.id.top_bar_title)
     TextView top_bar_title;
+    @BindView(R.id.number)
+    TextView number;
+    @BindView(R.id.driverphone)
+    TextView driverphone;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +69,13 @@ public class OrderDetailActivity extends Activity {
                 case 0:
                     Map<String,String> dataMap=(Map<String,String>)msg.obj;
                     ordernum.setText(dataMap.get("ordernum"));
-                    driver.setText(dataMap.get("driver"));
+                    driver.setText(dataMap.get("drivername"));
+                    number.setText(dataMap.get("number"));
+                    String driverphonenum =dataMap.get("driverphone");
+                    if(driverphonenum.length()>7){
+                        driverphonenum = driverphonenum.substring(0, 3) + "****" + driverphonenum.substring(7, driverphonenum.length());
+                    }
+                    driverphone.setText(driverphonenum);
                     customer.setText(dataMap.get("cusname"));
                     phone.setText(dataMap.get("phone"));
                     paytime.setText(dataMap.get("pay_dt"));
