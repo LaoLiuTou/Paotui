@@ -179,7 +179,7 @@ public class MyFragmentPage extends Fragment  {
 
 
     //监听事件
-    @OnClick({R.id.myinfo,R.id.logout,R.id.zfjl,R.id.yjzf,R.id.xggrxx,R.id.ghsjh,R.id.unlogin_myinfo})
+    @OnClick({R.id.myinfo,R.id.logout,R.id.zfjl,R.id.yjzf,R.id.xggrxx,R.id.unlogin_myinfo})
     public void btnClick(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
@@ -240,9 +240,7 @@ public class MyFragmentPage extends Fragment  {
                     showUnloginDialog();
                 }
                 break;
-            case R.id.ghsjh:
 
-                break;
 
             default:
                 break;

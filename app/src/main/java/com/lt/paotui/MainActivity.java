@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
         tabLayoutView.setDataSource(titles, imgs, 0);
         tabLayoutView.setImageStyle(25, 25);
-        tabLayoutView.setTextStyle(12, R.color.color_999999,R.color.color_title_bg);
+        tabLayoutView.setTextStyle(12, R.color.color_999999,R.color.color_nav);
         tabLayoutView.initDatas();
         setDots();
         tabLayoutView.setOnItemOnclickListener(new TabLayoutView.OnItemOnclickListener() {
