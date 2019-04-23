@@ -176,7 +176,7 @@
                 android:orientation="vertical"
                 android:layout_weight="1"
                 android:clickable="true"
-                android:id="@+id/kdyw">
+                android:id="@+id/dxyyt">
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
@@ -186,7 +186,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="宽带业务"
+                    android:text="电信营业厅"
                     android:layout_marginTop="5dp"
                     android:textSize="14dp"
                     android:layout_marginBottom="10dp"/>
@@ -199,7 +199,7 @@
                 android:orientation="vertical"
                 android:layout_weight="1"
                 android:clickable="true"
-                android:id="@+id/tczx">
+                android:id="@+id/yhtc">
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
@@ -209,7 +209,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="套餐资讯"
+                    android:text="优惠套餐"
                     android:layout_marginTop="5dp"
                     android:textSize="14dp"
                     android:layout_marginBottom="10dp"/>
@@ -278,7 +278,7 @@
                 android:orientation="vertical"
                 android:layout_weight="1"
                 android:clickable="true"
-                android:id="@+id/lhsj">
+                android:id="@+id/lhss">
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
@@ -288,7 +288,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="靓号收集"
+                    android:text="靓号收售"
                     android:layout_marginTop="5dp"
                     android:textSize="14dp"
                     android:layout_marginBottom="10dp"/>
@@ -301,17 +301,17 @@
                 android:orientation="vertical"
                 android:layout_weight="1"
                 android:clickable="true"
-                android:id="@+id/zp">
+                android:id="@+id/cskx">
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginTop="10dp"
                     android:scaleType="fitXY"
-                    android:src="@mipmap/third2" />
+                    android:src="@mipmap/chengshikuaixun" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="招聘"
+                    android:text="城市快讯"
                     android:layout_marginTop="5dp"
                     android:textSize="14dp"
                     android:layout_marginBottom="10dp"/>
@@ -324,17 +324,17 @@
                 android:orientation="vertical"
                 android:layout_weight="1"
                 android:clickable="true"
-                android:id="@+id/ys">
+                android:id="@+id/mflsj">
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginTop="10dp"
                     android:scaleType="fitXY"
-                    android:src="@mipmap/third3" />
+                    android:src="@mipmap/mianfeilingshouji" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="饮食"
+                    android:text="免费领手机"
                     android:layout_marginTop="5dp"
                     android:textSize="14dp"
                     android:layout_marginBottom="10dp"/>
@@ -347,17 +347,17 @@
                 android:orientation="vertical"
                 android:layout_weight="1"
                 android:clickable="true"
-                android:id="@+id/hfcx">
+                android:id="@+id/gp">
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginTop="10dp"
                     android:scaleType="fitXY"
-                    android:src="@mipmap/third4" />
+                    android:src="@mipmap/goupiao" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="话费查询"
+                    android:text="购票"
                     android:layout_marginTop="5dp"
                     android:textSize="14dp"
                     android:layout_marginBottom="10dp"/>

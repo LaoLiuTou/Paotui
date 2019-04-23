@@ -35,6 +35,8 @@ import com.hb.dialog.dialog.LoadingDialog;
 import com.hb.dialog.myDialog.MyAlertDialog;
 import com.hb.dialog.myDialog.MyAlertInputDialog;
 import com.lt.paotui.activity.BannerDetailActivity;
+import com.lt.paotui.activity.CskxActivity;
+import com.lt.paotui.activity.DxyytActivity;
 import com.lt.paotui.activity.LoginActivity;
 import com.lt.paotui.activity.MyinfoActivity;
 import com.lt.paotui.activity.NewsListActivity;
@@ -398,8 +400,8 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
     //监听事件
     @OnClick({R.id.top_left_btn,R.id.first1,R.id.first2,R.id.first3,
             R.id.yjjc,
-            R.id.kdyw,R.id.tczx, R.id.sjbj,R.id.esjss,R.id.lhsj,
-            R.id.zp,R.id.ys,R.id.hfcx,
+            R.id.dxyyt,R.id.yhtc, R.id.sjbj,R.id.esjss,R.id.lhss,
+            R.id.cskx,R.id.mflsj,R.id.gp,
             R.id.news1,R.id.news2,R.id.news3})//多个控件可以一起发在里面进行监听
     public void btnClick(View view) {
         Intent intent = new Intent();
@@ -452,13 +454,11 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
 
                 break;
 
-            case R.id.kdyw:
-                intent.setClass(getActivity(), NewsListActivity.class);
-                intent.putExtra("type", "4");
-                intent.putExtra("title", "宽带业务");
+            case R.id.dxyyt:
+                intent.setClass(getActivity(), DxyytActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.tczx:
+            case R.id.yhtc:
                 intent.setClass(getActivity(), NewsListActivity.class);
                 intent.putExtra("type", "5");
                 intent.putExtra("title", "套餐资讯");
@@ -476,25 +476,20 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 intent.putExtra("title", "二手机收售");
                 startActivity(intent);
                 break;
-            case R.id.lhsj:
+            case R.id.lhss:
                 intent.setClass(getActivity(), NewsListActivity.class);
                 intent.putExtra("type", "11");
                 intent.putExtra("title", "靓号收集");
                 startActivity(intent);
                 break;
-            case R.id.zp:
-                intent.setClass(getActivity(), NewsListActivity.class);
-                intent.putExtra("type", "9");
-                intent.putExtra("title", "招聘");
+            case R.id.cskx:
+                intent.setClass(getActivity(), CskxActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.ys:
-                intent.setClass(getActivity(), NewsListActivity.class);
-                intent.putExtra("type", "10");
-                intent.putExtra("title", "饮食");
-                startActivity(intent);
+            case R.id.mflsj:
+
                 break;
-            case R.id.hfcx:
+            case R.id.gp:
 
                 break;
             case R.id.news1:
@@ -504,8 +499,8 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 startActivity(intent);
                 break;
             case R.id.news2:
-                intent.setClass(getActivity(), NewsListActivity.class);
-                //intent.setClass(getActivity(), RaffleActivity.class);
+                //intent.setClass(getActivity(), NewsListActivity.class);
+                intent.setClass(getActivity(), RaffleActivity.class);
                 intent.putExtra("type", "2");
                 intent.putExtra("title", "免费抽奖");
                 startActivity(intent);

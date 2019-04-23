@@ -44,6 +44,8 @@
         <activity android:name=".activity.MyinfoActivity"/>
         <activity android:name=".activity.BannerDetailActivity"/>
         <activity android:name=".activity.RaffleActivity"/>
+        <activity android:name=".activity.DxyytActivity"/>
+        <activity android:name=".activity.CskxActivity"/>
     </application>
 
 </manifest>
