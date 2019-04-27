@@ -6,15 +6,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
-import com.bumptech.glide.Glide;
 import com.lt.paotui.R;
 import com.lt.paotui.utils.Config;
-import com.lt.paotui.utils.SPUtils;
 
 import java.io.IOException;
 import java.util.Map;
@@ -29,36 +26,34 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class OrderDetailActivity extends Activity {
+public class OrderptDetailActivity extends Activity {
     @BindView(R.id.ordernum)
     TextView ordernum;
-    @BindView(R.id.driver)
-    TextView driver;
-    @BindView(R.id.customer)
-    TextView customer;
-    @BindView(R.id.phone)
-    TextView phone;
-    @BindView(R.id.paytime)
-    TextView paytime;
+    @BindView(R.id.qhdz)
+    TextView qhdz;
+    @BindView(R.id.qhdh)
+    TextView qhdh;
+    @BindView(R.id.shdz)
+    TextView shdz;
+    @BindView(R.id.shdh)
+    TextView shdh;
+    @BindView(R.id.send_dt)
+    TextView send_dt;
     @BindView(R.id.price)
     TextView price;
     @BindView(R.id.note)
     TextView note;
     @BindView(R.id.top_bar_title)
     TextView top_bar_title;
-    @BindView(R.id.number)
-    TextView number;
-    @BindView(R.id.driverphone)
-    TextView driverphone;
     @BindView(R.id.status)
     TextView status;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order_detail);
+        setContentView(R.layout.activity_orderpt_detail);
         ButterKnife.bind(this);
         getOrderData();
-        top_bar_title.setText("叫车订单详情");
+        top_bar_title.setText("跑腿订单详情");
     }
     /**
      * 接收解析后传过来的数据
@@ -71,16 +66,11 @@ public class OrderDetailActivity extends Activity {
                 case 0:
                     Map<String,String> dataMap=(Map<String,String>)msg.obj;
                     ordernum.setText(dataMap.get("ordernum"));
-                    driver.setText(dataMap.get("drivername"));
-                    number.setText(dataMap.get("number"));
-                    String driverphonenum =dataMap.get("driverphone");
-                    if(driverphonenum.length()>7){
-                        driverphonenum = driverphonenum.substring(0, 3) + "****" + driverphonenum.substring(7, driverphonenum.length());
-                    }
-                    driverphone.setText(driverphonenum);
-                    customer.setText(dataMap.get("cusname"));
-                    phone.setText(dataMap.get("phone"));
-                    paytime.setText(dataMap.get("pay_dt"));
+                    qhdz.setText(dataMap.get("fromaddress"));
+                    qhdh.setText(dataMap.get("fromphone"));
+                    shdz.setText(dataMap.get("toaddress"));
+                    shdh.setText(dataMap.get("tophone"));
+                    send_dt.setText(dataMap.get("send_dt"));
                     price.setText(dataMap.get("price")+"元");
                     note.setText(dataMap.get("note"));
                     if(dataMap.get("status").equals("0")){
@@ -88,7 +78,7 @@ public class OrderDetailActivity extends Activity {
                     }
                     break;
                 case 1:
-                    Toast.makeText(OrderDetailActivity.this, "获取订单信息失败！",Toast.LENGTH_LONG).show();
+                    Toast.makeText(OrderptDetailActivity.this, "获取订单信息失败！",Toast.LENGTH_LONG).show();
                     break;
 
                 default:
@@ -107,7 +97,7 @@ public class OrderDetailActivity extends Activity {
         FormBody formBody = new FormBody.Builder()
                 .add("id", order_id)
                 .build();
-        Request request = new Request.Builder().url(Config.url+"/selectOrders")
+        Request request = new Request.Builder().url(Config.url+"/selectOrderspt")
                 .addHeader("source", Config.REQUEST_HEADER)// 自定义的header
                 .post(formBody)
                 .build();

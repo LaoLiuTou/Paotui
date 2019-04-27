@@ -15,7 +15,7 @@ import com.alibaba.fastjson.JSON;
 import com.andview.refreshview.XRefreshView;
 import com.andview.refreshview.XRefreshViewFooter;
 import com.lt.paotui.R;
-import com.lt.paotui.adapter.NewsAdapter;
+import com.lt.paotui.adapter.OrderptAdapter;
 import com.lt.paotui.adapter.SimpleAdapter;
 import com.lt.paotui.utils.Config;
 import com.lt.paotui.utils.SPUtils;
@@ -39,15 +39,15 @@ import okhttp3.Response;
  * Created by Administrator on 2019/4/12.
  */
 
-public class NewsListActivity extends Activity   {
-
+public class OrderptListActivity extends Activity   {
     @BindView(R.id.top_bar_title)
     TextView top_bar_title;
+
     @BindView(R.id.recycler_view_test_rv)
     RecyclerView recyclerView;
     @BindView(R.id.xrefreshview)
     XRefreshView xRefreshView;
-    NewsAdapter adapter;
+    OrderptAdapter adapter;
     List<Map> listData = new ArrayList<>();
     LinearLayoutManager layoutManager;
     private int mLoadCount = 0;
@@ -60,10 +60,8 @@ public class NewsListActivity extends Activity   {
         setContentView(R.layout.activity_order_list);
         ButterKnife.bind(this);
         page=1;
-        getOrderData(page,size);
-        Intent intent = getIntent();
-        String title = intent.getStringExtra("title");
-        top_bar_title.setText(title);
+        getOrderptData(page,size);
+        top_bar_title.setText("跑腿订单列表");
     }
     /**
      * 接收解析后传过来的数据
@@ -80,7 +78,7 @@ public class NewsListActivity extends Activity   {
 
                     break;
                 case 1:
-                    Toast.makeText(NewsListActivity.this, msg.obj.toString(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(OrderptListActivity.this, msg.obj.toString(),Toast.LENGTH_LONG).show();
                     break;
                 case 2:
                     xRefreshView.setLoadComplete(true);
@@ -92,19 +90,20 @@ public class NewsListActivity extends Activity   {
             super.handleMessage(msg);
         }
     };
-    private void getOrderData(final int page,int size){
+    private void getOrderptData(final int page,int size){
         xRefreshView.startRefresh();
-        Intent intent = getIntent();
-        String type = intent.getStringExtra("type");
+        Map userInfo = JSON.parseObject(SPUtils.get(OrderptListActivity.this,"userinfo","{}").toString());
+        final  String cus_id=userInfo.get("id").toString();
+
         final Message message=Message.obtain();
 
         OkHttpClient okHttpClient = new OkHttpClient();
         FormBody formBody = new FormBody.Builder()
                 .add("page", page+"")
                 .add("size", size+"")
-                .add("type", type)
+                .add("cus_id", cus_id)
                 .build();
-        Request request = new Request.Builder().url(Config.url+"/listNews")
+        Request request = new Request.Builder().url(Config.url+"/listOrderspt")
                 .addHeader("source", Config.REQUEST_HEADER)// 自定义的header
                 .post(formBody)
                 .build();
@@ -153,7 +152,7 @@ public class NewsListActivity extends Activity   {
     }
 
     private void initListView(){
-        adapter = new NewsAdapter(listData, this);
+        adapter = new OrderptAdapter(listData, this);
         // 设置静默加载模式
 //        xRefreshView1.setSilenceLoadMore();
         layoutManager = new LinearLayoutManager(this);
@@ -195,25 +194,25 @@ public class NewsListActivity extends Activity   {
                     }
                 }, 500);*/
                 page=1;
-                getOrderData(page,size);
+                getOrderptData(page,size);
             }
 
             @Override
             public void onLoadMore(boolean isSilence) {
 
                 page++;
-                getOrderData(page,size);
+                getOrderptData(page,size);
 
             }
         });
         // 设置数据后就要给RecyclerView设置点击事件
-        adapter.setOnItemClickListener(new NewsAdapter.ItemClickListener() {
+        adapter.setOnItemClickListener(new OrderptAdapter.ItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 Intent intent = new Intent();
-                intent.setClass(NewsListActivity.this, NewsDetailActivity.class);
+                intent.setClass(OrderptListActivity.this, OrderptDetailActivity.class);
                 String order_id=listData.get(position).get("id").toString();
-                intent.putExtra("news_id", order_id);
+                intent.putExtra("order_id", order_id);
                 startActivity(intent);
             }
         });

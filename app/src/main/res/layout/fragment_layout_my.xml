@@ -129,7 +129,7 @@
                 android:background="@color/color_white"
                 android:orientation="horizontal">
                 <LinearLayout
-                    android:id="@+id/yjzf"
+                    android:id="@+id/ptdd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/layout_selected_bg"
@@ -146,7 +146,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
-                        android:text="一键支付"
+                        android:text="跑腿订单记录"
                         android:textSize="14dp"/>
                 </LinearLayout>
                 <LinearLayout
@@ -156,7 +156,7 @@
                     android:layout_marginBottom="10dp"
                     android:background="@color/main_background"/>
                 <LinearLayout
-                    android:id="@+id/zfjl"
+                    android:id="@+id/jcdd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/layout_selected_bg"
@@ -172,7 +172,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="支付记录"
+                        android:text="叫车订单记录"
                         android:layout_margin="5dp"
                         android:textSize="14dp"/>
                 </LinearLayout>
@@ -191,6 +191,38 @@
             android:orientation="vertical"
             android:showDividers="middle"
             android:divider="@drawable/dividers_1">
+            <RelativeLayout
+                android:id="@+id/lyjl"
+                android:background="@drawable/corner_view"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:clickable="true" >
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="10dp"
+                    android:scaleType="fitXY"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/fenxiang" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="45dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:text="留言记录"
+                    android:textSize="16sp"/>
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_centerInParent="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="8dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/right" />
+            </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/shdz"
                 android:background="@drawable/corner_view"
@@ -294,38 +326,7 @@
                     android:scaleType="fitXY"
                     android:src="@mipmap/right" />
             </RelativeLayout>
-            <RelativeLayout
-                android:id="@+id/fenxiang"
-                android:background="@drawable/corner_view"
-                android:layout_width="wrap_content"
-                android:layout_height="56dp"
-                android:clickable="true" >
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginLeft="10dp"
-                    android:scaleType="fitXY"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerInParent="true"
-                    android:src="@mipmap/fenxiang" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="45dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerInParent="true"
-                    android:text="分享"
-                    android:textSize="16sp"/>
 
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_centerInParent="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="8dp"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/right" />
-            </RelativeLayout>
         </LinearLayout>
 
         <Button

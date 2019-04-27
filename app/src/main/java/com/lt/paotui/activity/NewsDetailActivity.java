@@ -60,7 +60,7 @@ public class NewsDetailActivity extends Activity   {
     private int mLoadCount = 0;
     private boolean isList = true;//false 为grid布局
     private int page;
-    private int size=3;
+    private int size=10;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -15,7 +15,7 @@ import com.lt.paotui.utils.DensityUtil;
 import java.util.List;
 import java.util.Map;
 
-public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapterViewHolder> {
+public class OrderptAdapter extends BaseRecyclerAdapter<OrderptAdapter.OrderptAdapterViewHolder> {
     private List<Map> list;
     private int largeCardHeight, smallCardHeight;
 
@@ -29,22 +29,21 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
 
     }
 
-    public SimpleAdapter(List<Map> list, Context context) {
+    public OrderptAdapter(List<Map> list, Context context) {
         this.list = list;
         largeCardHeight = DensityUtil.dip2px(context, 150);
         smallCardHeight = DensityUtil.dip2px(context, 100);
     }
 
     @Override
-    public void onBindViewHolder(SimpleAdapterViewHolder holder,final int position, boolean isItem) {
+    public void onBindViewHolder(OrderptAdapterViewHolder holder,final int position, boolean isItem) {
         Map item = list.get(position);
 
 
 
         holder.ordernum.setText(item.get("ordernum").toString());
-        holder.driver.setText(item.get("number").toString());
         holder.status.setText(item.get("status").toString().equals("0")?"未完成":"已完成");
-        holder.pay_dt.setText(item.get("pay_dt").toString());
+        holder.c_dt.setText(item.get("c_dt").toString());
         ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
         if (layoutParams instanceof StaggeredGridLayoutManager.LayoutParams) {
             holder.rootView.getLayoutParams().height = position % 2 != 0 ? largeCardHeight : smallCardHeight;
@@ -73,8 +72,8 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
     }
 
     @Override
-    public SimpleAdapterViewHolder getViewHolder(View view) {
-        return new SimpleAdapterViewHolder(view, false);
+    public OrderptAdapterViewHolder getViewHolder(View view) {
+        return new OrderptAdapterViewHolder(view, false);
     }
 
     public void setData(List<Map> list) {
@@ -83,10 +82,10 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
     }
 
     @Override
-    public SimpleAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType, boolean isItem) {
+    public OrderptAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType, boolean isItem) {
         View v = LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.item_recylerview, parent, false);
-        SimpleAdapterViewHolder vh = new SimpleAdapterViewHolder(v, true);
+                R.layout.item_orderpt, parent, false);
+        OrderptAdapterViewHolder vh = new OrderptAdapterViewHolder(v, true);
         return vh;
     }
 
@@ -102,26 +101,23 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
         clear(list);
     }
 
-    public class SimpleAdapterViewHolder extends RecyclerView.ViewHolder {
+    public class OrderptAdapterViewHolder extends RecyclerView.ViewHolder {
 
         public View rootView;
         public TextView ordernum;
-        public TextView driver;
         public TextView status;
-        public TextView pay_dt;
+        public TextView c_dt;
         public int position;
 
-        public SimpleAdapterViewHolder(View itemView, boolean isItem) {
+        public OrderptAdapterViewHolder(View itemView, boolean isItem) {
             super(itemView);
             if (isItem) {
                 ordernum = (TextView) itemView
                         .findViewById(R.id.ordernum);
-                driver = (TextView) itemView
-                        .findViewById(R.id.driver);
                 status = (TextView) itemView
                         .findViewById(R.id.status);
-                pay_dt = (TextView) itemView
-                        .findViewById(R.id.pay_dt);
+                c_dt = (TextView) itemView
+                        .findViewById(R.id.c_dt);
                 rootView = itemView
                         .findViewById(R.id.card_view);
             }

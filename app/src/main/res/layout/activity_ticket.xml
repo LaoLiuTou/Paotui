@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include layout="@layout/top_bar_back"/>
+
+
+        <LinearLayout
+            android:id="@+id/btnlist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:showDividers="middle"
+            android:divider="@drawable/dividers_1">
+
+            <RelativeLayout
+                android:background="@drawable/corner_view"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:clickable="true" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="留言:"
+                    android:textSize="16sp"/>
+                <EditText
+                    android:id="@+id/note"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="80dp"
+                    android:inputType="textMultiLine"
+                    android:hint="请输入您的留言，我们会第一时间和你取得联系！"
+                    android:minLines="3"
+                    android:gravity="top"
+                    android:textSize="14sp"
+                    android:textCursorDrawable="@null"
+                    android:background="@null"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_below="@+id/btnlist"
+            android:background="@drawable/corner_button"
+            android:text="提交"
+            android:textColor="@color/color_888888"
+            android:textSize="16sp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="20dp"/>
+
+    </RelativeLayout>
+
+
+</ScrollView>

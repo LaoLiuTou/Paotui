@@ -46,6 +46,12 @@
         <activity android:name=".activity.RaffleActivity"/>
         <activity android:name=".activity.DxyytActivity"/>
         <activity android:name=".activity.CskxActivity"/>
+        <activity android:name=".activity.PaotuiActivity"/>
+        <activity android:name=".activity.TicketActivity"/>
+        <activity android:name=".activity.OrderptListActivity"/>
+        <activity android:name=".activity.OrderptDetailActivity"/>
+        <activity android:name=".activity.LeavingListActivity"/>
+        <activity android:name=".activity.LeavingDetailActivity"/>
     </application>
 
 </manifest>

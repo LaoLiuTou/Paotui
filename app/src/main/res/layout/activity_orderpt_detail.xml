@@ -63,12 +63,54 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="司机车牌："
+                        android:text="取货地址："
+                        android:textSize="16sp"
+                        />
+                    <TextView
+                        android:id="@+id/qhdz"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="15dp"
+                        android:textSize="16sp"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/color_white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="取货电话："
 
                         android:textSize="16sp"
                         />
                     <TextView
-                        android:id="@+id/number"
+                        android:id="@+id/qhdh"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:paddingLeft="15dp"
+                        android:textSize="16sp"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/color_white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="送货地址："
+
+                        android:textSize="16sp"
+                        />
+                    <TextView
+                        android:id="@+id/shdz"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
@@ -85,66 +127,22 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="司机姓名："
+                        android:text="送货电话："
 
                         android:textSize="16sp"
                         />
                     <TextView
-                        android:id="@+id/driver"
+                        android:id="@+id/shdh"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=""
-                        android:paddingLeft="20dp"
-                        android:textSize="16sp"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@color/color_white"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="司机电话："
-
-                        android:textSize="16sp"
-                        />
-                    <TextView
-                        android:id="@+id/driverphone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:paddingLeft="20dp"
-                        android:textSize="16sp"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@color/color_white"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="客服电话："
-
-                        android:textSize="16sp"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="5059898,5059696"
-                        android:paddingLeft="20dp"
+                        android:paddingLeft="15dp"
                         android:textSize="16sp"
                         />
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="50dp"
                 android:background="@color/color_white"
                 android:gravity="center_vertical"
                 android:orientation="vertical">
@@ -157,12 +155,12 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="客户昵称："
+                        android:text="送货时间："
 
                         android:textSize="16sp"
                         />
                     <TextView
-                        android:id="@+id/customer"
+                        android:id="@+id/send_dt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
@@ -170,50 +168,8 @@
                         android:textSize="16sp"
                         />
                 </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@color/color_white"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="客户电话："
 
-                        android:textSize="16sp"
-                        />
-                    <TextView
-                        android:id="@+id/phone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:paddingLeft="20dp"
-                        android:textSize="16sp"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@color/color_white"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="付款日期："
 
-                        android:textSize="16sp"
-                        />
-                    <TextView
-                        android:id="@+id/paytime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:paddingLeft="20dp"
-                        android:textSize="16sp"
-                        />
-                </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"

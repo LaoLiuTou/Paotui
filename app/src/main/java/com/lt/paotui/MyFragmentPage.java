@@ -20,9 +20,11 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
 import com.hb.dialog.myDialog.MyAlertDialog;
+import com.lt.paotui.activity.LeavingListActivity;
 import com.lt.paotui.activity.LoginActivity;
 import com.lt.paotui.activity.MyinfoActivity;
 import com.lt.paotui.activity.OrderListActivity;
+import com.lt.paotui.activity.OrderptListActivity;
 import com.lt.paotui.utils.Config;
 import com.lt.paotui.utils.SPUtils;
 import com.youth.banner.Banner;
@@ -179,7 +181,7 @@ public class MyFragmentPage extends Fragment  {
 
 
     //监听事件
-    @OnClick({R.id.myinfo,R.id.logout,R.id.zfjl,R.id.yjzf,R.id.xggrxx,R.id.unlogin_myinfo})
+    @OnClick({R.id.myinfo,R.id.logout,R.id.ptdd,R.id.jcdd,R.id.xggrxx,R.id.lyjl,R.id.unlogin_myinfo})
     public void btnClick(View view) {
         Intent intent = new Intent();
         switch (view.getId()) {
@@ -216,7 +218,7 @@ public class MyFragmentPage extends Fragment  {
                 myAlertDialog.show();
 
                 break;
-            case R.id.zfjl:
+            case R.id.jcdd:
 
                 if((boolean)SPUtils.get(getContext(),"islogin",false)){
                     intent.setClass(getActivity(), OrderListActivity.class);
@@ -227,13 +229,29 @@ public class MyFragmentPage extends Fragment  {
                 }
 
                 break;
-            case R.id.yjzf:
-
+            case R.id.ptdd:
+                if((boolean)SPUtils.get(getContext(),"islogin",false)){
+                    intent.setClass(getActivity(), OrderptListActivity.class);
+                    getActivity().startActivity(intent);
+                }
+                else{
+                    showUnloginDialog();
+                }
                 break;
             case R.id.xggrxx:
 
                 if((boolean)SPUtils.get(getContext(),"islogin",false)){
                     intent.setClass(getActivity(), MyinfoActivity.class);
+                    getActivity().startActivity(intent);
+                }
+                else{
+                    showUnloginDialog();
+                }
+                break;
+            case R.id.lyjl:
+
+                if((boolean)SPUtils.get(getContext(),"islogin",false)){
+                    intent.setClass(getActivity(), LeavingListActivity.class);
                     getActivity().startActivity(intent);
                 }
                 else{

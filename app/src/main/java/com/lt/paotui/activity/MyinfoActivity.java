@@ -59,6 +59,8 @@ public class MyinfoActivity extends Activity {
     TextView balance;
     @BindView(R.id.c_dt)
     TextView c_dt;
+    @BindView(R.id.yqm)
+    TextView yqm;
     private String headerUrl;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -75,6 +77,7 @@ public class MyinfoActivity extends Activity {
         phone.setText(userInfo.get("phone").toString());
         balance.setText(userInfo.get("balance").toString());
         c_dt.setText(userInfo.get("c_dt").toString());
+        yqm.setText(userInfo.get("invitecode").toString());
 
     }
     /**

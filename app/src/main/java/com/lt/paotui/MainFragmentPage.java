@@ -42,7 +42,9 @@ import com.lt.paotui.activity.MyinfoActivity;
 import com.lt.paotui.activity.NewsListActivity;
 import com.lt.paotui.activity.OrderDetailActivity;
 import com.lt.paotui.activity.OrderListActivity;
+import com.lt.paotui.activity.PaotuiActivity;
 import com.lt.paotui.activity.RaffleActivity;
+import com.lt.paotui.activity.TicketActivity;
 import com.lt.paotui.utils.Config;
 import com.lt.paotui.utils.Constant;
 import com.lt.paotui.utils.SPUtils;
@@ -399,7 +401,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
 
     //监听事件
     @OnClick({R.id.top_left_btn,R.id.first1,R.id.first2,R.id.first3,
-            R.id.yjjc,
+            R.id.yjjc,R.id.yjjcprev,
             R.id.dxyyt,R.id.yhtc, R.id.sjbj,R.id.esjss,R.id.lhss,
             R.id.cskx,R.id.mflsj,R.id.gp,
             R.id.news1,R.id.news2,R.id.news3})//多个控件可以一起发在里面进行监听
@@ -418,7 +420,9 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 break;
             case R.id.first1:
                 if((boolean)SPUtils.get(getContext(),"islogin",false)){
-                    showAlterDialog("帮我买","5051111");
+                    intent.setClass(getActivity(), PaotuiActivity.class);
+                    intent.putExtra("type", "帮我买");
+                    startActivity(intent);
                 }
                 else{
                     showUnloginDialog();
@@ -427,7 +431,9 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 break;
             case R.id.first2:
                 if((boolean)SPUtils.get(getContext(),"islogin",false)){
-                    showAlterDialog("帮我送","5051111");
+                    intent.setClass(getActivity(), PaotuiActivity.class);
+                    intent.putExtra("type", "帮我送");
+                    startActivity(intent);
                 }
                 else{
                     showUnloginDialog();
@@ -436,7 +442,9 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 break;
             case R.id.first3:
                 if((boolean)SPUtils.get(getContext(),"islogin",false)){
-                    showAlterDialog("帮我取","5051111");
+                    intent.setClass(getActivity(), PaotuiActivity.class);
+                    intent.putExtra("type", "帮我取");
+                    startActivity(intent);
                 }
                 else{
                     showUnloginDialog();
@@ -444,6 +452,16 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
 
                 break;
             case R.id.yjjc:
+                if((boolean)SPUtils.get(getContext(),"islogin",false)){
+                    random=((int)(1+Math.random()*(10-1+1)))%2;
+                    showAlterDialog("一键叫车",phonenumbers[random]);
+                }
+                else{
+                    showUnloginDialog();
+                }
+
+                break;
+            case R.id.yjjcprev:
                 if((boolean)SPUtils.get(getContext(),"islogin",false)){
                     random=((int)(1+Math.random()*(10-1+1)))%2;
                     showAlterDialog("一键叫车",phonenumbers[random]);
@@ -461,13 +479,13 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
             case R.id.yhtc:
                 intent.setClass(getActivity(), NewsListActivity.class);
                 intent.putExtra("type", "5");
-                intent.putExtra("title", "套餐资讯");
+                intent.putExtra("title", "优惠套餐");
                 startActivity(intent);
                 break;
             case R.id.sjbj:
                 intent.setClass(getActivity(), NewsListActivity.class);
                 intent.putExtra("type", "6");
-                intent.putExtra("title", "每日报价");
+                intent.putExtra("title", "手机报价");
                 startActivity(intent);
                 break;
             case R.id.esjss:
@@ -487,9 +505,21 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 startActivity(intent);
                 break;
             case R.id.mflsj:
-
+                intent.setClass(getActivity(), NewsListActivity.class);
+                intent.putExtra("type", "2");
+                intent.putExtra("title", "免费领手机");
+                startActivity(intent);
                 break;
             case R.id.gp:
+                if((boolean)SPUtils.get(getContext(),"islogin",false)){
+                    intent.setClass(getActivity(), TicketActivity.class);
+                    intent.putExtra("type", "1");
+                    intent.putExtra("title", "购票留言");
+                    startActivity(intent);
+                }
+                else{
+                    showUnloginDialog();
+                }
 
                 break;
             case R.id.news1:
@@ -499,11 +529,14 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 startActivity(intent);
                 break;
             case R.id.news2:
-                //intent.setClass(getActivity(), NewsListActivity.class);
-                intent.setClass(getActivity(), RaffleActivity.class);
-                intent.putExtra("type", "2");
-                intent.putExtra("title", "免费抽奖");
-                startActivity(intent);
+                if((boolean)SPUtils.get(getContext(),"islogin",false)){
+                    intent.setClass(getActivity(), RaffleActivity.class);
+                    startActivity(intent);
+                }
+                else{
+                    showUnloginDialog();
+                }
+
                 break;
             case R.id.news3:
                 intent.setClass(getActivity(), NewsListActivity.class);
@@ -718,6 +751,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 .add("cus_id", cus_id)
                 .add("price", price)
                 .add("driver", id)
+                .add("status", "1")
                 .build();
         Request request = new Request.Builder().url(Config.url+"/addOrders")
                 .addHeader("source", Config.REQUEST_HEADER)// 自定义的header

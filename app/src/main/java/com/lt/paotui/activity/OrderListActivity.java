@@ -52,7 +52,7 @@ public class OrderListActivity extends Activity   {
     private int mLoadCount = 0;
     private boolean isList = true;//false 为grid布局
     private int page;
-    private int size=3;
+    private int size=10;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +60,7 @@ public class OrderListActivity extends Activity   {
         ButterKnife.bind(this);
         page=1;
         getOrderData(page,size);
-        top_bar_title.setText("订单列表");
+        top_bar_title.setText("叫车订单列表");
     }
     /**
      * 接收解析后传过来的数据

@@ -27,7 +27,8 @@ public class CskxActivity extends Activity {
 
         top_bar_title.setText("城市快讯");
     }
-    @OnClick({R.id.top_back_btn})
+    @OnClick({R.id.top_back_btn,R.id.fwxx,R.id.zpqz,R.id.eswp,R.id.jypx,R.id.ys,
+        R.id.cdcs,R.id.bmxxg,R.id.addleaving})
     public void btnClick(View view) {
 
         Intent intent = new Intent();
@@ -35,7 +36,54 @@ public class CskxActivity extends Activity {
             case R.id.top_back_btn:
                 finish();
                 break;
-
+            case R.id.fwxx:
+                intent.setClass(this, NewsListActivity.class);
+                intent.putExtra("type", "21");
+                intent.putExtra("title", "房屋信息");
+                startActivity(intent);
+                break;
+            case R.id.zpqz:
+                intent.setClass(this, NewsListActivity.class);
+                intent.putExtra("type", "22");
+                intent.putExtra("title", "招聘求职");
+                startActivity(intent);
+                break;
+            case R.id.eswp:
+                intent.setClass(this, NewsListActivity.class);
+                intent.putExtra("type", "23");
+                intent.putExtra("title", "二手物品");
+                startActivity(intent);
+                break;
+            case R.id.jypx:
+                intent.setClass(this, NewsListActivity.class);
+                intent.putExtra("type", "24");
+                intent.putExtra("title", "教育培训");
+                startActivity(intent);
+                break;
+            case R.id.ys:
+                intent.setClass(this, NewsListActivity.class);
+                intent.putExtra("type", "25");
+                intent.putExtra("title", "饮食");
+                startActivity(intent);
+                break;
+            case R.id.cdcs:
+                intent.setClass(this, NewsListActivity.class);
+                intent.putExtra("type", "26");
+                intent.putExtra("title", "出兑出售");
+                startActivity(intent);
+                break;
+            case R.id.bmxxg:
+                intent.setClass(this, NewsListActivity.class);
+                intent.putExtra("type", "27");
+                intent.putExtra("title", "便民信息港");
+                startActivity(intent);
+                break;
+            case R.id.addleaving:
+                intent.setClass(this, TicketActivity.class);
+                intent.putExtra("type", "2");
+                intent.putExtra("title", "城市快讯留言");
+                startActivity(intent);
+                break;
             default:
                 break;
         }

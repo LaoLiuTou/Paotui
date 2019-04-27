@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include layout="@layout/top_bar_back"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:showDividers="middle"
+            android:divider="@drawable/dividers_1">
+            <RelativeLayout
+                android:background="@drawable/corner_view"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:clickable="true" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_centerVertical="true"
+                    android:text="取货地址:"
+                    android:textSize="16sp"/>
+                <EditText
+                    android:id="@+id/qhdz"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="80dp"
+                    android:textSize="14sp"
+                    android:textCursorDrawable="@null"
+                    android:background="@null"/>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:background="@drawable/corner_view"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:clickable="true" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_centerVertical="true"
+                    android:text="取货电话:"
+                    android:textSize="16sp"/>
+                <EditText
+                    android:id="@+id/qhdh"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="80dp"
+                    android:inputType="number"
+                    android:textSize="14sp"
+                    android:textCursorDrawable="@null"
+                    android:background="@null"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="190dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:showDividers="middle"
+            android:divider="@drawable/dividers_1">
+            <RelativeLayout
+                android:background="@drawable/corner_view"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:clickable="true" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_centerVertical="true"
+                    android:text="送货地址:"
+                    android:textSize="16sp"/>
+                <EditText
+                    android:id="@+id/shdz"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="80dp"
+                    android:textSize="14sp"
+                    android:textCursorDrawable="@null"
+                    android:background="@null"/>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:background="@drawable/corner_view"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:clickable="true" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_centerVertical="true"
+                    android:text="送货电话:"
+                    android:textSize="16sp"/>
+                <EditText
+                    android:id="@+id/shdh"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="80dp"
+                    android:textSize="14sp"
+                    android:inputType="number"
+                    android:textCursorDrawable="@null"
+                    android:background="@null"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/btnlist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="320dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:showDividers="middle"
+            android:divider="@drawable/dividers_1">
+            <RelativeLayout
+                android:background="@drawable/corner_view"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:clickable="true" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_centerVertical="true"
+                    android:text="送货时间:"
+                    android:textSize="16sp"/>
+                <EditText
+                    android:id="@+id/shsj"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="80dp"
+                    android:textSize="14sp"
+                    android:textCursorDrawable="@null"
+                    android:background="@null"/>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:background="@drawable/corner_view"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:clickable="true" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="备注留言:"
+                    android:textSize="16sp"/>
+                <EditText
+                    android:id="@+id/beizhu"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="80dp"
+                    android:inputType="textMultiLine"
+                    android:textSize="14sp"
+                    android:minLines="3"
+                    android:gravity="top"
+                    android:textCursorDrawable="@null"
+                    android:background="@null"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_below="@+id/btnlist"
+            android:background="@drawable/corner_button"
+            android:text="提交"
+            android:textColor="@color/color_888888"
+            android:textSize="16sp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="20dp"/>
+
+    </RelativeLayout>
+
+
+</ScrollView>
