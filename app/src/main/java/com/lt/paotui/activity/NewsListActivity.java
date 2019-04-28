@@ -70,7 +70,9 @@ public class NewsListActivity extends Activity   {
         String type = intent.getStringExtra("type");
         top_bar_title.setText(title);
         if(type!=null&&(type.equals("1")||type.equals("2")||type.equals("5")
-                ||type.equals("6")||type.equals("7")||type.equals("11"))){
+                ||type.equals("6")||type.equals("7")||type.equals("11")
+                ||type.equals("21")||type.equals("22")||type.equals("23")
+                ||type.equals("24")||type.equals("25")||type.equals("26")||type.equals("27"))){
             addleaving.setVisibility(View.VISIBLE);
         }
 

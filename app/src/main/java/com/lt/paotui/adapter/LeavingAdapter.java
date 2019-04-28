@@ -61,9 +61,32 @@ public class LeavingAdapter extends BaseRecyclerAdapter<LeavingAdapter.LeavingAd
         else if(item.get("type").toString().equals("11")){
             holder.type.setText("靓号收集");
         }
+        else if(item.get("type").toString().equals("21")){
+            holder.type.setText("房屋信息");
+        }
+        else if(item.get("type").toString().equals("22")){
+            holder.type.setText("招聘求职");
+        }
+        else if(item.get("type").toString().equals("23")){
+            holder.type.setText("二手物品");
+        }
+        else if(item.get("type").toString().equals("24")){
+            holder.type.setText("教育培训");
+        }
+        else if(item.get("type").toString().equals("25")){
+            holder.type.setText("饮食");
+        }
+        else if(item.get("type").toString().equals("26")){
+            holder.type.setText("出兑出售");
+        }
+        else if(item.get("type").toString().equals("27")){
+            holder.type.setText("便民信息港");
+        }
         else{
             holder.type.setText("其它");
         }
+
+
 
         holder.note.setText(item.get("note").toString());
         holder.status.setText(item.get("state").toString().equals("0")?"未回复":"已回复");
