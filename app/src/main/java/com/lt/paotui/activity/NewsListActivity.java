@@ -8,12 +8,14 @@ import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.andview.refreshview.XRefreshView;
 import com.andview.refreshview.XRefreshViewFooter;
+import com.hb.dialog.myDialog.MyAlertDialog;
 import com.lt.paotui.R;
 import com.lt.paotui.adapter.NewsAdapter;
 import com.lt.paotui.adapter.SimpleAdapter;
@@ -47,6 +49,8 @@ public class NewsListActivity extends Activity   {
     RecyclerView recyclerView;
     @BindView(R.id.xrefreshview)
     XRefreshView xRefreshView;
+    @BindView(R.id.addleaving)
+    ImageView addleaving;
     NewsAdapter adapter;
     List<Map> listData = new ArrayList<>();
     LinearLayoutManager layoutManager;
@@ -63,7 +67,13 @@ public class NewsListActivity extends Activity   {
         getOrderData(page,size);
         Intent intent = getIntent();
         String title = intent.getStringExtra("title");
+        String type = intent.getStringExtra("type");
         top_bar_title.setText(title);
+        if(type!=null&&(type.equals("1")||type.equals("2")||type.equals("5")
+                ||type.equals("6")||type.equals("7")||type.equals("11"))){
+            addleaving.setVisibility(View.VISIBLE);
+        }
+
     }
     /**
      * 接收解析后传过来的数据
@@ -218,7 +228,7 @@ public class NewsListActivity extends Activity   {
             }
         });
     }
-    @OnClick({R.id.top_back_btn})
+    @OnClick({R.id.top_back_btn,R.id.addleaving})
     public void btnClick(View view) {
 
 
@@ -226,9 +236,45 @@ public class NewsListActivity extends Activity   {
             case R.id.top_back_btn:
                 finish();
                 break;
+            case R.id.addleaving:
+                if((boolean)SPUtils.get(NewsListActivity.this,"islogin",false)){
+                    Intent intent = getIntent();
+                    String title = intent.getStringExtra("title");
+                    String type = intent.getStringExtra("type");
 
+                    intent = new Intent();
+                    intent.setClass(this, TicketActivity.class);
+                    intent.putExtra("type", type);
+                    intent.putExtra("title", title+"留言");
+                    startActivity(intent);
+                }
+                else{
+                    showUnloginDialog();
+                }
+
+                break;
             default:
                 break;
         }
+    }
+
+    private void showUnloginDialog(){
+        MyAlertDialog myAlertDialog = new MyAlertDialog(NewsListActivity.this).builder()
+                .setTitle("未登录")
+                .setMsg("即将前往登录")
+                .setPositiveButton("确认", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent();
+                        intent.setClass(NewsListActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                    }
+                }).setNegativeButton("取消", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+        myAlertDialog.show();
     }
 }

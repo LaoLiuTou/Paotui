@@ -2,11 +2,14 @@ package com.lt.paotui.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
 
+import com.hb.dialog.myDialog.ActionSheetDialog;
+import com.hb.dialog.myDialog.MyAlertDialog;
 import com.lt.paotui.MainActivity;
 import com.lt.paotui.R;
 
@@ -38,16 +41,60 @@ public class DxyytActivity extends Activity {
                 finish();
                 break;
             case R.id.hfcx:
+                showActionSheet();
                 break;
             case R.id.kdyw:
-                intent.setClass(this, NewsListActivity.class);
-                intent.putExtra("type", "4");
-                intent.putExtra("title", "宽带业务");
-                startActivity(intent);
+                showActionSheet();
+                break;
             case R.id.tccx:
+                showActionSheet();
                 break;
             default:
                 break;
         }
+    }
+    private void showActionSheet(){
+        ActionSheetDialog dialog = new ActionSheetDialog(this).builder().setTitle("请选择要拨打的电话")
+                .addSheetItem("客服电话:5051111  ", null, new ActionSheetDialog.OnSheetItemClickListener() {
+                    @Override
+                    public void onClick(int which) {
+                        showAlterDialog("5051111");
+                    }
+                }).addSheetItem("监督电话:55257777", null, new ActionSheetDialog.OnSheetItemClickListener() {
+                    @Override
+                    public void onClick(int which) {
+                        showAlterDialog("55257777");
+                    }
+                });
+        dialog.show();
+    }
+
+    private void showAlterDialog(final String phonenum){
+        MyAlertDialog myAlertDialog = new MyAlertDialog(this).builder()
+                .setTitle("确认吗？")
+                .setMsg("即将拨打服务电话")
+                .setPositiveButton("确认", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        callPhone(phonenum);
+                    }
+                }).setNegativeButton("取消", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+        myAlertDialog.show();
+
+    }
+    /**
+     * 拨打电话（直接拨打电话）
+     * @param phoneNum 电话号码
+     */
+    public void callPhone(String phoneNum){
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        Uri data = Uri.parse("tel:" + phoneNum);
+        intent.setData(data);
+        startActivity(intent);
     }
 }

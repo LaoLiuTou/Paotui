@@ -40,12 +40,26 @@ public class LeavingAdapter extends BaseRecyclerAdapter<LeavingAdapter.LeavingAd
         Map item = list.get(position);
 
 
-
-        if(item.get("type").toString().equals("1")){
+        if(item.get("type").toString().equals("10")){
             holder.type.setText("购票");
         }
+        else if(item.get("type").toString().equals("1")){
+            holder.type.setText("电信资讯");
+        }
         else if(item.get("type").toString().equals("2")){
-            holder.type.setText("城市快讯");
+            holder.type.setText("免费领手机");
+        }
+        else if(item.get("type").toString().equals("5")){
+            holder.type.setText("优惠套餐");
+        }
+        else if(item.get("type").toString().equals("6")){
+            holder.type.setText("手机报价");
+        }
+        else if(item.get("type").toString().equals("7")){
+            holder.type.setText("二手机收售");
+        }
+        else if(item.get("type").toString().equals("11")){
+            holder.type.setText("靓号收集");
         }
         else{
             holder.type.setText("其它");

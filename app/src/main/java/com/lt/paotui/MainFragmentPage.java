@@ -513,7 +513,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
             case R.id.gp:
                 if((boolean)SPUtils.get(getContext(),"islogin",false)){
                     intent.setClass(getActivity(), TicketActivity.class);
-                    intent.putExtra("type", "1");
+                    intent.putExtra("type", "10");
                     intent.putExtra("title", "购票留言");
                     startActivity(intent);
                 }

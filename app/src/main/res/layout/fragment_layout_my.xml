@@ -315,7 +315,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="24dp"
                     android:textColor="@color/color_888888"
-                    android:text="v1.0"
+                    android:text="v1.1.0"
                     android:textSize="16sp"/>
                 <ImageView
                     android:layout_width="10dp"

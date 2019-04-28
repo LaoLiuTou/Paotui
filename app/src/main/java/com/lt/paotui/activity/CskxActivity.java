@@ -28,7 +28,7 @@ public class CskxActivity extends Activity {
         top_bar_title.setText("城市快讯");
     }
     @OnClick({R.id.top_back_btn,R.id.fwxx,R.id.zpqz,R.id.eswp,R.id.jypx,R.id.ys,
-        R.id.cdcs,R.id.bmxxg,R.id.addleaving})
+        R.id.cdcs,R.id.bmxxg })
     public void btnClick(View view) {
 
         Intent intent = new Intent();
@@ -78,12 +78,7 @@ public class CskxActivity extends Activity {
                 intent.putExtra("title", "便民信息港");
                 startActivity(intent);
                 break;
-            case R.id.addleaving:
-                intent.setClass(this, TicketActivity.class);
-                intent.putExtra("type", "2");
-                intent.putExtra("title", "城市快讯留言");
-                startActivity(intent);
-                break;
+
             default:
                 break;
         }

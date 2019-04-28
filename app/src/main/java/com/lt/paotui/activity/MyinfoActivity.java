@@ -72,7 +72,7 @@ public class MyinfoActivity extends Activity {
     private void initMyinfo(){
         Map userInfo = JSON.parseObject(SPUtils.get(this,"userinfo","{}").toString());
         headerUrl=userInfo.get("header").toString();
-        Glide.with(this).load(Config.url+headerUrl).into(header);
+        Glide.with(this).load(Config.url+headerUrl).placeholder(R.mipmap.header).error(R.mipmap.header).into(header);
         nickname.setText(userInfo.get("nickname").toString());
         phone.setText(userInfo.get("phone").toString());
         balance.setText(userInfo.get("balance").toString());

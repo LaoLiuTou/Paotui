@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,6 +9,7 @@
         android:id="@+id/xrefreshview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="49dp"
         android:background="#fff">
 
         <android.support.v7.widget.RecyclerView
@@ -19,5 +20,14 @@
             android:background="@color/color_divider"
             android:scrollbars="vertical" />
     </com.andview.refreshview.XRefreshView>
-
-</LinearLayout>
+    <ImageView
+        android:id="@+id/addleaving"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
+        android:src="@mipmap/leavingbtn"/>
+</RelativeLayout>

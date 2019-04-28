@@ -231,14 +231,6 @@
 
             </LinearLayout>
         </LinearLayout>
-        <ImageView
-            android:id="@+id/addleaving"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginBottom="20dp"
-            android:layout_marginRight="20dp"
-            android:src="@mipmap/leavingbtn"/>
+
     </RelativeLayout>
 </RelativeLayout>
