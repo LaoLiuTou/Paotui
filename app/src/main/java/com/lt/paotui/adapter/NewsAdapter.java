@@ -48,6 +48,9 @@ public class NewsAdapter extends BaseRecyclerAdapter<NewsAdapter.NewsAdapterView
         Glide.with(context).load(Config.url+item.get("image").toString()).into(holder.image);
         holder.title.setText(item.get("title").toString());
         holder.c_dt.setText(item.get("c_dt").toString());
+        if(item.get("state").toString().equals("1")){
+            holder.top.setVisibility(View.VISIBLE);
+        }
         ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
         if (layoutParams instanceof StaggeredGridLayoutManager.LayoutParams) {
             holder.rootView.getLayoutParams().height = position % 2 != 0 ? largeCardHeight : smallCardHeight;
@@ -109,6 +112,7 @@ public class NewsAdapter extends BaseRecyclerAdapter<NewsAdapter.NewsAdapterView
 
         public View rootView;
         public ImageView image;
+        public ImageView top;
         public TextView title;
         public TextView c_dt;
         public int position;
@@ -118,6 +122,8 @@ public class NewsAdapter extends BaseRecyclerAdapter<NewsAdapter.NewsAdapterView
             if (isItem) {
                 image = (ImageView) itemView
                         .findViewById(R.id.image);
+                top = (ImageView) itemView
+                        .findViewById(R.id.top);
                 title = (TextView) itemView
                         .findViewById(R.id.title);
                 c_dt = (TextView) itemView
