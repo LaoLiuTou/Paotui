@@ -55,15 +55,15 @@ public class DxyytActivity extends Activity {
     }
     private void showActionSheet(){
         ActionSheetDialog dialog = new ActionSheetDialog(this).builder().setTitle("请选择要拨打的电话")
-                .addSheetItem("客服电话:5051111  ", null, new ActionSheetDialog.OnSheetItemClickListener() {
+                .addSheetItem("  客服电话:5051111  ", null, new ActionSheetDialog.OnSheetItemClickListener() {
                     @Override
                     public void onClick(int which) {
                         showAlterDialog("5051111");
                     }
-                }).addSheetItem("监督电话:55257777", null, new ActionSheetDialog.OnSheetItemClickListener() {
+                }).addSheetItem("监督电话:5525777", null, new ActionSheetDialog.OnSheetItemClickListener() {
                     @Override
                     public void onClick(int which) {
-                        showAlterDialog("55257777");
+                        showAlterDialog("5525777");
                     }
                 });
         dialog.show();
