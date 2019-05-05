@@ -20,4 +20,11 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowBackground">@color/date_picker_bg</item>
     </style>
+    <declare-styleable name="TextViewSwitcher">
+        <attr name="flipDuration" format="integer"/>
+        <attr name="flipInterval" format="integer"/>
+        <attr name="autoStart" format="boolean"/>
+        <attr name="inAnimation" format="reference"/>
+        <attr name="outAnimation" format="reference"/>
+    </declare-styleable>
 </resources>

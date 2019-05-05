@@ -1,6 +1,7 @@
 package com.lt.paotui;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -50,6 +51,9 @@ import com.lt.paotui.utils.Constant;
 import com.lt.paotui.utils.SPUtils;
 import com.lt.paotui.utils.SystemUtil;
 import com.lt.paotui.utils.UpdateUtil;
+import com.lt.paotui.utils.rollingtextview.RollingTextAdapter;
+import com.lt.paotui.utils.rollingtextview.view.RollTextItem;
+import com.lt.paotui.utils.rollingtextview.view.TextViewSwitcher;
 import com.lt.paotui.utils.update.CommonUtil;
 import com.lt.paotui.utils.update.UpdateApk;
 import com.lt.paotui.utils.update.UpdateBean;
@@ -88,16 +92,17 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
     private Unbinder unbinder;
     @BindView(R.id.banner)
     Banner banner;
-    @BindView(R.id.sroll_text)
-    TextView sroll_text;
+    //@BindView(R.id.sroll_text)
+    //TextView sroll_text;
     @BindView(R.id.top_bar_title)
     TextView top_bar_title;
     @BindView(R.id.month)
     TextView month;
     @BindView(R.id.day)
     TextView day;
-
-
+    @BindView(R.id.rolltext)
+    TextViewSwitcher rollingText;
+    private List<RollTextItem> data = new ArrayList<>();
 
     private ArrayList<String> list_path;
     private ArrayList<String> list_title;
@@ -135,6 +140,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
         getTitleData();
         getBannerData();
         //getNewsData();
+        getOrdersData();
         checkVersion();
 
         if(!(boolean)SPUtils.get(getContext(),"isinstall",false)){
@@ -219,9 +225,9 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                         if(temp.get("property")!=null&&temp.get("property").equals("title")){
                             top_bar_title.setText(temp.get("value"));
                         }
-                        else if(temp.get("property")!=null&&temp.get("property").equals("roll")){
+                        /*else if(temp.get("property")!=null&&temp.get("property").equals("roll")){
                             sroll_text.setText(temp.get("value"));
-                        }
+                        }*/
 
                     }
                     break;
@@ -258,12 +264,34 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 case 10://拨打电话记录
                     Toast.makeText(getActivity(),"系统忙，请重试！",Toast.LENGTH_LONG).show();
                     break;
+                case 11://滚动订单
+                    rollingText.setAdapter(new RollingTextAdapter() {
+                        @Override
+                        public int getCount() {
+                            return data.size()/2;
+                        }
+                        @SuppressLint("ResourceAsColor")
+                        @Override
+                        public View getView(Context context, View contentView, int position) {
+                            View view = View.inflate(context,R.layout.item_layout,null);
+                            ((TextView)view.findViewById(R.id.tv_1)).setText(data.get(position).getMsg());
+                            return view;
+                        }
+                    });
+                    rollingText.startFlipping();
+                    break;
+                case 12://滚动订单
+                    Toast.makeText(getActivity(),"系统忙，请重试！",Toast.LENGTH_LONG).show();
+                    break;
                 default:
                     break;
             }
             super.handleMessage(msg);
         }
     };
+
+
+
     private void getTitleData(){
         final Message message=Message.obtain();
 
@@ -298,6 +326,55 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 }
                 else{
                     message.what=3;
+                    handler.sendMessage(message);
+                }
+
+
+            }
+        });
+    }
+    private void getOrdersData(){
+        final Message message=Message.obtain();
+
+        OkHttpClient okHttpClient = new OkHttpClient();
+        FormBody formBody = new FormBody.Builder()
+                .add("page", "1")
+                .add("size", "10")
+                .build();
+        Request request = new Request.Builder().url(Config.url+"/listOrders")
+                .addHeader("source", Config.REQUEST_HEADER)// 自定义的header
+                .post(formBody)
+                .build();
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                // TODO: 17-1-4  请求失败
+                message.what=12;
+                //message.obj=data;
+                handler.sendMessage(message);
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                // TODO: 17-1-4 请求成功
+                Map resultMap = JSON.parseObject(response.body().string());
+                if(resultMap.get("status").equals("0")){
+                    Map dataMap= (Map)resultMap.get("msg");
+                    List<Map> dataList=(List<Map>)dataMap.get("data");
+                    for(Map temp :dataList){
+                        String time= temp.get("pay_dt").toString();
+                        String price= temp.get("price").toString();
+                        String phone= temp.get("phone").toString();
+                        if(phone.length()>7){
+                            phone = phone.substring(0, 3) + "****" + phone.substring(7, phone.length());
+                        }
+                        String message=time+" 用户"+phone+"使用代金券"+price+"元支付打车费";
+                        data.add(new RollTextItem(message));
+                    }
+                    message.what=11;
+                    handler.sendMessage(message);
+                }
+                else{
+                    message.what=12;
                     handler.sendMessage(message);
                 }
 
@@ -473,6 +550,8 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 break;
 
             case R.id.dxyyt:
+                intent.putExtra("type", "8");
+                intent.putExtra("title", "电信营业厅");
                 intent.setClass(getActivity(), DxyytActivity.class);
                 startActivity(intent);
                 break;
@@ -513,7 +592,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
             case R.id.gp:
                 if((boolean)SPUtils.get(getContext(),"islogin",false)){
                     intent.setClass(getActivity(), TicketActivity.class);
-                    intent.putExtra("type", "10");
+                    intent.putExtra("type", "9");
                     intent.putExtra("title", "购票留言");
                     startActivity(intent);
                 }

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -71,18 +72,17 @@
                 android:background="@color/main_background">
 
             </LinearLayout>
-            <TextView
-                android:id="@+id/sroll_text"
+            <com.lt.paotui.utils.rollingtextview.view.TextViewSwitcher
+                android:id="@+id/rolltext"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="65dp"/>
-            <TextView
-                android:id="@+id/sroll_text2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="65dp"/>
+                android:layout_height="64dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="64dp"
+                app:autoStart="false"
+                app:flipDuration="500"
+                app:flipInterval="2000"
+                app:inAnimation="@anim/rolling_text_in"
+                app:outAnimation="@anim/rolling_text_out"/>
         </RelativeLayout>
         <!--第一行-->
         <LinearLayout

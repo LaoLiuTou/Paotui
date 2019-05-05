@@ -2,6 +2,7 @@ package com.lt.paotui.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.hb.dialog.dialog.LoadingDialog;
+import com.hb.dialog.myDialog.MyAlertDialog;
 import com.lt.paotui.MainActivity;
 import com.lt.paotui.R;
 import com.lt.paotui.utils.Config;
@@ -59,6 +61,8 @@ public class PaotuiActivity extends Activity {
     EditText shsj;
     @BindView(R.id.beizhu)
     EditText beizhu;
+    @BindView(R.id.kfdh)
+    EditText kfdh;
     private CustomDatePicker mTimerPicker;
 
     @Override
@@ -75,6 +79,9 @@ public class PaotuiActivity extends Activity {
         shsj.setCursorVisible(false);
         shsj.setFocusable(false);
         shsj.setFocusableInTouchMode(false);
+        kfdh.setCursorVisible(false);
+        kfdh.setFocusable(false);
+        kfdh.setFocusableInTouchMode(false);
     }
     /**
      * 接收解析后传过来的数据
@@ -147,7 +154,7 @@ public class PaotuiActivity extends Activity {
             }
         });
     }
-    @OnClick({R.id.top_back_btn,R.id.submit,R.id.shsj})
+    @OnClick({R.id.top_back_btn,R.id.submit,R.id.shsj,R.id.kfdh})
     public void btnClick(View view) {
 
 
@@ -158,6 +165,9 @@ public class PaotuiActivity extends Activity {
             case R.id.shsj:
                 // 日期格式为yyyy-MM-dd HH:mm
                 mTimerPicker.show(shsj.getText().toString());
+                break;
+            case R.id.kfdh:
+                showAlterDialog("5051111");
                 break;
             case R.id.submit:
                 if(qhdz.getText().toString().equals("")){
@@ -178,6 +188,40 @@ public class PaotuiActivity extends Activity {
             default:
                 break;
         }
+    }
+
+    private void showAlterDialog(final String phonenum){
+        MyAlertDialog myAlertDialog = new MyAlertDialog(this).builder()
+                .setTitle("确认吗？")
+                .setMsg("即将拨打服务电话")
+                .setPositiveButton("确认", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                         callPhone(phonenum);
+                    }
+                }).setNegativeButton("取消", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+        myAlertDialog.show();
+
+    }
+
+    /**
+     * 拨打电话（直接拨打电话）
+     * @param phoneNum 电话号码
+     */
+    public void callPhone(String phoneNum){
+        /*Intent intent = new Intent(Intent.ACTION_CALL);
+        Uri data = Uri.parse("tel:" + phoneNum);
+        intent.setData(data);
+        startActivity(intent);*/
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        Uri data = Uri.parse("tel:" + phoneNum);
+        intent.setData(data);
+        startActivity(intent);
     }
     private void initTimerPicker() {
         Calendar c = Calendar.getInstance();

@@ -69,7 +69,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="190dp"
+            android:layout_marginTop="184dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:gravity="center"
@@ -123,10 +123,10 @@
             </RelativeLayout>
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/btnlist"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="320dp"
+            android:layout_marginTop="310dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:gravity="center"
@@ -181,7 +181,41 @@
             </RelativeLayout>
 
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/btnlist"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="478dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/corner_view"
+            android:clickable="true" >
+            <RelativeLayout
+                android:background="@drawable/corner_view"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:clickable="true" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_centerVertical="true"
+                    android:text="客服电话:"
+                    android:textSize="16sp"/>
+                <EditText
+                    android:id="@+id/kfdh"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="80dp"
+                    android:text="5051111"
+                    android:textSize="14sp"
+                    android:textCursorDrawable="@null"
+                    android:background="@null"/>
+            </RelativeLayout>
 
+        </LinearLayout>
         <Button
             android:id="@+id/submit"
             android:layout_width="match_parent"
@@ -192,7 +226,7 @@
             android:text="提交"
             android:textColor="@color/color_888888"
             android:textSize="16sp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="11dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="20dp"/>

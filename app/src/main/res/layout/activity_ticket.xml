@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     android:background="@color/main_background">
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
@@ -53,17 +54,43 @@
         <Button
             android:id="@+id/submit"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="40dp"
             style="?android:attr/borderlessButtonStyle"
             android:layout_below="@+id/btnlist"
             android:background="@drawable/corner_button"
             android:text="提交"
             android:textColor="@color/color_888888"
             android:textSize="16sp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="20dp"/>
+        <com.andview.refreshview.XRefreshView
+            android:id="@+id/xrefreshview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="220dp"
+            android:visibility="gone"
+            android:background="#fff">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view_test_rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:background="@color/color_divider"
+                android:scrollbars="vertical" />
+        </com.andview.refreshview.XRefreshView>
+        <ImageView
+            android:id="@+id/addleaving"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:visibility="gone"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/leavingbtn"/>
 
     </RelativeLayout>
 
