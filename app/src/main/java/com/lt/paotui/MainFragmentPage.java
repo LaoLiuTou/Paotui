@@ -19,12 +19,15 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,12 +43,14 @@ import com.lt.paotui.activity.CskxActivity;
 import com.lt.paotui.activity.DxyytActivity;
 import com.lt.paotui.activity.LoginActivity;
 import com.lt.paotui.activity.MyinfoActivity;
+import com.lt.paotui.activity.NewsDetailActivity;
 import com.lt.paotui.activity.NewsListActivity;
 import com.lt.paotui.activity.OrderDetailActivity;
 import com.lt.paotui.activity.OrderListActivity;
 import com.lt.paotui.activity.PaotuiActivity;
 import com.lt.paotui.activity.RaffleActivity;
 import com.lt.paotui.activity.TicketActivity;
+import com.lt.paotui.adapter.MyRVAdapter;
 import com.lt.paotui.utils.Config;
 import com.lt.paotui.utils.Constant;
 import com.lt.paotui.utils.SPUtils;
@@ -67,6 +72,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -102,6 +108,10 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
     TextView day;
     @BindView(R.id.rolltext)
     TextViewSwitcher rollingText;
+    @BindView(R.id.rv)
+    RecyclerView rv;
+    @BindView(R.id.fourthmenus)
+    LinearLayout fourthmenus;
     private List<RollTextItem> data = new ArrayList<>();
 
     private ArrayList<String> list_path;
@@ -139,13 +149,16 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
 
         getTitleData();
         getBannerData();
-        //getNewsData();
+        getNewsData();
         getOrdersData();
         checkVersion();
 
         if(!(boolean)SPUtils.get(getContext(),"isinstall",false)){
             sendSysInfo();
         }
+
+
+
     }
 
     private void sendSysInfo(){
@@ -283,6 +296,34 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 case 12://滚动订单
                     Toast.makeText(getActivity(),"系统忙，请重试！",Toast.LENGTH_LONG).show();
                     break;
+                case 13://资讯
+
+                    final List<Map> temp=(List<Map> )msg.obj;
+                    if(temp.size()>0){
+                        MyRVAdapter adapter = new MyRVAdapter(temp,getActivity());
+                        rv.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));//设置布局管理器
+                        rv.setAdapter(adapter);
+                        // 设置数据后就要给RecyclerView设置点击事件
+                        adapter.setOnItemClickListener(new MyRVAdapter.ItemClickListener() {
+                            @Override
+                            public void onItemClick(int position) {
+                                Intent intent = new Intent();
+                                intent.setClass(getActivity(), NewsDetailActivity.class);
+                                String order_id=temp.get(position).get("id").toString();
+                                intent.putExtra("news_id", order_id);
+                                startActivity(intent);
+                            }
+                        });
+                    }
+                    else{
+                        fourthmenus.setVisibility(View.GONE);
+                    }
+
+
+                    break;
+                case 14://资讯
+                    Toast.makeText(getActivity(),"系统忙，请重试！",Toast.LENGTH_LONG).show();
+                    break;
                 default:
                     break;
             }
@@ -378,6 +419,51 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                     handler.sendMessage(message);
                 }
 
+
+            }
+        });
+    }
+    private void getNewsData(){
+
+        final Message message=Message.obtain();
+
+        OkHttpClient okHttpClient = new OkHttpClient();
+        FormBody formBody = new FormBody.Builder()
+                .add("page", "1")
+                .add("size", "3")
+                .add("ismain", "1")
+                .build();
+        Request request = new Request.Builder().url(Config.url+"/listNews")
+                .addHeader("source", Config.REQUEST_HEADER)// 自定义的header
+                .post(formBody)
+                .build();
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                // TODO: 17-1-4  请求失败
+                message.what=14;
+                message.obj="请求失败！";
+                handler.sendMessage(message);
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                // TODO: 17-1-4 请求成功
+                Map resultMap = JSON.parseObject(response.body().string());
+                if(resultMap.get("status").equals("0")){
+                    Map dataMap= (Map)resultMap.get("msg");
+                    int totleNum=Integer.parseInt(dataMap.get("num").toString());
+                    List tempData=(List)dataMap.get("data");
+
+                    message.what=13;
+                    message.obj=tempData;
+                    handler.sendMessage(message);
+
+                }
+                else{
+                    message.what=14;
+                    message.obj=resultMap.get("msg");
+                    handler.sendMessage(message);
+                }
 
             }
         });

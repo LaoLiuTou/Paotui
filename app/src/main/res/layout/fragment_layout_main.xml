@@ -377,6 +377,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/thirdmenus"
+            android:background="@color/main_background"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="@color/main_background"/>
+
+        </LinearLayout>
+        <!--第五行-->
+        <LinearLayout
+            android:id="@+id/fifthmenus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fourthmenus"
             android:background="@color/color_white"
             android:paddingTop="10dp"
             android:layout_marginTop="10dp"
@@ -466,12 +482,12 @@
             </LinearLayout>
 
         </LinearLayout>
-        <!--第五行-->
+        <!--第六行-->
         <LinearLayout
-            android:id="@+id/fifthmenus"
+            android:id="@+id/sixthmenus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/fourthmenus"
+            android:layout_below="@+id/fifthmenus"
             android:background="@color/color_white"
             android:gravity="center"
             android:orientation="horizontal">
