@@ -497,5 +497,12 @@
                 android:layout_height="wrap_content"
                 android:src="@mipmap/fifth1"/>
         </LinearLayout>
+        <!-- banner-->
+        <com.youth.banner.Banner
+            android:id="@+id/bottombanner"
+            android:layout_below="@+id/sixthmenus"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="5dp"/>
     </RelativeLayout>
 </ScrollView>

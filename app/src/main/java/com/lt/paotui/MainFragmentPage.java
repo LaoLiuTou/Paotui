@@ -38,6 +38,7 @@ import com.hb.dialog.dialog.ConfirmDialog;
 import com.hb.dialog.dialog.LoadingDialog;
 import com.hb.dialog.myDialog.MyAlertDialog;
 import com.hb.dialog.myDialog.MyAlertInputDialog;
+import com.lt.paotui.activity.AntugovActivity;
 import com.lt.paotui.activity.BannerDetailActivity;
 import com.lt.paotui.activity.CskxActivity;
 import com.lt.paotui.activity.DxyytActivity;
@@ -98,6 +99,8 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
     private Unbinder unbinder;
     @BindView(R.id.banner)
     Banner banner;
+    @BindView(R.id.bottombanner)
+    Banner bottombanner;
     //@BindView(R.id.sroll_text)
     //TextView sroll_text;
     @BindView(R.id.top_bar_title)
@@ -117,6 +120,9 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
     private ArrayList<String> list_path;
     private ArrayList<String> list_title;
     private ArrayList<String> list_id;
+    private ArrayList<String> bottom_list_path;
+    private ArrayList<String> bottom_list_title;
+    private ArrayList<String> bottom_list_id;
     UpdateBean updateBean = new UpdateBean();
     @Nullable
     @Override
@@ -152,7 +158,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
         getNewsData();
         getOrdersData();
         checkVersion();
-
+        getBottomBannerData();
         if(!(boolean)SPUtils.get(getContext(),"isinstall",false)){
             sendSysInfo();
         }
@@ -324,6 +330,12 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 case 14://资讯
                     Toast.makeText(getActivity(),"系统忙，请重试！",Toast.LENGTH_LONG).show();
                     break;
+                case 15://轮播图成功
+                    initBottomBanner();
+                    break;
+                case 16://轮播图失败
+                    Toast.makeText(getActivity(),"获取主页轮播图失败!!!",Toast.LENGTH_LONG).show();
+                    break;
                 default:
                     break;
             }
@@ -480,6 +492,8 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
         FormBody formBody = new FormBody.Builder()
                 .add("page", "1")
                 .add("size", "4")
+                .add("type", "0")
+                .add("state", "0")
                 .build();
         Request request = new Request.Builder().url(Config.url+"/listBanner")
                 .addHeader("source", Config.REQUEST_HEADER)// 自定义的header
@@ -516,6 +530,56 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
             }
         });
     }
+    private void getBottomBannerData(){
+        final Message message=Message.obtain();
+        //放图片地址的集合
+        bottom_list_path = new ArrayList<>();
+        //放标题的集合
+        bottom_list_title = new ArrayList<>();
+        bottom_list_id = new ArrayList<>();
+
+        OkHttpClient okHttpClient = new OkHttpClient();
+        FormBody formBody = new FormBody.Builder()
+                .add("page", "1")
+                .add("size", "3")
+                .add("type", "1")
+                .add("state", "0")
+                .build();
+        Request request = new Request.Builder().url(Config.url+"/listBanner")
+                .addHeader("source", Config.REQUEST_HEADER)// 自定义的header
+                .post(formBody)
+                .build();
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                // TODO: 17-1-4  请求失败
+                message.what=16;
+                //message.obj=data;
+                handler.sendMessage(message);
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                // TODO: 17-1-4 请求成功
+                Map resultMap = JSON.parseObject(response.body().string());
+                if(resultMap.get("status").equals("0")){
+                    Map dataMap= (Map)resultMap.get("msg");
+                    int totleNum=Integer.parseInt(dataMap.get("num").toString());
+                    List<Map> dataList=(List<Map>)dataMap.get("data");
+                    for(Map temp :dataList){
+                        bottom_list_path.add(Config.url+temp.get("image").toString());
+                        bottom_list_title.add(temp.get("title").toString());
+                        bottom_list_id.add(temp.get("id").toString());
+                    }
+                    message.what=15;
+                    handler.sendMessage(message);
+                }
+                else{
+                    message.what=16;
+                    handler.sendMessage(message);
+                }
+            }
+        });
+    }
 
 
 
@@ -532,6 +596,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
         banner.setBannerAnimation(Transformer.Default);
         //设置轮播图的标题集合
         banner.setBannerTitles(list_title);
+        banner.setBannerIdlist(list_id);
         //设置轮播间隔时间
         banner.setDelayTime(3000);
         //设置是否为自动轮播，默认是“是”。
@@ -544,12 +609,40 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 .start();
 
     }
+    private void initBottomBanner() {
+
+        //设置内置样式，共有六种可以点入方法内逐一体验使用。
+        //banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
+        bottombanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
+        //设置图片加载器，图片加载器在下方
+        bottombanner.setImageLoader(new MyLoader());
+        //设置图片网址或地址的集合
+        bottombanner.setImages(bottom_list_path);
+        //设置轮播的动画效果，内含多种特效，可点入方法内查找后内逐一体验
+        bottombanner.setBannerAnimation(Transformer.Default);
+        //设置轮播图的标题集合
+        bottombanner.setBannerTitles(bottom_list_title);
+        bottombanner.setBannerIdlist(bottom_list_id);
+        //设置轮播间隔时间
+        bottombanner.setDelayTime(3000);
+        //设置是否为自动轮播，默认是“是”。
+        bottombanner.isAutoPlay(true);
+        //设置指示器的位置，小点点，左中右。
+        bottombanner.setIndicatorGravity(BannerConfig.CENTER)
+                //以上内容都可写成链式布局，这是轮播图的监听。比较重要。方法在下面。
+                .setOnBannerListener(this)
+                //必须最后调用的方法，启动轮播图。
+                .start();
+
+
+    }
     //轮播图的监听方法
     @Override
-    public void OnBannerClick(int position) {
+    public void OnBannerClick(List<String> ids,int position) {
+
         Intent intent = new Intent();
         intent.setClass(getActivity(), BannerDetailActivity.class);
-        String banner_id=list_id.get(position).toString();
+        String banner_id=ids.get(position).toString();
         intent.putExtra("banner_id", banner_id);
         startActivity(intent);
     }
@@ -704,9 +797,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
 
                 break;
             case R.id.news3:
-                intent.setClass(getActivity(), NewsListActivity.class);
-                intent.putExtra("type", "3");
-                intent.putExtra("title", "政府资讯");
+                intent.setClass(getActivity(), AntugovActivity.class);
                 startActivity(intent);
                 break;
 

@@ -52,6 +52,7 @@
         <activity android:name=".activity.OrderptDetailActivity"/>
         <activity android:name=".activity.LeavingListActivity"/>
         <activity android:name=".activity.LeavingDetailActivity"/>
+        <activity android:name=".activity.AntugovActivity"/>
     </application>
 
 </manifest>

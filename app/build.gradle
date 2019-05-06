@@ -7,7 +7,7 @@ android {
         applicationId "com.lt.paotui"
         minSdkVersion 14
         targetSdkVersion 24
-        versionCode 17
+        versionCode 18
         versionName "1.1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -31,7 +31,7 @@ dependencies {
     //Fresco
     compile 'com.facebook.fresco:fresco:1.2.0'
     testCompile 'junit:junit:4.12'
-    compile  'com.youth.banner:banner:1.4.9'
+    //compile  'com.youth.banner:banner:1.4.9'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.jakewharton:butterknife:8.1.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.1.0'
@@ -40,6 +40,7 @@ dependencies {
     compile project(path: ':base_dialog')
     compile project(path: ':xrefreshview')
     compile project(path: ':pictureselector')
+    compile project(path: ':banner')
     compile 'com.alibaba:fastjson:1.1.55.android'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.makeramen:roundedimageview:2.3.0'
