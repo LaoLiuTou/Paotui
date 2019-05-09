@@ -159,7 +159,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
         getOrdersData();
         checkVersion();
         getBottomBannerData();
-        if(!(boolean)SPUtils.get(getContext(),"isinstall",false)){
+        if(!(boolean)SPUtils.get(getActivity(),"isinstall",false)){
             sendSysInfo();
         }
 
@@ -191,7 +191,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 // TODO: 17-1-4 请求成功
                 Map resultMap = JSON.parseObject(response.body().string());
                 if(resultMap.get("status").equals("0")){
-                    SPUtils.put(getContext(),"isinstall",true);
+                    SPUtils.put(getActivity(),"isinstall",true);
                 }
                 else{
 
@@ -238,8 +238,8 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                     Toast.makeText(getActivity(),"获取主页轮播图失败!!!",Toast.LENGTH_LONG).show();
                     break;
                 case 2://标题成功
-                    SPUtils.put(getContext(),"sysconfig",msg.obj.toString());
-                    List<Map> dataList=JSON.parseArray(SPUtils.get(getContext(),"sysconfig","{}").toString(),Map.class);
+                    SPUtils.put(getActivity(),"sysconfig",msg.obj.toString());
+                    List<Map> dataList=JSON.parseArray(SPUtils.get(getActivity(),"sysconfig","{}").toString(),Map.class);
                     for(Map<String,String> temp:dataList){
                         if(temp.get("property")!=null&&temp.get("property").equals("title")){
                             top_bar_title.setText(temp.get("value"));
@@ -275,7 +275,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                     updateBean.setUrl(resultMap.get("url").toString());
                     updateBean.setVersionCode(Integer.parseInt(resultMap.get("versionCode").toString()));
                     updateBean.setVersionName(resultMap.get("version").toString());
-                    UpdateApk.UpdateVersion(getContext(), updateBean);
+                    UpdateApk.UpdateVersion(getActivity(), updateBean);
                     break;
                 case 9://拨打电话记录
                     callPhone(msg.obj.toString());
@@ -667,7 +667,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
         int random=0;
         switch (view.getId()) {
             case R.id.top_left_btn:
-                if((boolean)SPUtils.get(getContext(),"islogin",false)){
+                if((boolean)SPUtils.get(getActivity(),"islogin",false)){
                     startQrCode();
                 }
                 else{
@@ -675,7 +675,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 }
                 break;
             case R.id.first1:
-                if((boolean)SPUtils.get(getContext(),"islogin",false)){
+                if((boolean)SPUtils.get(getActivity(),"islogin",false)){
                     intent.setClass(getActivity(), PaotuiActivity.class);
                     intent.putExtra("type", "帮我买");
                     startActivity(intent);
@@ -686,7 +686,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
 
                 break;
             case R.id.first2:
-                if((boolean)SPUtils.get(getContext(),"islogin",false)){
+                if((boolean)SPUtils.get(getActivity(),"islogin",false)){
                     intent.setClass(getActivity(), PaotuiActivity.class);
                     intent.putExtra("type", "帮我送");
                     startActivity(intent);
@@ -697,7 +697,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
 
                 break;
             case R.id.first3:
-                if((boolean)SPUtils.get(getContext(),"islogin",false)){
+                if((boolean)SPUtils.get(getActivity(),"islogin",false)){
                     intent.setClass(getActivity(), PaotuiActivity.class);
                     intent.putExtra("type", "帮我取");
                     startActivity(intent);
@@ -708,7 +708,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
 
                 break;
             case R.id.yjjc:
-                if((boolean)SPUtils.get(getContext(),"islogin",false)){
+                if((boolean)SPUtils.get(getActivity(),"islogin",false)){
                     random=((int)(1+Math.random()*(10-1+1)))%2;
                     showAlterDialog("一键叫车",phonenumbers[random]);
                 }
@@ -718,7 +718,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
 
                 break;
             case R.id.yjjcprev:
-                if((boolean)SPUtils.get(getContext(),"islogin",false)){
+                if((boolean)SPUtils.get(getActivity(),"islogin",false)){
                     random=((int)(1+Math.random()*(10-1+1)))%2;
                     showAlterDialog("一键叫车",phonenumbers[random]);
                 }
@@ -769,7 +769,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 startActivity(intent);
                 break;
             case R.id.gp:
-                if((boolean)SPUtils.get(getContext(),"islogin",false)){
+                if((boolean)SPUtils.get(getActivity(),"islogin",false)){
                     intent.setClass(getActivity(), TicketActivity.class);
                     intent.putExtra("type", "9");
                     intent.putExtra("title", "购票留言");
@@ -787,7 +787,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 startActivity(intent);
                 break;
             case R.id.news2:
-                if((boolean)SPUtils.get(getContext(),"islogin",false)){
+                if((boolean)SPUtils.get(getActivity(),"islogin",false)){
                     intent.setClass(getActivity(), RaffleActivity.class);
                     startActivity(intent);
                 }
@@ -807,7 +807,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
 
     }
     private void showUnloginDialog(){
-        MyAlertDialog myAlertDialog = new MyAlertDialog(getContext()).builder()
+        MyAlertDialog myAlertDialog = new MyAlertDialog(getActivity()).builder()
                 .setTitle("未登录")
                 .setMsg("即将前往登录")
                 .setPositiveButton("确认", new View.OnClickListener() {
@@ -826,7 +826,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
         myAlertDialog.show();
     }
     private void showAlterDialog(final String type,final String phonenum){
-        MyAlertDialog myAlertDialog = new MyAlertDialog(getContext()).builder()
+        MyAlertDialog myAlertDialog = new MyAlertDialog(getActivity()).builder()
                 .setTitle("确认吗？")
                 .setMsg("即将拨打服务电话")
                 .setPositiveButton("确认", new View.OnClickListener() {
@@ -861,7 +861,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
     }
 
     private void addRecordData(String type,final String phone){
-        Map userInfo = JSON.parseObject(SPUtils.get(getContext(),"userinfo","{}").toString());
+        Map userInfo = JSON.parseObject(SPUtils.get(getActivity(),"userinfo","{}").toString());
         final Message message=Message.obtain();
 
         OkHttpClient okHttpClient = new OkHttpClient();
@@ -941,8 +941,8 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
         }
     }
     private void showInputDialog(final String id) {
-        Map userInfo = JSON.parseObject(SPUtils.get(getContext(),"userinfo","{}").toString());
-        List<Map> dataList=JSON.parseArray(SPUtils.get(getContext(),"sysconfig","{}").toString(),Map.class);
+        Map userInfo = JSON.parseObject(SPUtils.get(getActivity(),"userinfo","{}").toString());
+        List<Map> dataList=JSON.parseArray(SPUtils.get(getActivity(),"sysconfig","{}").toString(),Map.class);
         String tempprice="1";
         for(Map<String,String> temp:dataList){
             if(temp.get("property")!=null&&temp.get("property").equals("price")){
@@ -950,13 +950,13 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
             }
         }
         final String price=tempprice;
-        MyAlertDialog myAlertDialog = new MyAlertDialog(getContext()).builder()
+        MyAlertDialog myAlertDialog = new MyAlertDialog(getActivity()).builder()
                 .setTitle("确认吗？")
                 .setMsg("即将使用"+price+"元代金券"+"\n"+"可用代金券："+userInfo.get("balance").toString())
                 .setPositiveButton("确认", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Map userInfo = JSON.parseObject(SPUtils.get(getContext(),"userinfo","{}").toString());
+                        Map userInfo = JSON.parseObject(SPUtils.get(getActivity(),"userinfo","{}").toString());
                         String cus_id=userInfo.get("id").toString();
                         addOrder(cus_id,price,id);
                     }
@@ -968,14 +968,14 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 });
         myAlertDialog.show();
 
-        /*final MyAlertInputDialog myAlertInputDialog = new MyAlertInputDialog(getContext()).builder()
+        /*final MyAlertInputDialog myAlertInputDialog = new MyAlertInputDialog(getActivity()).builder()
                 .setTitle("请输入要支付的金额"+"\n"+"可用代金券："+userInfo.get("balance").toString())
                 .setEditText("");
         myAlertInputDialog.setPositiveButton("确认", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(CommonUtil.isMoney(myAlertInputDialog.getResult())){
-                    Map userInfo = JSON.parseObject(SPUtils.get(getContext(),"userinfo","{}").toString());
+                    Map userInfo = JSON.parseObject(SPUtils.get(getActivity(),"userinfo","{}").toString());
                     String cus_id=userInfo.get("id").toString();
                     addOrder(cus_id,myAlertInputDialog.getResult(),driver);
                     myAlertInputDialog.dismiss();
@@ -998,7 +998,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
 
     }
     private void addOrder(String cus_id,String price,String id){
-        final LoadingDialog loadingDialog = new LoadingDialog(getContext());
+        final LoadingDialog loadingDialog = new LoadingDialog(getActivity());
         loadingDialog.setMessage("正在提交...");
         loadingDialog.show();
         final Message message=Message.obtain();
@@ -1048,9 +1048,9 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
         switch (requestCode) {
             case 1000:
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    UpdateApk.UpdateVersion(getContext(), updateBean);
+                    UpdateApk.UpdateVersion(getActivity(), updateBean);
                 } else {
-                    Toast.makeText(getContext(), "请在应用管理中打开“存储权限”访问权限,否则无法正常使用！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "请在应用管理中打开“存储权限”访问权限,否则无法正常使用！", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case Constant.REQ_PERM_CAMERA:

@@ -92,7 +92,7 @@ public class MyFragmentPage extends Fragment  {
     }
 
     protected void onVisible(){
-        if((boolean)SPUtils.get(getContext(),"islogin",false)){
+        if((boolean)SPUtils.get(getActivity(),"islogin",false)){
             myinfo.setVisibility(View.VISIBLE);
             logout.setVisibility(View.VISIBLE);
             unlogin_myinfo.setVisibility(View.GONE);
@@ -121,13 +121,13 @@ public class MyFragmentPage extends Fragment  {
             //Object model = (Object) msg.obj;
             switch (msg.what){
                 case 0:
-                    Map userInfo = JSON.parseObject(SPUtils.get(getContext(),"userinfo","{}").toString());
+                    Map userInfo = JSON.parseObject(SPUtils.get(getActivity(),"userinfo","{}").toString());
                     username.setText(userInfo.get("phone").toString());
                     yue.setText(userInfo.get("balance").toString());
-                    Glide.with(getContext()).load(Config.url+userInfo.get("header").toString()).placeholder(R.mipmap.header).error(R.mipmap.header).into(header);
+                    Glide.with(getActivity()).load(Config.url+userInfo.get("header").toString()).placeholder(R.mipmap.header).error(R.mipmap.header).into(header);
                     break;
                 case 1:
-                    Toast.makeText(getContext(), "同步用户信息失败！",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "同步用户信息失败！",Toast.LENGTH_LONG).show();
                     break;
 
                 default:
@@ -138,11 +138,11 @@ public class MyFragmentPage extends Fragment  {
     };
     private void getUserData(){
 
-        Map userInfo = JSON.parseObject(SPUtils.get(getContext(),"userinfo","{}").toString());
+        Map userInfo = JSON.parseObject(SPUtils.get(getActivity(),"userinfo","{}").toString());
         username.setText(userInfo.get("phone").toString());
         yue.setText(userInfo.get("balance").toString());
 
-        Glide.with(getContext()).load(Config.url+userInfo.get("header").toString()).placeholder(R.mipmap.header).error(R.mipmap.header).into(header);
+        Glide.with(getActivity()).load(Config.url+userInfo.get("header").toString()).placeholder(R.mipmap.header).error(R.mipmap.header).into(header);
 
         final Message message=Message.obtain();
 
@@ -167,7 +167,7 @@ public class MyFragmentPage extends Fragment  {
                 // TODO: 17-1-4 请求成功
                 Map resultMap = JSON.parseObject(response.body().string());
                 if(resultMap.get("status").equals("0")){
-                    SPUtils.put(getContext(),"userinfo",resultMap.get("msg"));
+                    SPUtils.put(getActivity(),"userinfo",resultMap.get("msg"));
                     message.what=0;
                     handler.sendMessage(message);
                 }
@@ -194,13 +194,13 @@ public class MyFragmentPage extends Fragment  {
                 getActivity().startActivity(intent);
                 break;
             case R.id.logout:
-                MyAlertDialog myAlertDialog = new MyAlertDialog(getContext()).builder()
+                MyAlertDialog myAlertDialog = new MyAlertDialog(getActivity()).builder()
                         .setTitle("确认吗？")
                         .setMsg("即将退出登录")
                         .setPositiveButton("确认", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                SPUtils.clear(getContext());
+                                SPUtils.clear(getActivity());
                                 myinfo.setVisibility(View.GONE);
                                 logout.setVisibility(View.GONE);
                                 unlogin_myinfo.setVisibility(View.VISIBLE);
@@ -220,7 +220,7 @@ public class MyFragmentPage extends Fragment  {
                 break;
             case R.id.jcdd:
 
-                if((boolean)SPUtils.get(getContext(),"islogin",false)){
+                if((boolean)SPUtils.get(getActivity(),"islogin",false)){
                     intent.setClass(getActivity(), OrderListActivity.class);
                     getActivity().startActivity(intent);
                 }
@@ -230,7 +230,7 @@ public class MyFragmentPage extends Fragment  {
 
                 break;
             case R.id.ptdd:
-                if((boolean)SPUtils.get(getContext(),"islogin",false)){
+                if((boolean)SPUtils.get(getActivity(),"islogin",false)){
                     intent.setClass(getActivity(), OrderptListActivity.class);
                     getActivity().startActivity(intent);
                 }
@@ -240,7 +240,7 @@ public class MyFragmentPage extends Fragment  {
                 break;
             case R.id.xggrxx:
 
-                if((boolean)SPUtils.get(getContext(),"islogin",false)){
+                if((boolean)SPUtils.get(getActivity(),"islogin",false)){
                     intent.setClass(getActivity(), MyinfoActivity.class);
                     getActivity().startActivity(intent);
                 }
@@ -250,7 +250,7 @@ public class MyFragmentPage extends Fragment  {
                 break;
             case R.id.lyjl:
 
-                if((boolean)SPUtils.get(getContext(),"islogin",false)){
+                if((boolean)SPUtils.get(getActivity(),"islogin",false)){
                     intent.setClass(getActivity(), LeavingListActivity.class);
                     getActivity().startActivity(intent);
                 }
@@ -267,7 +267,7 @@ public class MyFragmentPage extends Fragment  {
     }
 
     private void showUnloginDialog(){
-        MyAlertDialog myAlertDialog = new MyAlertDialog(getContext()).builder()
+        MyAlertDialog myAlertDialog = new MyAlertDialog(getActivity()).builder()
                 .setTitle("未登录")
                 .setMsg("即将前往登录")
                 .setPositiveButton("确认", new View.OnClickListener() {
