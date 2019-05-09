@@ -16,10 +16,13 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.Toast;
 
 
 import com.alibaba.fastjson.JSON;
+import com.hb.dialog.myDialog.MyAlertDialog;
 import com.lt.paotui.utils.Config;
 import com.lt.paotui.utils.SPUtils;
 import com.lt.paotui.utils.update.UpdateApk;
@@ -48,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     MainNavigateTabBar mNavigateTabBar;
 
     private static final String TAG_PAGE_HOME = "首页";
-    private static final String TAG_PAGE_PUBLISH = "拨打电话";
+    private static final String TAG_PAGE_PUBLISH = "客服电话";
     private static final String TAG_PAGE_PERSON = "我的";
 
     @Override
@@ -64,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
         mNavigateTabBar.onRestoreInstanceState(savedInstanceState);
+        mNavigateTabBar.setTabTextColor(getResources().getColor(R.color.color_666666));
+        //对应xml中的navigateTabSelectedTextColor
+        mNavigateTabBar.setSelectedTabTextColor(getResources().getColor(R.color.color_nav));
         initFragments();
     }
 
@@ -82,8 +88,32 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickPublish(View v) {
         //Toast.makeText(this, "发布", Toast.LENGTH_LONG).show();
-        callPhone("5051111");
+       /* //中间图片动画
+        RotateAnimation myAnimation_Rotate = new RotateAnimation(0.0f, 90.0f,
+                Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF, 0.5f);
+        v.startAnimation(myAnimation_Rotate);
+        myAnimation_Rotate.setDuration(300);*/
+        showAlterDialog("5051111");
     }
+    private void showAlterDialog(final String phonenum){
+        MyAlertDialog myAlertDialog = new MyAlertDialog(this).builder()
+                .setTitle("确认吗？")
+                .setMsg("即将拨打服务电话")
+                .setPositiveButton("确认", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        callPhone(phonenum);
+                    }
+                }).setNegativeButton("取消", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+        myAlertDialog.show();
+
+    }
+
     /**
      * 拨打电话（直接拨打电话）
      * @param phoneNum 电话号码

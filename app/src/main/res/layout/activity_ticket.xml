@@ -12,7 +12,7 @@
 
 
         <LinearLayout
-            android:id="@+id/btnlist"
+            android:id="@+id/firstll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
@@ -26,7 +26,7 @@
             <RelativeLayout
                 android:background="@drawable/corner_view"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="80dp"
                 android:clickable="true" >
                 <TextView
                     android:layout_width="wrap_content"
@@ -50,7 +50,42 @@
             </RelativeLayout>
 
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/btnlist"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_below="@+id/firstll"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/corner_view"
+            android:clickable="true" >
+            <RelativeLayout
+                android:background="@drawable/corner_view"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:clickable="true" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_centerVertical="true"
+                    android:text="客服电话:"
+                    android:textSize="16sp"/>
+                <EditText
+                    android:id="@+id/kfdh"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="80dp"
+                    android:text="5051111"
+                    android:textSize="14sp"
+                    android:textCursorDrawable="@null"
+                    android:background="@null"/>
+            </RelativeLayout>
 
+        </LinearLayout>
         <Button
             android:id="@+id/submit"
             android:layout_width="match_parent"
@@ -65,11 +100,12 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="20dp"/>
+
         <com.andview.refreshview.XRefreshView
             android:id="@+id/xrefreshview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="220dp"
+            android:layout_marginTop="260dp"
             android:visibility="gone"
             android:background="#fff">
 
@@ -78,7 +114,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
 
-                android:background="@color/color_divider"
+                android:background="@color/main_background"
                 android:scrollbars="vertical" />
         </com.andview.refreshview.XRefreshView>
         <ImageView

@@ -307,7 +307,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                     final List<Map> temp=(List<Map> )msg.obj;
                     if(temp.size()>0){
                         MyRVAdapter adapter = new MyRVAdapter(temp,getActivity());
-                        rv.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));//设置布局管理器
+                        rv.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));//设置布局管理器
                         rv.setAdapter(adapter);
                         // 设置数据后就要给RecyclerView设置点击事件
                         adapter.setOnItemClickListener(new MyRVAdapter.ItemClickListener() {

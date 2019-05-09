@@ -42,6 +42,8 @@ public class MyRVAdapter extends RecyclerView.Adapter<MyRVAdapter.ViewHolder> {
         ViewHolder holder = new ViewHolder(view);
         holder.rv_item_image = (ImageView) view.findViewById(R.id.rv_item_image);
         holder.rv_item_tv = (TextView) view.findViewById(R.id.rv_item_tv);
+        holder.rv_item_time = (TextView) view.findViewById(R.id.rv_item_time);
+        holder.bottomline = (TextView) view.findViewById(R.id.bottomline);
         return holder;
     }
 
@@ -50,6 +52,10 @@ public class MyRVAdapter extends RecyclerView.Adapter<MyRVAdapter.ViewHolder> {
         Map item = list.get(position);
         Glide.with(context).load(Config.url+item.get("image").toString()).into(holder.rv_item_image);
         holder.rv_item_tv.setText(item.get("title").toString());
+        holder.rv_item_time.setText("发布时间："+item.get("c_dt").toString());
+        if(position==2){
+            holder.bottomline.setVisibility(View.GONE);
+        }
 
         // 点击事件一般都写在绑定数据这里，当然写到上边的创建布局时候也是可以的
         if (mItemClickListener != null){
@@ -74,6 +80,8 @@ public class MyRVAdapter extends RecyclerView.Adapter<MyRVAdapter.ViewHolder> {
         }
         ImageView rv_item_image;
         TextView rv_item_tv;
+        TextView rv_item_time;
+        TextView bottomline;
     }
 
 }

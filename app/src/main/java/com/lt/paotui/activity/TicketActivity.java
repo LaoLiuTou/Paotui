@@ -2,6 +2,7 @@ package com.lt.paotui.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -16,6 +17,7 @@ import com.alibaba.fastjson.JSON;
 import com.andview.refreshview.XRefreshView;
 import com.andview.refreshview.XRefreshViewFooter;
 import com.hb.dialog.dialog.LoadingDialog;
+import com.hb.dialog.myDialog.MyAlertDialog;
 import com.lt.paotui.R;
 import com.lt.paotui.adapter.NewsAdapter;
 import com.lt.paotui.utils.Config;
@@ -289,7 +291,7 @@ public class TicketActivity extends Activity {
             }
         });
     }
-    @OnClick({R.id.top_back_btn,R.id.submit})
+    @OnClick({R.id.top_back_btn,R.id.submit,R.id.kfdh})
     public void btnClick(View view) {
 
 
@@ -306,10 +308,44 @@ public class TicketActivity extends Activity {
                 }
 
                 break;
-
+            case R.id.kfdh:
+                showAlterDialog("5051111");
+                break;
             default:
                 break;
         }
     }
+    private void showAlterDialog(final String phonenum){
+        MyAlertDialog myAlertDialog = new MyAlertDialog(this).builder()
+                .setTitle("确认吗？")
+                .setMsg("即将拨打服务电话")
+                .setPositiveButton("确认", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        callPhone(phonenum);
+                    }
+                }).setNegativeButton("取消", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
+                    }
+                });
+        myAlertDialog.show();
+
+    }
+
+    /**
+     * 拨打电话（直接拨打电话）
+     * @param phoneNum 电话号码
+     */
+    public void callPhone(String phoneNum){
+        /*Intent intent = new Intent(Intent.ACTION_CALL);
+        Uri data = Uri.parse("tel:" + phoneNum);
+        intent.setData(data);
+        startActivity(intent);*/
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        Uri data = Uri.parse("tel:" + phoneNum);
+        intent.setData(data);
+        startActivity(intent);
+    }
 }
