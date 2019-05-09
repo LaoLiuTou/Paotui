@@ -1,7 +1,9 @@
 package com.lt.paotui;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Message;
 import android.support.annotation.NonNull;
@@ -79,7 +81,22 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onClickPublish(View v) {
-        Toast.makeText(this, "发布", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "发布", Toast.LENGTH_LONG).show();
+        callPhone("5051111");
+    }
+    /**
+     * 拨打电话（直接拨打电话）
+     * @param phoneNum 电话号码
+     */
+    public void callPhone(String phoneNum){
+        /*Intent intent = new Intent(Intent.ACTION_CALL);
+        Uri data = Uri.parse("tel:" + phoneNum);
+        intent.setData(data);
+        startActivity(intent);*/
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        Uri data = Uri.parse("tel:" + phoneNum);
+        intent.setData(data);
+        startActivity(intent);
     }
 
     // Activity中
