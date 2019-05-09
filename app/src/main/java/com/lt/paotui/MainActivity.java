@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -21,6 +22,7 @@ import com.lt.paotui.utils.Config;
 import com.lt.paotui.utils.SPUtils;
 import com.lt.paotui.utils.update.UpdateApk;
 import com.lt.paotui.utils.update.UpdateBean;
+import com.startsmake.mainnavigatetabbar.widget.MainNavigateTabBar;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,19 +41,13 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
-    @BindView(R.id.viewpager)
-    ViewPager viewPager;
-    @BindView(R.id.tabview)
-    TabLayoutView tabLayoutView;
 
-    private ViewPagerAdapter viewPagerAdapter;
+    @BindView(R.id.mainTabBar)
+    MainNavigateTabBar mNavigateTabBar;
 
-    private List<Fragment> fragmentPages;
-    private MainFragmentPage mainfragmentPage;
-    private MyFragmentPage myFragmentPage;
-
-    private String[] titles = {"首页",  "我的"};
-    private int[] imgs = {R.drawable.nav_main_selector, R.drawable.nav_me_selector};
+    private static final String TAG_PAGE_HOME = "首页";
+    private static final String TAG_PAGE_PUBLISH = "拨打电话";
+    private static final String TAG_PAGE_PERSON = "我的";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,60 +61,26 @@ public class MainActivity extends AppCompatActivity {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
-
+        mNavigateTabBar.onRestoreInstanceState(savedInstanceState);
         initFragments();
-
-        tabLayoutView.setDataSource(titles, imgs, 0);
-        tabLayoutView.setImageStyle(25, 25);
-        tabLayoutView.setTextStyle(12, R.color.color_999999,R.color.color_nav);
-        tabLayoutView.initDatas();
-        setDots();
-        tabLayoutView.setOnItemOnclickListener(new TabLayoutView.OnItemOnclickListener() {
-            @Override
-            public void onItemClick(int index) {
-                viewPager.setCurrentItem(index, true);
-            }
-        });
-
-        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                viewPager.setCurrentItem(position, false);
-                tabLayoutView.setSelectStyle(position);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-
     }
 
-    private void initFragments()
-    {
-        fragmentPages = new ArrayList<>();
-        mainfragmentPage = new MainFragmentPage();
-        myFragmentPage = new MyFragmentPage();
+    private void initFragments(){
+        mNavigateTabBar.addTab(MainFragmentPage.class, new MainNavigateTabBar.TabParam(R.mipmap.nav1_dark, R.mipmap.nav1_light, TAG_PAGE_HOME));
+        mNavigateTabBar.addTab(null, new MainNavigateTabBar.TabParam(0, 0, TAG_PAGE_PUBLISH));
+        mNavigateTabBar.addTab(MyFragmentPage.class, new MainNavigateTabBar.TabParam(R.mipmap.nav3_dark, R.mipmap.nav3_light, TAG_PAGE_PERSON));
 
-        fragmentPages.add(mainfragmentPage);
-        fragmentPages.add(myFragmentPage);
-
-
-        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), fragmentPages);
-        viewPager.setAdapter(viewPagerAdapter);
+    }
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mNavigateTabBar.onSaveInstanceState(outState);
     }
 
-    public void setDots()
-    {
-        tabLayoutView.setDotsCount(0, 0);
-        tabLayoutView.setDotsCount(1, 0);
-    }
 
+    public void onClickPublish(View v) {
+        Toast.makeText(this, "发布", Toast.LENGTH_LONG).show();
+    }
 
     // Activity中
     @Override
