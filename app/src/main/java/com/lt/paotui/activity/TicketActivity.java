@@ -55,6 +55,8 @@ public class TicketActivity extends Activity {
     XRefreshView xRefreshView;
     @BindView(R.id.addleaving)
     ImageView addleaving;
+    @BindView(R.id.kfdh)
+    EditText kfdh;
     NewsAdapter adapter;
     List<Map> listData = new ArrayList<>();
     LinearLayoutManager layoutManager;
@@ -81,6 +83,10 @@ public class TicketActivity extends Activity {
             xRefreshView.setVisibility(View.VISIBLE);
             getOrderData(page,size);
         }
+
+        kfdh.setCursorVisible(false);
+        kfdh.setFocusable(false);
+        kfdh.setFocusableInTouchMode(false);
     }
     /**
      * 接收解析后传过来的数据
