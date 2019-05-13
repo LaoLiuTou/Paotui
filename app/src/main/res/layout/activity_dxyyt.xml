@@ -56,7 +56,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="10dp"
                     android:text="话费查询"
-                    android:textSize="14sp" />
+                    android:textSize="14dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -82,7 +82,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="10dp"
                     android:text="宽带业务"
-                    android:textSize="14sp" />
+                    android:textSize="14dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -108,7 +108,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="10dp"
                     android:text="套餐查询"
-                    android:textSize="14sp" />
+                    android:textSize="14dp" />
             </LinearLayout>
         </LinearLayout>
         <com.andview.refreshview.XRefreshView

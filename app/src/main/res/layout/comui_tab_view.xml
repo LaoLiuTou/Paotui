@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/comui_tab_text_marginBottom"
-        android:textSize="12.0sp"/>
+        android:textSize="12.0dp"/>
 
 
 

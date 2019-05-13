@@ -37,7 +37,7 @@
                     android:layout_height="wrap_content"
                     android:text="订单编号："
 
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                      />
                 <TextView
                     android:id="@+id/ordernum"
@@ -45,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:paddingLeft="20dp"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     />
             </LinearLayout>
             <LinearLayout
@@ -65,7 +65,7 @@
                         android:layout_height="wrap_content"
                         android:text="司机车牌："
 
-                        android:textSize="16sp"
+                        android:textSize="16dp"
                         />
                     <TextView
                         android:id="@+id/number"
@@ -73,7 +73,7 @@
                         android:layout_height="wrap_content"
                         android:text=""
                         android:paddingLeft="20dp"
-                        android:textSize="16sp"
+                        android:textSize="16dp"
                         />
                 </LinearLayout>
                 <LinearLayout
@@ -87,7 +87,7 @@
                         android:layout_height="wrap_content"
                         android:text="司机姓名："
 
-                        android:textSize="16sp"
+                        android:textSize="16dp"
                         />
                     <TextView
                         android:id="@+id/driver"
@@ -95,7 +95,7 @@
                         android:layout_height="wrap_content"
                         android:text=""
                         android:paddingLeft="20dp"
-                        android:textSize="16sp"
+                        android:textSize="16dp"
                         />
                 </LinearLayout>
                 <LinearLayout
@@ -109,7 +109,7 @@
                         android:layout_height="wrap_content"
                         android:text="司机电话："
 
-                        android:textSize="16sp"
+                        android:textSize="16dp"
                         />
                     <TextView
                         android:id="@+id/driverphone"
@@ -117,7 +117,7 @@
                         android:layout_height="wrap_content"
                         android:text=""
                         android:paddingLeft="20dp"
-                        android:textSize="16sp"
+                        android:textSize="16dp"
                         />
                 </LinearLayout>
                 <LinearLayout
@@ -131,14 +131,14 @@
                         android:layout_height="wrap_content"
                         android:text="客服电话："
 
-                        android:textSize="16sp"
+                        android:textSize="16dp"
                         />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="5059898,5059696"
                         android:paddingLeft="20dp"
-                        android:textSize="16sp"
+                        android:textSize="16dp"
                         />
                 </LinearLayout>
             </LinearLayout>
@@ -159,7 +159,7 @@
                         android:layout_height="wrap_content"
                         android:text="客户昵称："
 
-                        android:textSize="16sp"
+                        android:textSize="16dp"
                         />
                     <TextView
                         android:id="@+id/customer"
@@ -167,7 +167,7 @@
                         android:layout_height="wrap_content"
                         android:text=""
                         android:paddingLeft="20dp"
-                        android:textSize="16sp"
+                        android:textSize="16dp"
                         />
                 </LinearLayout>
                 <LinearLayout
@@ -181,7 +181,7 @@
                         android:layout_height="wrap_content"
                         android:text="客户电话："
 
-                        android:textSize="16sp"
+                        android:textSize="16dp"
                         />
                     <TextView
                         android:id="@+id/phone"
@@ -189,7 +189,7 @@
                         android:layout_height="wrap_content"
                         android:text=""
                         android:paddingLeft="20dp"
-                        android:textSize="16sp"
+                        android:textSize="16dp"
                         />
                 </LinearLayout>
                 <LinearLayout
@@ -203,7 +203,7 @@
                         android:layout_height="wrap_content"
                         android:text="付款日期："
 
-                        android:textSize="16sp"
+                        android:textSize="16dp"
                         />
                     <TextView
                         android:id="@+id/paytime"
@@ -211,7 +211,7 @@
                         android:layout_height="wrap_content"
                         android:text=""
                         android:paddingLeft="20dp"
-                        android:textSize="16sp"
+                        android:textSize="16dp"
                         />
                 </LinearLayout>
             </LinearLayout>
@@ -226,7 +226,7 @@
                     android:layout_height="wrap_content"
                     android:text="总计金额："
 
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     />
                 <TextView
                     android:id="@+id/price"
@@ -234,7 +234,7 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:paddingLeft="20dp"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     />
             </LinearLayout>
             <LinearLayout
@@ -248,7 +248,7 @@
                     android:layout_height="wrap_content"
                     android:text="订单备注："
 
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     />
                 <TextView
                     android:id="@+id/note"
@@ -256,7 +256,7 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:paddingLeft="20dp"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     />
             </LinearLayout>
             <LinearLayout
@@ -271,7 +271,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/color_white"
                     android:text="已付款"
-                    android:textSize="20sp"
+                    android:textSize="20dp"
                     />
 
             </LinearLayout>

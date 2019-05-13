@@ -31,13 +31,13 @@
                     android:layout_marginLeft="5dp"
                     android:layout_centerVertical="true"
                     android:text="取货地址:"
-                    android:textSize="16sp"/>
+                    android:textSize="16dp"/>
                 <EditText
                     android:id="@+id/qhdz"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="80dp"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:textCursorDrawable="@null"
                     android:background="@null"/>
 
@@ -53,14 +53,14 @@
                     android:layout_marginLeft="5dp"
                     android:layout_centerVertical="true"
                     android:text="取货电话:"
-                    android:textSize="16sp"/>
+                    android:textSize="16dp"/>
                 <EditText
                     android:id="@+id/qhdh"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="80dp"
                     android:inputType="number"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:textCursorDrawable="@null"
                     android:background="@null"/>
 
@@ -87,13 +87,13 @@
                     android:layout_marginLeft="5dp"
                     android:layout_centerVertical="true"
                     android:text="送货地址:"
-                    android:textSize="16sp"/>
+                    android:textSize="16dp"/>
                 <EditText
                     android:id="@+id/shdz"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="80dp"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:textCursorDrawable="@null"
                     android:background="@null"/>
 
@@ -109,13 +109,13 @@
                     android:layout_marginLeft="5dp"
                     android:layout_centerVertical="true"
                     android:text="送货电话:"
-                    android:textSize="16sp"/>
+                    android:textSize="16dp"/>
                 <EditText
                     android:id="@+id/shdh"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="80dp"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:inputType="number"
                     android:textCursorDrawable="@null"
                     android:background="@null"/>
@@ -144,13 +144,13 @@
                     android:layout_marginLeft="5dp"
                     android:layout_centerVertical="true"
                     android:text="送货时间:"
-                    android:textSize="16sp"/>
+                    android:textSize="16dp"/>
                 <EditText
                     android:id="@+id/shsj"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="80dp"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:textCursorDrawable="@null"
                     android:background="@null"/>
 
@@ -165,14 +165,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:text="备注留言:"
-                    android:textSize="16sp"/>
+                    android:textSize="16dp"/>
                 <EditText
                     android:id="@+id/beizhu"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="80dp"
                     android:inputType="textMultiLine"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:minLines="3"
                     android:gravity="top"
                     android:textCursorDrawable="@null"
@@ -203,14 +203,14 @@
                     android:layout_marginLeft="5dp"
                     android:layout_centerVertical="true"
                     android:text="客服电话:"
-                    android:textSize="16sp"/>
+                    android:textSize="16dp"/>
                 <EditText
                     android:id="@+id/kfdh"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="80dp"
                     android:text="5051111"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:textCursorDrawable="@null"
                     android:background="@null"/>
             </RelativeLayout>
@@ -225,7 +225,7 @@
             android:background="@drawable/corner_button"
             android:text="提交"
             android:textColor="@color/color_888888"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:layout_marginTop="11dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"

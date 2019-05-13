@@ -24,7 +24,7 @@
         android:layout_marginTop="10dp"
         android:maxLines="2"
         android:text=""
-        android:textSize="14sp"/>
+        android:textSize="14dp"/>
     <TextView
         android:id="@+id/rv_item_time"
         android:layout_width="match_parent"
@@ -33,7 +33,7 @@
         android:layout_marginTop="50dp"
         android:maxLines="1"
         android:text=""
-        android:textSize="14sp"/>
+        android:textSize="14dp"/>
     <TextView
         android:id="@+id/bottomline"
         android:layout_width="match_parent"

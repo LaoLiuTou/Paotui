@@ -25,7 +25,7 @@
             android:layout_marginLeft="4dp"
             android:maxLines="2"
             android:lineSpacingExtra="8dp"
-            android:textSize="14sp"
+            android:textSize="14dp"
             android:text="2019-03-28 共有1000用户  用户***，支付车费5元，成功立减2元。"/>
     </LinearLayout>
 

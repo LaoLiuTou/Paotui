@@ -20,7 +20,7 @@
                     android:layout_height="wrap_content"
                     android:text="我的"
                     android:layout_centerInParent="true"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     android:textColor="@color/color_white"
                     />
             </RelativeLayout>
@@ -102,7 +102,7 @@
                     android:layout_height="wrap_content"
                     android:maxLines="1"
                     android:text="点击登录"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="80dp"/>
 
@@ -212,7 +212,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerInParent="true"
                     android:text="留言记录"
-                    android:textSize="16sp"/>
+                    android:textSize="16dp"/>
 
                 <ImageView
                     android:layout_width="10dp"
@@ -244,7 +244,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerInParent="true"
                     android:text="收货地址"
-                    android:textSize="16sp"/>
+                    android:textSize="16dp"/>
                 <ImageView
                     android:layout_width="10dp"
                     android:layout_height="10dp"
@@ -275,7 +275,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerInParent="true"
                     android:text="修改个人信息"
-                    android:textSize="16sp"/>
+                    android:textSize="16dp"/>
                 <ImageView
                     android:layout_width="10dp"
                     android:layout_height="10dp"
@@ -306,7 +306,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerInParent="true"
                     android:text="版本介绍"
-                    android:textSize="16sp"/>
+                    android:textSize="16dp"/>
                 <TextView
                     android:id="@+id/version_text"
                     android:layout_width="wrap_content"
@@ -316,7 +316,7 @@
                     android:layout_marginRight="24dp"
                     android:textColor="@color/color_888888"
                     android:text="v1.1.0"
-                    android:textSize="16sp"/>
+                    android:textSize="16dp"/>
                 <ImageView
                     android:layout_width="10dp"
                     android:layout_height="10dp"
@@ -338,7 +338,7 @@
             android:background="@drawable/corner_button"
             android:text="退出登录"
             android:textColor="@color/color_888888"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"

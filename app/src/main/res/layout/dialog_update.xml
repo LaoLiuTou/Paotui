@@ -22,7 +22,7 @@
             android:paddingTop="10dp"
             android:text="@string/dialog_new_version"
             android:textColor="#000000"
-            android:textSize="18sp" />
+            android:textSize="18dp" />
 
         <View
             android:layout_width="match_parent"
@@ -38,7 +38,7 @@
             android:paddingTop="10dp"
             android:text="@string/dialog_new_version2"
             android:textColor="#000000"
-            android:textSize="15sp" />
+            android:textSize="15dp" />
 
         <TextView
             android:id="@+id/update_ver"
@@ -50,7 +50,7 @@
             android:singleLine="true"
             android:text="1.4.1"
             android:textColor="#646464"
-            android:textSize="14sp" />
+            android:textSize="14dp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -61,7 +61,7 @@
             android:paddingTop="10dp"
             android:text="@string/dialog_version_content"
             android:textColor="#000000"
-            android:textSize="15sp" />
+            android:textSize="15dp" />
 
         <ScrollView
             android:layout_width="fill_parent"
@@ -84,7 +84,7 @@
                     android:paddingLeft="10dp"
                     android:text=""
                     android:textColor="#646464"
-                    android:textSize="14sp" />
+                    android:textSize="14dp" />
             </LinearLayout>
         </ScrollView>
 
@@ -99,7 +99,7 @@
             android:singleLine="true"
             android:text="以后再说"
             android:textColor="#f59038"
-            android:textSize="12sp"
+            android:textSize="12dp"
             android:visibility="gone" />
 
         <View

@@ -9,7 +9,7 @@ android:orientation="vertical">
         android:text="便民一号线"
         android:layout_margin="40dp"
         android:gravity="center"
-        android:textSize="30sp"/>
+        android:textSize="30dp"/>
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
