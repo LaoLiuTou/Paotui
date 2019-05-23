@@ -42,6 +42,7 @@ import com.lt.paotui.activity.AntugovActivity;
 import com.lt.paotui.activity.BannerDetailActivity;
 import com.lt.paotui.activity.CskxActivity;
 import com.lt.paotui.activity.DxyytActivity;
+import com.lt.paotui.activity.JlattvActivity;
 import com.lt.paotui.activity.LoginActivity;
 import com.lt.paotui.activity.MyinfoActivity;
 import com.lt.paotui.activity.NewsDetailActivity;
@@ -660,7 +661,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
             R.id.yjjc,R.id.yjjcprev,
             R.id.dxyyt,R.id.yhtc, R.id.sjbj,R.id.esjss,R.id.lhss,
             R.id.cskx,R.id.mflsj,R.id.gp,
-            R.id.news1,R.id.news2,R.id.news3})//多个控件可以一起发在里面进行监听
+            R.id.news1,R.id.news2,R.id.news3,R.id.jlattv})//多个控件可以一起发在里面进行监听
     public void btnClick(View view) {
         Intent intent = new Intent();
         String [] phonenumbers={"5059898","5059696"};
@@ -798,6 +799,10 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 break;
             case R.id.news3:
                 intent.setClass(getActivity(), AntugovActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.jlattv:
+                intent.setClass(getActivity(), JlattvActivity.class);
                 startActivity(intent);
                 break;
 
