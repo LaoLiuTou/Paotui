@@ -36,6 +36,7 @@ import com.bumptech.glide.Glide;
 import com.github.shenyuanqing.zxingsimplify.zxing.Activity.CaptureActivity;
 import com.hb.dialog.dialog.ConfirmDialog;
 import com.hb.dialog.dialog.LoadingDialog;
+import com.hb.dialog.myDialog.ActionSheetDialog;
 import com.hb.dialog.myDialog.MyAlertDialog;
 import com.hb.dialog.myDialog.MyAlertInputDialog;
 import com.lt.paotui.activity.AntugovActivity;
@@ -946,32 +947,71 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
         }
     }
     private void showInputDialog(final String id) {
-        Map userInfo = JSON.parseObject(SPUtils.get(getActivity(),"userinfo","{}").toString());
+        final Map userInfo = JSON.parseObject(SPUtils.get(getActivity(),"userinfo","{}").toString());
         List<Map> dataList=JSON.parseArray(SPUtils.get(getActivity(),"sysconfig","{}").toString(),Map.class);
         String tempprice="1";
+        String student="0";
         for(Map<String,String> temp:dataList){
             if(temp.get("property")!=null&&temp.get("property").equals("price")){
                 tempprice=temp.get("value");
             }
+            if(temp.get("property")!=null&&temp.get("property").equals("student")){
+                student=temp.get("value");
+            }
         }
         final String price=tempprice;
-        MyAlertDialog myAlertDialog = new MyAlertDialog(getActivity()).builder()
-                .setTitle("确认吗？")
-                .setMsg("即将使用"+price+"元代金券"+"\n"+"可用代金券："+userInfo.get("balance").toString())
-                .setPositiveButton("确认", new View.OnClickListener() {
+        ActionSheetDialog dialog = new ActionSheetDialog(getActivity()).builder().setTitle("支付提示")
+                .addSheetItem("代金券支付", null, new ActionSheetDialog.OnSheetItemClickListener() {
                     @Override
-                    public void onClick(View v) {
-                        Map userInfo = JSON.parseObject(SPUtils.get(getActivity(),"userinfo","{}").toString());
-                        String cus_id=userInfo.get("id").toString();
-                        addOrder(cus_id,price,id);
-                    }
-                }).setNegativeButton("取消", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+                    public void onClick(int which) {
 
+                        MyAlertDialog myAlertDialog = new MyAlertDialog(getActivity()).builder()
+                                .setTitle("确认吗？")
+                                .setMsg("即将使用"+price+"元代金券"+"\n"+"可用代金券："+userInfo.get("balance").toString())
+                                .setPositiveButton("确认", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Map userInfo = JSON.parseObject(SPUtils.get(getActivity(),"userinfo","{}").toString());
+                                        String cus_id=userInfo.get("id").toString();
+                                        addOrder(cus_id,price,id,"代金券支付");
+                                    }
+                                }).setNegativeButton("取消", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+
+                                    }
+                                });
+                        myAlertDialog.show();
                     }
                 });
-        myAlertDialog.show();
+
+        if(student.equals("1")){
+            dialog.addSheetItem("考生免费乘车", null, new ActionSheetDialog.OnSheetItemClickListener() {
+                    @Override
+                    public void onClick(int which) {
+
+                        MyAlertDialog myAlertDialog = new MyAlertDialog(getActivity()).builder()
+                                .setTitle("确认吗？")
+                                .setMsg("此功能只适用于考生，请确认")
+                                .setPositiveButton("确认", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Map userInfo = JSON.parseObject(SPUtils.get(getActivity(),"userinfo","{}").toString());
+                                        String cus_id=userInfo.get("id").toString();
+                                        addOrder(cus_id,"0",id,"考生免单");
+                                    }
+                                }).setNegativeButton("取消", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+
+                                    }
+                                });
+                        myAlertDialog.show();
+
+                    }
+            });
+        }
+        dialog.show();
 
         /*final MyAlertInputDialog myAlertInputDialog = new MyAlertInputDialog(getActivity()).builder()
                 .setTitle("请输入要支付的金额"+"\n"+"可用代金券："+userInfo.get("balance").toString())
@@ -1002,7 +1042,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
 
 
     }
-    private void addOrder(String cus_id,String price,String id){
+    private void addOrder(String cus_id,String price,String id,String note){
         final LoadingDialog loadingDialog = new LoadingDialog(getActivity());
         loadingDialog.setMessage("正在提交...");
         loadingDialog.show();
@@ -1012,6 +1052,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 .add("cus_id", cus_id)
                 .add("price", price)
                 .add("driver", id)
+                .add("note", note)
                 .add("status", "1")
                 .build();
         Request request = new Request.Builder().url(Config.url+"/addOrders")
