@@ -12,6 +12,7 @@ public class Config {
     public final static int FAILURE_CODE=1001;//失败
     public final static int SUCCESS_CODE=1000;//成功
     public final static String REQUEST_HEADER="APP";//成功
+    public final static String APP_ID = "wxd930ea5d5a258f4f";
 
 }
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">便民一号线</string>
+    <string name="app_name">便民1号线</string>
     <string name="dialog_new_version">发现新版本</string>
     <string name="dialog_new_version2">最新版本</string>
     <string name="dialog_version_content">更新内容</string>

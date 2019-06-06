@@ -46,4 +46,7 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.makeramen:roundedimageview:2.3.0'
     compile 'com.just.agentweb:agentweb:4.0.3-alpha@aar'
+
+    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+
 }

@@ -54,6 +54,13 @@
         <activity android:name=".activity.LeavingDetailActivity"/>
         <activity android:name=".activity.AntugovActivity"/>
         <activity android:name=".activity.JlattvActivity"/>
+        <activity android:name=".wxapi.WXPayActivity">
+
+        </activity>
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>
