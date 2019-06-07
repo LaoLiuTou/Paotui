@@ -65,6 +65,7 @@ import com.lt.paotui.utils.rollingtextview.view.TextViewSwitcher;
 import com.lt.paotui.utils.update.CommonUtil;
 import com.lt.paotui.utils.update.UpdateApk;
 import com.lt.paotui.utils.update.UpdateBean;
+import com.lt.paotui.wxapi.WXPayActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -265,6 +266,13 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                     intent.setClass(getActivity(), OrderDetailActivity.class);
                     intent.putExtra("order_id", msg.obj.toString());
                     startActivity(intent);
+                    break;
+                case 66://跳转付款
+
+                    Intent intentpay = new Intent();
+                    intentpay.setClass(getActivity(), WXPayActivity.class);
+                    intentpay.putExtra("order_id", msg.obj.toString());
+                    startActivity(intentpay);
                     break;
                 case 7://订单失败
                     Toast.makeText(getActivity(),msg.obj.toString(),Toast.LENGTH_LONG).show();
@@ -950,22 +958,26 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
         final Map userInfo = JSON.parseObject(SPUtils.get(getActivity(),"userinfo","{}").toString());
         List<Map> dataList=JSON.parseArray(SPUtils.get(getActivity(),"sysconfig","{}").toString(),Map.class);
         String tempprice="1";
-        String student="0";
+        String student="0",note="免单入口";
         for(Map<String,String> temp:dataList){
             if(temp.get("property")!=null&&temp.get("property").equals("price")){
                 tempprice=temp.get("value");
             }
             if(temp.get("property")!=null&&temp.get("property").equals("student")){
                 student=temp.get("value");
+                note=temp.get("note");
             }
         }
-        final String price=tempprice;
+        final String balance=tempprice;
         ActionSheetDialog dialog = new ActionSheetDialog(getActivity()).builder().setTitle("支付提示")
-                .addSheetItem("代金券支付", null, new ActionSheetDialog.OnSheetItemClickListener() {
+                .addSheetItem("前往支付", null, new ActionSheetDialog.OnSheetItemClickListener() {
                     @Override
                     public void onClick(int which) {
 
-                        MyAlertDialog myAlertDialog = new MyAlertDialog(getActivity()).builder()
+                        Map userInfo = JSON.parseObject(SPUtils.get(getActivity(),"userinfo","{}").toString());
+                        String cus_id=userInfo.get("id").toString();
+                        addOrder(cus_id,balance,id,"在线支付");
+                        /*MyAlertDialog myAlertDialog = new MyAlertDialog(getActivity()).builder()
                                 .setTitle("确认吗？")
                                 .setMsg("即将使用"+price+"元代金券"+"\n"+"可用代金券："+userInfo.get("balance").toString())
                                 .setPositiveButton("确认", new View.OnClickListener() {
@@ -974,6 +986,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                                         Map userInfo = JSON.parseObject(SPUtils.get(getActivity(),"userinfo","{}").toString());
                                         String cus_id=userInfo.get("id").toString();
                                         addOrder(cus_id,price,id,"代金券支付");
+
                                     }
                                 }).setNegativeButton("取消", new View.OnClickListener() {
                                     @Override
@@ -981,24 +994,24 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
 
                                     }
                                 });
-                        myAlertDialog.show();
+                        myAlertDialog.show();*/
                     }
                 });
 
         if(student.equals("1")){
-            dialog.addSheetItem("考生免费乘车", null, new ActionSheetDialog.OnSheetItemClickListener() {
+            dialog.addSheetItem(note, null, new ActionSheetDialog.OnSheetItemClickListener() {
                     @Override
                     public void onClick(int which) {
 
                         MyAlertDialog myAlertDialog = new MyAlertDialog(getActivity()).builder()
                                 .setTitle("确认吗？")
-                                .setMsg("此功能只适用于考生，请确认")
+                                .setMsg("此功能只适用于满足条件人群，请确认")
                                 .setPositiveButton("确认", new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
                                         Map userInfo = JSON.parseObject(SPUtils.get(getActivity(),"userinfo","{}").toString());
                                         String cus_id=userInfo.get("id").toString();
-                                        addOrder(cus_id,"0",id,"考生免单");
+                                        addOrder(cus_id,"5",id,"免单");
                                     }
                                 }).setNegativeButton("取消", new View.OnClickListener() {
                                     @Override
@@ -1042,7 +1055,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
 
 
     }
-    private void addOrder(String cus_id,String price,String id,String note){
+    private void addOrder(String cus_id,String balance,String id,final String note){
         final LoadingDialog loadingDialog = new LoadingDialog(getActivity());
         loadingDialog.setMessage("正在提交...");
         loadingDialog.show();
@@ -1050,10 +1063,10 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
         OkHttpClient okHttpClient = new OkHttpClient();
         FormBody formBody = new FormBody.Builder()
                 .add("cus_id", cus_id)
-                .add("price", price)
+                .add("balance", balance)
                 .add("driver", id)
                 .add("note", note)
-                .add("status", "1")
+                .add("status", "0")
                 .build();
         Request request = new Request.Builder().url(Config.url+"/addOrders")
                 .addHeader("source", Config.REQUEST_HEADER)// 自定义的header
@@ -1074,9 +1087,18 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 loadingDialog.dismiss();
                 Map resultMap = JSON.parseObject(response.body().string());
                 if(resultMap.get("status").equals("0")){
-                    message.what=6;
-                    message.obj=resultMap.get("msg").toString();
-                    handler.sendMessage(message);
+                    if(note.equals("在线支付")){
+                        message.what=66;
+                        message.obj=resultMap.get("msg").toString();
+                        handler.sendMessage(message);
+                    }
+                    else{
+                        message.what=6;
+                        message.obj=resultMap.get("msg").toString();
+                        handler.sendMessage(message);
+                    }
+
+
                 }
                 else{
                     message.what=7;

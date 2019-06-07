@@ -1,13 +1,21 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'key0'
+            keyPassword '13028775'
+            storeFile file('E:/Android/workspace/Paotui/app/src/main/java/com/lt/paotui/utils/mysign.jks')
+            storePassword '13028775'
+        }
+    }
     compileSdkVersion 24
     buildToolsVersion "25.0.0"
     defaultConfig {
         applicationId "com.lt.paotui"
         minSdkVersion 14
         targetSdkVersion 24
-        versionCode 23
+        versionCode 24
         versionName "1.2.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -15,12 +23,16 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+        debug {
+            signingConfig signingConfigs.config
         }
     }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -46,7 +58,5 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.makeramen:roundedimageview:2.3.0'
     compile 'com.just.agentweb:agentweb:4.0.3-alpha@aar'
-
     compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
-
 }

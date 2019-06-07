@@ -246,6 +246,28 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="使用优惠："
+
+                    android:textSize="16dp"
+                    />
+                <TextView
+                    android:id="@+id/balance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:paddingLeft="20dp"
+                    android:textSize="16dp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/color_white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="订单备注："
 
                     android:textSize="16dp"
@@ -260,17 +282,20 @@
                     />
             </LinearLayout>
             <LinearLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@color/color_title_bg"
                 android:gravity="center"
+
                 >
                 <TextView
                     android:id="@+id/status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:textColor="@color/color_white"
-                    android:text="已付款"
+                    android:gravity="center"
+                    android:text="已完成"
                     android:textSize="20dp"
                     />
 

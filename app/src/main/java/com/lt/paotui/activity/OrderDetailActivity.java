@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.lt.paotui.R;
 import com.lt.paotui.utils.Config;
 import com.lt.paotui.utils.SPUtils;
+import com.lt.paotui.wxapi.WXPayActivity;
 
 import java.io.IOException;
 import java.util.Map;
@@ -42,6 +43,8 @@ public class OrderDetailActivity extends Activity {
     TextView paytime;
     @BindView(R.id.price)
     TextView price;
+    @BindView(R.id.balance)
+    TextView balance;
     @BindView(R.id.note)
     TextView note;
     @BindView(R.id.top_bar_title)
@@ -52,6 +55,7 @@ public class OrderDetailActivity extends Activity {
     TextView driverphone;
     @BindView(R.id.status)
     TextView status;
+    private String order_id;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,22 +73,24 @@ public class OrderDetailActivity extends Activity {
             //Object model = (Object) msg.obj;
             switch (msg.what){
                 case 0:
-                    Map<String,String> dataMap=(Map<String,String>)msg.obj;
-                    ordernum.setText(dataMap.get("ordernum"));
-                    driver.setText(dataMap.get("drivername"));
-                    number.setText(dataMap.get("number"));
-                    String driverphonenum =dataMap.get("driverphone");
+                    Map  dataMap=(Map)msg.obj;
+                    order_id=dataMap.get("id").toString();
+                    ordernum.setText(dataMap.get("ordernum").toString());
+                    driver.setText(dataMap.get("drivername").toString());
+                    number.setText(dataMap.get("number").toString());
+                    String driverphonenum =dataMap.get("driverphone").toString();
                     if(driverphonenum.length()>7){
                         driverphonenum = driverphonenum.substring(0, 3) + "****" + driverphonenum.substring(7, driverphonenum.length());
                     }
                     driverphone.setText(driverphonenum);
-                    customer.setText(dataMap.get("cusname"));
-                    phone.setText(dataMap.get("phone"));
-                    paytime.setText(dataMap.get("pay_dt"));
+                    customer.setText(dataMap.get("cusname").toString());
+                    phone.setText(dataMap.get("phone").toString());
+                    paytime.setText(dataMap.get("pay_dt").toString());
                     price.setText(dataMap.get("price")+"元");
-                    note.setText(dataMap.get("note"));
+                    balance.setText(dataMap.get("balance")+"元");
+                    note.setText(dataMap.get("note").toString());
                     if(dataMap.get("status").equals("0")){
-                        status.setText("未完成");
+                        status.setText("待支付");
                     }
                     break;
                 case 1:
@@ -136,7 +142,7 @@ public class OrderDetailActivity extends Activity {
             }
         });
     }
-    @OnClick({R.id.top_back_btn})
+    @OnClick({R.id.top_back_btn,R.id.status})
     public void btnClick(View view) {
 
 
@@ -145,6 +151,14 @@ public class OrderDetailActivity extends Activity {
                 finish();
                 break;
 
+            case R.id.status:
+                if(status.getText().equals("待支付")){
+                    Intent intentpay = new Intent();
+                    intentpay.setClass(OrderDetailActivity.this, WXPayActivity.class);
+                    intentpay.putExtra("order_id", order_id);
+                    startActivity(intentpay);
+                }
+                break;
             default:
                 break;
         }
