@@ -20,6 +20,7 @@ import android.app.Fragment;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -114,8 +115,8 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
     TextView day;
     @BindView(R.id.rolltext)
     TextViewSwitcher rollingText;
-    @BindView(R.id.rv)
-    RecyclerView rv;
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
     @BindView(R.id.fourthmenus)
     LinearLayout fourthmenus;
     private List<RollTextItem> data = new ArrayList<>();
@@ -316,9 +317,21 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
 
                     final List<Map> temp=(List<Map> )msg.obj;
                     if(temp.size()>0){
+
+                        //StaggeredGridLayoutManager recyclerViewLayoutManager =
+                         //       new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+                        //线性布局Manager
+                        //        LinearLayoutManager recyclerViewLayoutManager = new LinearLayoutManager(this);
+                        //        recyclerViewLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                                                //网络布局Manager
+                        GridLayoutManager recyclerViewLayoutManager = new GridLayoutManager(getActivity(),2);
+                        //给recyclerView设置LayoutManager
+                        recyclerView.setLayoutManager(recyclerViewLayoutManager);
+
+
                         MyRVAdapter adapter = new MyRVAdapter(temp,getActivity());
-                        rv.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));//设置布局管理器
-                        rv.setAdapter(adapter);
+                        //recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));//设置布局管理器
+                        recyclerView.setAdapter(adapter);
                         // 设置数据后就要给RecyclerView设置点击事件
                         adapter.setOnItemClickListener(new MyRVAdapter.ItemClickListener() {
                             @Override
@@ -452,7 +465,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
         OkHttpClient okHttpClient = new OkHttpClient();
         FormBody formBody = new FormBody.Builder()
                 .add("page", "1")
-                .add("size", "3")
+                .add("size", "4")
                 .add("ismain", "1")
                 .build();
         Request request = new Request.Builder().url(Config.url+"/listNews")
@@ -670,7 +683,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
             R.id.yjjc,R.id.yjjcprev,
             R.id.dxyyt,R.id.yhtc, R.id.sjbj,R.id.esjss,R.id.lhss,
             R.id.cskx,R.id.mflsj,R.id.gp,
-            R.id.news1,R.id.news2,R.id.news3,R.id.jlattv})//多个控件可以一起发在里面进行监听
+            R.id.news1,R.id.news2,R.id.news3,R.id.jlattv,R.id.more_shop})//多个控件可以一起发在里面进行监听
     public void btnClick(View view) {
         Intent intent = new Intent();
         String [] phonenumbers={"5059898","5059696"};
@@ -812,6 +825,12 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 break;
             case R.id.jlattv:
                 intent.setClass(getActivity(), JlattvActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.more_shop:
+                intent.setClass(getActivity(), NewsListActivity.class);
+                intent.putExtra("ismain", "1");
+                intent.putExtra("title", "优选商家");
                 startActivity(intent);
                 break;
 

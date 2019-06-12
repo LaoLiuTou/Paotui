@@ -35,6 +35,7 @@ import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
@@ -68,6 +69,7 @@ public class NewsListActivity extends Activity   {
         Intent intent = getIntent();
         String title = intent.getStringExtra("title");
         String type = intent.getStringExtra("type");
+
         top_bar_title.setText(title);
         if(type!=null&&(type.equals("1")||type.equals("2")||type.equals("5")
                 ||type.equals("6")||type.equals("7")||type.equals("11")
@@ -75,6 +77,7 @@ public class NewsListActivity extends Activity   {
                 ||type.equals("24")||type.equals("25")||type.equals("26")||type.equals("27"))){
             addleaving.setVisibility(View.VISIBLE);
         }
+
 
     }
     /**
@@ -108,14 +111,21 @@ public class NewsListActivity extends Activity   {
         xRefreshView.startRefresh();
         Intent intent = getIntent();
         String type = intent.getStringExtra("type");
+        String ismain = intent.getStringExtra("ismain");
         final Message message=Message.obtain();
 
         OkHttpClient okHttpClient = new OkHttpClient();
-        FormBody formBody = new FormBody.Builder()
-                .add("page", page+"")
-                .add("size", size+"")
-                .add("type", type)
-                .build();
+
+        FormBody.Builder builder = new FormBody.Builder();
+        builder.add("page", page+"");
+        builder.add("size", size+"");
+        if(type!=null){
+            builder.add("type", type);
+        }
+        if(ismain!=null){
+            builder.add("ismain", ismain);
+        }
+        RequestBody formBody=builder.build();
         Request request = new Request.Builder().url(Config.url+"/listNews")
                 .addHeader("source", Config.REQUEST_HEADER)// 自定义的header
                 .post(formBody)

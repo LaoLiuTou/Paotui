@@ -40,26 +40,22 @@ public class MyRVAdapter extends RecyclerView.Adapter<MyRVAdapter.ViewHolder> {
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.layout_rv_item,parent,false);
         ViewHolder holder = new ViewHolder(view);
-        holder.rv_item_image = (ImageView) view.findViewById(R.id.rv_item_image);
-        holder.rv_item_tv = (TextView) view.findViewById(R.id.rv_item_tv);
-        holder.rv_item_time = (TextView) view.findViewById(R.id.rv_item_time);
-        holder.bottomline = (TextView) view.findViewById(R.id.bottomline);
+        holder.image_item = (ImageView) view.findViewById(R.id.image_item);
+        holder.name_item = (TextView) view.findViewById(R.id.name_item);
         return holder;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         Map item = list.get(position);
-        Glide.with(context).load(Config.url+item.get("image").toString()).into(holder.rv_item_image);
-        holder.rv_item_tv.setText(item.get("title").toString());
-        holder.rv_item_time.setText("发布时间："+item.get("c_dt").toString());
-        if(position==2){
-            holder.bottomline.setVisibility(View.GONE);
-        }
+        Glide.with(context).load(Config.url+item.get("image").toString()).into(holder.image_item);
+        holder.name_item.setText(item.get("title").toString());
+        //holder.rv_item_time.setText("发布时间："+item.get("c_dt").toString());
+
 
         // 点击事件一般都写在绑定数据这里，当然写到上边的创建布局时候也是可以的
         if (mItemClickListener != null){
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
+            holder.image_item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     // 这里利用回调来给RecyclerView设置点击事件
@@ -78,10 +74,8 @@ public class MyRVAdapter extends RecyclerView.Adapter<MyRVAdapter.ViewHolder> {
         public ViewHolder(View itemView) {
             super(itemView);
         }
-        ImageView rv_item_image;
-        TextView rv_item_tv;
-        TextView rv_item_time;
-        TextView bottomline;
+        ImageView image_item;
+        TextView name_item;
     }
 
 }
