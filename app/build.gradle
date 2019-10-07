@@ -9,12 +9,11 @@ android {
             storePassword '13028775'
         }
     }
-    compileSdkVersion 24
-    buildToolsVersion "25.0.0"
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.lt.paotui"
         minSdkVersion 14
-        targetSdkVersion 24
+        targetSdkVersion 28
         versionCode 26
         versionName "1.3.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -32,31 +31,32 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:24.2.1'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
     //RecyclerView and CardView
-    compile 'com.android.support:cardview-v7:24.2.1'
-    //    compile 'com.android.support:recyclerview-v7:25.3.1'
+    implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
     //Fresco
-    compile 'com.facebook.fresco:fresco:1.2.0'
-    testCompile 'junit:junit:4.12'
+    implementation 'com.facebook.fresco:fresco:1.2.0'
+    testImplementation 'junit:junit:4.12'
     //compile  'com.youth.banner:banner:1.4.9'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'com.jakewharton:butterknife:8.1.0'
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.jakewharton:butterknife:8.1.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.1.0'
-    compile 'com.squareup.okhttp3:okhttp:3.3.1'
-    compile project(path: ':zxing-simplify')
-    compile project(path: ':base_dialog')
-    compile project(path: ':xrefreshview')
-    compile project(path: ':pictureselector')
-    compile project(path: ':banner')
-    compile project(path: ':mainnavigatetabbar')
-    compile 'com.alibaba:fastjson:1.1.55.android'
-    compile 'de.hdodenhof:circleimageview:2.1.0'
-    compile 'com.makeramen:roundedimageview:2.3.0'
-    compile 'com.just.agentweb:agentweb:4.0.3-alpha@aar'
-    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+    implementation 'com.squareup.okhttp3:okhttp:3.3.1'
+    implementation project(path: ':zxing-simplify')
+    implementation project(path: ':base_dialog')
+    implementation project(path: ':xrefreshview')
+    implementation project(path: ':pictureselector')
+    implementation project(path: ':banner')
+    implementation project(path: ':mainnavigatetabbar')
+    implementation project(path: ':xrecyclerview')
+    implementation 'com.alibaba:fastjson:1.1.55.android'
+    implementation 'de.hdodenhof:circleimageview:2.1.0'
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'com.just.agentweb:agentweb:4.0.3-alpha@aar'
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
 }
