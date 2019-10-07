@@ -54,6 +54,9 @@
         <activity android:name=".activity.LeavingDetailActivity"/>
         <activity android:name=".activity.AntugovActivity"/>
         <activity android:name=".activity.JlattvActivity"/>
+        <activity android:name=".activity.GoodsActivity"/>
+        <activity android:name=".activity.BmfwActivity"/>
+        <activity android:name=".activity.LhssActivity"/>
         <activity android:name=".wxapi.WXPayActivity">
 
         </activity>

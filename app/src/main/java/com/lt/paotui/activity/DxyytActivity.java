@@ -235,7 +235,7 @@ public class DxyytActivity extends Activity {
         });
     }
 
-    @OnClick({R.id.top_back_btn,R.id.hfcx,R.id.kdyw,R.id.tccx})
+    @OnClick({R.id.top_back_btn,R.id.hfcx,R.id.kdyw,R.id.tccx,R.id.jm})
     public void btnClick(View view) {
 
         Intent intent = new Intent();
@@ -251,6 +251,7 @@ public class DxyytActivity extends Activity {
                 break;
             case R.id.tccx:
                 showActionSheet();
+
                 break;
             default:
                 break;

@@ -193,17 +193,17 @@
                 android:orientation="vertical"
                 android:layout_weight="1"
                 android:clickable="true"
-                android:id="@+id/bmxxg">
+                android:id="@+id/esc">
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginTop="10dp"
                     android:scaleType="fitXY"
-                    android:src="@mipmap/bianminxinxigang" />
+                    android:src="@mipmap/ershouche" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="便民信息港"
+                    android:text="二手车"
                     android:layout_marginTop="5dp"
                     android:textSize="14dp"
                     android:layout_marginBottom="10dp"/>
@@ -216,8 +216,20 @@
                 android:orientation="vertical"
                 android:layout_weight="1"
                 android:clickable="true"
-                 >
-
+                android:id="@+id/jz">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/jianzhi" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="兼职"
+                    android:layout_marginTop="5dp"
+                    android:textSize="14dp"
+                    android:layout_marginBottom="10dp"/>
             </LinearLayout>
             <LinearLayout
                 android:background="@drawable/layout_selected_bg"
@@ -227,8 +239,20 @@
                 android:orientation="vertical"
                 android:layout_weight="1"
                 android:clickable="true"
-                 >
-
+                android:id="@+id/hmxx">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/huiminxinxi" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="惠民信息"
+                    android:layout_marginTop="5dp"
+                    android:textSize="14dp"
+                    android:layout_marginBottom="10dp"/>
             </LinearLayout>
         </LinearLayout>
 

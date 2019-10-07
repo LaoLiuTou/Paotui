@@ -355,17 +355,17 @@
                 android:orientation="vertical"
                 android:layout_weight="1"
                 android:clickable="true"
-                android:id="@+id/gp">
+                android:id="@+id/bmfw">
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginTop="10dp"
                     android:scaleType="fitXY"
-                    android:src="@mipmap/goupiao" />
+                    android:src="@mipmap/bianminfuwu" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="购票"
+                    android:text="便民服务"
                     android:layout_marginTop="5dp"
                     android:textSize="14dp"
                     android:layout_marginBottom="10dp"/>
@@ -377,6 +377,109 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/thirdmenus"
+            android:background="@color/color_white"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:background="@drawable/layout_selected_bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:id="@+id/wgsh">
+
+                <ImageView
+                    android:layout_width="27dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/wugishenghuo" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5G生活"
+                    android:layout_marginTop="5dp"
+                    android:textSize="14dp"
+                    android:layout_marginBottom="10dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:background="@drawable/layout_selected_bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:id="@+id/yjcs">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/yijiachaoshi" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="翼家超市"
+                    android:layout_marginTop="5dp"
+                    android:textSize="14dp"
+                    android:layout_marginBottom="10dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:background="@drawable/layout_selected_bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:id="@+id/tjcx">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/tejiacuxiao" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="特价促销"
+                    android:layout_marginTop="5dp"
+                    android:textSize="14dp"
+                    android:layout_marginBottom="10dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:background="@drawable/layout_selected_bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:id="@+id/xyk">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/xinyongka" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="信用卡"
+                    android:layout_marginTop="5dp"
+                    android:textSize="14dp"
+                    android:layout_marginBottom="10dp"/>
+            </LinearLayout>
+        </LinearLayout>
+        <!--第五行-->
+        <LinearLayout
+            android:id="@+id/fifthmenus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fourthmenus"
             android:background="@drawable/corner_view"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
@@ -398,15 +501,15 @@
                     android:textSize="14dp"
                     android:layout_marginBottom="10dp"/>
 
-                <ImageView
+                <TextView
                     android:id="@+id/more_shop"
-                    android:layout_width="25dp"
+                    android:layout_width="60dp"
                     android:layout_height="25dp"
-                    android:gravity="center"
+                    android:gravity="right"
+                    android:text="更多"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="10dp"
-                    android:src="@mipmap/more_icon" />
+                    android:layout_marginRight="10dp"/>
             </RelativeLayout>
 
             <android.support.v7.widget.RecyclerView
@@ -418,12 +521,12 @@
                 android:background="@color/color_white" />
 
         </LinearLayout>
-        <!--第五行-->
+        <!--第六行-->
         <LinearLayout
-            android:id="@+id/fifthmenus"
+            android:id="@+id/sixthmenus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/fourthmenus"
+            android:layout_below="@+id/fifthmenus"
             android:background="@color/color_white"
             android:paddingTop="10dp"
             android:layout_marginTop="10dp"
@@ -513,12 +616,12 @@
             </LinearLayout>
 
         </LinearLayout>
-        <!--第六行-->
+        <!--第七行-->
         <LinearLayout
-            android:id="@+id/sixthmenus"
+            android:id="@+id/seventhmenus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/fifthmenus"
+            android:layout_below="@+id/sixthmenus"
             android:background="@color/color_white"
             android:gravity="center"
             android:orientation="horizontal">
@@ -528,12 +631,12 @@
                 android:layout_height="wrap_content"
                 android:src="@mipmap/fifth1"/>
         </LinearLayout>
-        <!--第七行-->
+        <!--第八行-->
         <LinearLayout
-            android:id="@+id/seventhmenus"
+            android:id="@+id/eighthmenus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/sixthmenus"
+            android:layout_below="@+id/seventhmenus"
             android:background="@color/color_white"
             android:gravity="center"
             android:layout_marginTop="5dp"

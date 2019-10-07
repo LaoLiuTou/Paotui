@@ -42,9 +42,12 @@ import com.hb.dialog.myDialog.MyAlertDialog;
 import com.hb.dialog.myDialog.MyAlertInputDialog;
 import com.lt.paotui.activity.AntugovActivity;
 import com.lt.paotui.activity.BannerDetailActivity;
+import com.lt.paotui.activity.BmfwActivity;
 import com.lt.paotui.activity.CskxActivity;
 import com.lt.paotui.activity.DxyytActivity;
+import com.lt.paotui.activity.GoodsActivity;
 import com.lt.paotui.activity.JlattvActivity;
+import com.lt.paotui.activity.LhssActivity;
 import com.lt.paotui.activity.LoginActivity;
 import com.lt.paotui.activity.MyinfoActivity;
 import com.lt.paotui.activity.NewsDetailActivity;
@@ -682,7 +685,8 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
     @OnClick({R.id.top_left_btn,R.id.first1,R.id.first2,R.id.first3,
             R.id.yjjc,R.id.yjjcprev,
             R.id.dxyyt,R.id.yhtc, R.id.sjbj,R.id.esjss,R.id.lhss,
-            R.id.cskx,R.id.mflsj,R.id.gp,
+            R.id.cskx,R.id.mflsj,R.id.bmfw,
+            R.id.wgsh,R.id.yjcs,R.id.tjcx,R.id.xyk,
             R.id.news1,R.id.news2,R.id.news3,R.id.jlattv,R.id.more_shop})//多个控件可以一起发在里面进行监听
     public void btnClick(View view) {
         Intent intent = new Intent();
@@ -770,15 +774,15 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 startActivity(intent);
                 break;
             case R.id.esjss:
-                intent.setClass(getActivity(), NewsListActivity.class);
-                intent.putExtra("type", "7");
+                intent.setClass(getActivity(), GoodsActivity.class);
+                intent.putExtra("type", "1");
                 intent.putExtra("title", "二手机收售");
                 startActivity(intent);
                 break;
             case R.id.lhss:
-                intent.setClass(getActivity(), NewsListActivity.class);
-                intent.putExtra("type", "11");
-                intent.putExtra("title", "靓号收集");
+                intent.setClass(getActivity(), LhssActivity.class);
+                //intent.putExtra("type", "11");
+                //intent.putExtra("title", "靓号收集");
                 startActivity(intent);
                 break;
             case R.id.cskx:
@@ -786,22 +790,15 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 startActivity(intent);
                 break;
             case R.id.mflsj:
-                intent.setClass(getActivity(), NewsListActivity.class);
-                intent.putExtra("type", "2");
+
+                intent.setClass(getActivity(), GoodsActivity.class);
+                intent.putExtra("type", "3");
                 intent.putExtra("title", "免费领手机");
                 startActivity(intent);
                 break;
-            case R.id.gp:
-                if((boolean)SPUtils.get(getActivity(),"islogin",false)){
-                    intent.setClass(getActivity(), TicketActivity.class);
-                    intent.putExtra("type", "9");
-                    intent.putExtra("title", "购票留言");
-                    startActivity(intent);
-                }
-                else{
-                    showUnloginDialog();
-                }
-
+            case R.id.bmfw:
+                intent.setClass(getActivity(), BmfwActivity.class);
+                startActivity(intent);
                 break;
             case R.id.news1:
                 intent.setClass(getActivity(), NewsListActivity.class);
@@ -833,6 +830,22 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 intent.putExtra("title", "优选商家");
                 startActivity(intent);
                 break;
+            case R.id.wgsh:
+                Toast.makeText(getActivity(),"正在开发中。。。",Toast.LENGTH_LONG).show();
+                break;
+            case R.id.yjcs:
+                Toast.makeText(getActivity(),"正在开发中。。。",Toast.LENGTH_LONG).show();
+                break;
+            case R.id.tjcx:
+                Toast.makeText(getActivity(),"正在开发中。。。",Toast.LENGTH_LONG).show();
+                break;
+            case R.id.xyk:
+                intent.setClass(getActivity(), NewsListActivity.class);
+                intent.putExtra("type", "33");
+                intent.putExtra("title", "信用卡");
+                startActivity(intent);
+                break;
+
 
             default:
                 break;

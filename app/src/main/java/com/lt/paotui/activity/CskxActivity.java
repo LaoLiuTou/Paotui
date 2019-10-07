@@ -28,7 +28,7 @@ public class CskxActivity extends Activity {
         top_bar_title.setText("城市快讯");
     }
     @OnClick({R.id.top_back_btn,R.id.fwxx,R.id.zpqz,R.id.eswp,R.id.jypx,R.id.ys,
-        R.id.cdcs,R.id.bmxxg })
+        R.id.cdcs,R.id.esc, R.id.jz,R.id.hmxx})
     public void btnClick(View view) {
 
         Intent intent = new Intent();
@@ -72,13 +72,24 @@ public class CskxActivity extends Activity {
                 intent.putExtra("title", "出兑出售");
                 startActivity(intent);
                 break;
-            case R.id.bmxxg:
+            case R.id.esc:
                 intent.setClass(this, NewsListActivity.class);
-                intent.putExtra("type", "27");
-                intent.putExtra("title", "便民信息港");
+                intent.putExtra("type", "28");
+                intent.putExtra("title", "二手车");
                 startActivity(intent);
                 break;
-
+            case R.id.jz:
+                intent.setClass(this, NewsListActivity.class);
+                intent.putExtra("type", "29");
+                intent.putExtra("title", "兼职");
+                startActivity(intent);
+                break;
+            case R.id.hmxx:
+                intent.setClass(this, NewsListActivity.class);
+                intent.putExtra("type", "30");
+                intent.putExtra("title", "惠民信息");
+                startActivity(intent);
+                break;
             default:
                 break;
         }
