@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -55,6 +56,7 @@
         <activity android:name=".activity.AntugovActivity"/>
         <activity android:name=".activity.JlattvActivity"/>
         <activity android:name=".activity.GoodsActivity"/>
+        <activity android:name=".activity.GoodsDetailActivity"/>
         <activity android:name=".activity.BmfwActivity"/>
         <activity android:name=".activity.LhssActivity"/>
         <activity android:name=".wxapi.WXPayActivity">

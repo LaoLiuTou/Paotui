@@ -60,7 +60,7 @@ public class GoodsActivity extends Activity {
         ButterKnife.bind(this);
         Intent intent = getIntent();
         String title = intent.getStringExtra("title");
-        String type = intent.getStringExtra("type");
+        //String type = intent.getStringExtra("type");
 
         top_bar_title.setText(title);
         initListView();
@@ -103,18 +103,31 @@ public class GoodsActivity extends Activity {
     };
     private void getGoodsData(final int page,int size){
 
-        Map userInfo = JSON.parseObject(SPUtils.get(GoodsActivity.this,"userinfo","{}").toString());
-        final  String cus_id=userInfo.get("id").toString();
+        ///Map userInfo = JSON.parseObject(SPUtils.get(GoodsActivity.this,"userinfo","{}").toString());
+        //final  String cus_id=userInfo.get("id").toString();
 
         final Message message=Message.obtain();
         Intent intent = getIntent();
         String type = intent.getStringExtra("type");
+        String subtype = intent.getStringExtra("subtype");
         OkHttpClient okHttpClient = new OkHttpClient();
-        FormBody formBody = new FormBody.Builder()
-                .add("page", page+"")
-                .add("size", size+"")
-                .add("type", type)
-                .build();
+        FormBody formBody =null;
+        if(type.equals("2")){
+            formBody = new FormBody.Builder()
+                    .add("page", page+"")
+                    .add("size", size+"")
+                    .add("type", type)
+                    .add("subtype", subtype)
+                    .build();
+        }
+        else{
+            formBody = new FormBody.Builder()
+                    .add("page", page+"")
+                    .add("size", size+"")
+                    .add("type", type)
+                    .build();
+        }
+
         Request request = new Request.Builder().url(Config.url+"/listGoods")
                 .addHeader("source", Config.REQUEST_HEADER)// 自定义的header
                 .post(formBody)
@@ -177,21 +190,19 @@ public class GoodsActivity extends Activity {
         recycler.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
         //recycler.setArrowImageView(R.drawable.ic_launcher_background);
 
-//         单纯的线性布局
-//        linAdapter = new MyLinAdapter(list, this);
-//        recycler.setAdapter(linAdapter);
-
         goodAdapter = new MyGoodAdapter(list, this, 2);
         recycler.setAdapter(goodAdapter);
 
         goodAdapter.setOnItemClickListener(new LeavingAdapter.ItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                /*Intent intent = new Intent();
-                intent.setClass(GoodsActivity.this, LeavingDetailActivity.class);
-                String order_id=list.get(position).get("id").toString();
-                startActivity(intent);*/
-                Toast.makeText(GoodsActivity.this,"正在开发中。。。！",Toast.LENGTH_LONG).show();
+                Intent intent = new Intent();
+                intent.setClass(GoodsActivity.this, GoodsDetailActivity.class);
+                String goods_id=list.get(position).get("id").toString();
+                intent.putExtra("goods_id", goods_id);
+                startActivity(intent);
+
+                //Toast.makeText(GoodsActivity.this,"正在开发中。。。！",Toast.LENGTH_LONG).show();
             }
         });
 //        设置上拉刷新，下拉加载

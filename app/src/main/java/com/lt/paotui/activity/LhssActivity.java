@@ -38,37 +38,43 @@ public class LhssActivity extends Activity {
                 break;
             case R.id.dx:
                 intent.setClass(this, GoodsActivity.class);
-                intent.putExtra("type", "21");
+                intent.putExtra("type", "2");
+                intent.putExtra("subtype", "21");
                 intent.putExtra("title", "靓号收售-电信");
                 startActivity(intent);
                 break;
             case R.id.yd:
                 intent.setClass(this, GoodsActivity.class);
-                intent.putExtra("type", "22");
+                intent.putExtra("type", "2");
+                intent.putExtra("subtype", "22");
                 intent.putExtra("title", "靓号收售-移动");
                 startActivity(intent);
                 break;
             case R.id.lt:
                 intent.setClass(this, GoodsActivity.class);
-                intent.putExtra("type", "22");
+                intent.putExtra("type", "2");
+                intent.putExtra("subtype", "23");
                 intent.putExtra("title", "靓号收售-联通");
                 startActivity(intent);
                 break;
             case R.id.xlt:
                 intent.setClass(this, GoodsActivity.class);
-                intent.putExtra("type", "23");
+                intent.putExtra("type", "2");
+                intent.putExtra("subtype", "24");
                 intent.putExtra("title", "靓号收售-小灵通");
                 startActivity(intent);
                 break;
             case R.id.qqh:
                 intent.setClass(this, GoodsActivity.class);
-                intent.putExtra("type", "24");
+                intent.putExtra("type", "2");
+                intent.putExtra("subtype", "25");
                 intent.putExtra("title", "靓号收售-亲情号");
                 startActivity(intent);
                 break;
             case R.id.ylhm:
                 intent.setClass(this, GoodsActivity.class);
-                intent.putExtra("type", "25");
+                intent.putExtra("type", "2");
+                intent.putExtra("subtype", "26");
                 intent.putExtra("title", "靓号收售-优良号码");
                 startActivity(intent);
                 break;
