@@ -41,7 +41,7 @@ public class BmfwActivity extends Activity {
                 finish();
                 break;
             case R.id.jzfw:
-                intent.setClass(this, NewsListActivity.class);
+                intent.setClass(this, CouponListActivity.class);
                 intent.putExtra("type", "31");
                 intent.putExtra("title", "家政服务");
                 startActivity(intent);

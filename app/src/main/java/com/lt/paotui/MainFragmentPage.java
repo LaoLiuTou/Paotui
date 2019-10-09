@@ -43,6 +43,7 @@ import com.hb.dialog.myDialog.MyAlertInputDialog;
 import com.lt.paotui.activity.AntugovActivity;
 import com.lt.paotui.activity.BannerDetailActivity;
 import com.lt.paotui.activity.BmfwActivity;
+import com.lt.paotui.activity.CouponListActivity;
 import com.lt.paotui.activity.CskxActivity;
 import com.lt.paotui.activity.DxyytActivity;
 import com.lt.paotui.activity.GoodsActivity;
@@ -825,7 +826,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 startActivity(intent);
                 break;
             case R.id.more_shop:
-                intent.setClass(getActivity(), NewsListActivity.class);
+                intent.setClass(getActivity(), CouponListActivity.class);
                 intent.putExtra("ismain", "1");
                 intent.putExtra("title", "优选商家");
                 startActivity(intent);
@@ -840,7 +841,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 Toast.makeText(getActivity(),"正在开发中。。。",Toast.LENGTH_LONG).show();
                 break;
             case R.id.xyk:
-                intent.setClass(getActivity(), NewsListActivity.class);
+                intent.setClass(getActivity(), CouponListActivity.class);
                 intent.putExtra("type", "33");
                 intent.putExtra("title", "信用卡");
                 startActivity(intent);
