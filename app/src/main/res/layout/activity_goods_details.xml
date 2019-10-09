@@ -33,10 +33,10 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:layout_marginLeft="15dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerInParent="true"
+                android:textColor="@color/color_333333"
                 android:text="品牌cccccccc"
                 android:textSize="16dp"/>
 
@@ -63,7 +63,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerInParent="true"
                     android:text="品牌"
-                    android:textSize="16dp"/>
+                    android:textSize="14dp"/>
                 <TextView
                     android:id="@+id/pp"
                     android:layout_width="wrap_content"
@@ -72,7 +72,7 @@
                     android:layout_marginRight="15dp"
                     android:layout_alignParentLeft="true"
                     android:layout_centerInParent="true"
-                    android:textSize="16dp"/>
+                    android:textSize="14dp"/>
             </RelativeLayout>
             <RelativeLayout
                 android:background="@drawable/corner_view"
@@ -86,7 +86,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerInParent="true"
                     android:text="型号"
-                    android:textSize="16dp"/>
+                    android:textSize="14dp"/>
                 <TextView
                     android:id="@+id/xh"
                     android:layout_width="wrap_content"
@@ -95,7 +95,7 @@
                     android:layout_marginRight="15dp"
                     android:layout_alignParentLeft="true"
                     android:layout_centerInParent="true"
-                    android:textSize="16dp"/>
+                    android:textSize="14dp"/>
             </RelativeLayout>
             <RelativeLayout
                 android:background="@drawable/corner_view"
@@ -109,7 +109,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerInParent="true"
                     android:text="成色"
-                    android:textSize="16dp"/>
+                    android:textSize="14dp"/>
                 <TextView
                     android:id="@+id/cs"
                     android:layout_width="wrap_content"
@@ -118,7 +118,7 @@
                     android:layout_marginRight="15dp"
                     android:layout_alignParentLeft="true"
                     android:layout_centerInParent="true"
-                    android:textSize="16dp"/>
+                    android:textSize="14dp"/>
             </RelativeLayout>
             <RelativeLayout
                 android:background="@drawable/corner_view"
@@ -132,7 +132,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerInParent="true"
                     android:text="配置"
-                    android:textSize="16dp"/>
+                    android:textSize="14dp"/>
                 <TextView
                     android:id="@+id/pz"
                     android:layout_width="wrap_content"
@@ -141,7 +141,7 @@
                     android:layout_marginRight="15dp"
                     android:layout_alignParentLeft="true"
                     android:layout_centerInParent="true"
-                    android:textSize="16dp"/>
+                    android:textSize="14dp"/>
             </RelativeLayout>
             <RelativeLayout
                 android:background="@drawable/corner_view"
@@ -155,7 +155,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerInParent="true"
                     android:text="网络"
-                    android:textSize="16dp"/>
+                    android:textSize="14dp"/>
                 <TextView
                     android:id="@+id/wl"
                     android:layout_width="wrap_content"
@@ -164,7 +164,7 @@
                     android:layout_marginRight="15dp"
                     android:layout_alignParentLeft="true"
                     android:layout_centerInParent="true"
-                    android:textSize="16dp"/>
+                    android:textSize="14dp"/>
             </RelativeLayout>
 
         </LinearLayout>
