@@ -62,9 +62,15 @@ public class MyGoodAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, final int i) {
         //判断前一个参数是否是后一个参数的一个实例
         if (viewHolder instanceof LineHolder) {
-            ((LineHolder) viewHolder).lin_item_price.setText("型号："+list.get(i).get("brand")+" "+list.get(i).get("model")+"");
             ((LineHolder) viewHolder).lin_item_title.setText(list.get(i).get("title")+"");
-            ((LineHolder) viewHolder).lin_item_salenum.setText("成色："+list.get(i).get("oldlevel")+"");
+            ((LineHolder) viewHolder).brand.setText(list.get(i).get("brand")+"");
+            ((LineHolder) viewHolder).model.setText(list.get(i).get("model")+"");
+            ((LineHolder) viewHolder).network.setText(list.get(i).get("network")+"");
+            ((LineHolder) viewHolder).oldlevel.setText(list.get(i).get("oldlevel")+"");
+            ((LineHolder) viewHolder).configure.setText("配置："+list.get(i).get("configure")+"");
+
+
+
 
             JSONArray imageList = JSON.parseArray(list.get(i).get("banners")+"");
             Glide.with(context).load(Config.url+imageList.get(0)).into(((LineHolder) viewHolder).lin_item_img);
@@ -112,15 +118,21 @@ public class MyGoodAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         private ImageView lin_item_img;
         private TextView lin_item_title;
-        private TextView lin_item_price;
-        private TextView lin_item_salenum;
+        private TextView brand;
+        private TextView model;
+        private TextView network;
+        private TextView oldlevel;
+        private TextView configure;
 
         public LineHolder(@NonNull View itemView) {
             super(itemView);
             lin_item_img = itemView.findViewById(R.id.lin_item_img);
             lin_item_title = itemView.findViewById(R.id.lin_item_title);
-            lin_item_price = itemView.findViewById(R.id.lin_item_price);
-            lin_item_salenum = itemView.findViewById(R.id.lin_item_salenum);
+            brand = itemView.findViewById(R.id.brand);
+            model = itemView.findViewById(R.id.model);
+            network = itemView.findViewById(R.id.network);
+            oldlevel = itemView.findViewById(R.id.oldlevel);
+            configure = itemView.findViewById(R.id.configure);
         }
     }
 

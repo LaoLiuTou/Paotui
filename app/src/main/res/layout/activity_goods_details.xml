@@ -37,7 +37,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerInParent="true"
                 android:textColor="@color/color_333333"
-                android:text="品牌cccccccc"
+                android:text=""
                 android:textSize="16dp"/>
 
         </RelativeLayout>

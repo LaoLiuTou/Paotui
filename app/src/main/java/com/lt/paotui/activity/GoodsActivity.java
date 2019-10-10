@@ -181,10 +181,10 @@ public class GoodsActivity extends Activity {
 
 
         //       这是一个线性布局
-        //LinearLayoutManager manager = new LinearLayoutManager(this);
-        //recycler.setLayoutManager(manager);
+         LinearLayoutManager manager = new LinearLayoutManager(this);
+         recycler.setLayoutManager(manager);
 
-        recycler.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+        //recycler.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
         //recycler.setAdapter(new StaggeredGridAdapter(PuRecyclerViewActivity.this));
 
 
@@ -196,7 +196,7 @@ public class GoodsActivity extends Activity {
         recycler.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
         //recycler.setArrowImageView(R.drawable.ic_launcher_background);
 
-        goodAdapter = new MyGoodAdapter(list, this, 2);
+        goodAdapter = new MyGoodAdapter(list, this, 1);
         recycler.setAdapter(goodAdapter);
 
         goodAdapter.setOnItemClickListener(new LeavingAdapter.ItemClickListener() {
