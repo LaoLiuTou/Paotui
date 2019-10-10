@@ -8,6 +8,7 @@ import android.os.Message;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -182,8 +183,13 @@ public class GoodsActivity extends Activity {
         //       这是一个线性布局
         //LinearLayoutManager manager = new LinearLayoutManager(this);
         //recycler.setLayoutManager(manager);
-        RecyclerView.LayoutManager manager = new GridLayoutManager(this, 2);
-        recycler.setLayoutManager(manager);
+
+        recycler.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+        //recycler.setAdapter(new StaggeredGridAdapter(PuRecyclerViewActivity.this));
+
+
+        //RecyclerView.LayoutManager manager = new GridLayoutManager(this, 2);
+        //recycler.setLayoutManager(manager);
 //        下拉刷新的代码
 //        添加的一些样式
         recycler.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
