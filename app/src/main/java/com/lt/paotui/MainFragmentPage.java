@@ -472,7 +472,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 .add("size", "4")
                 .add("ismain", "1")
                 .build();
-        Request request = new Request.Builder().url(Config.url+"/listNews")
+        Request request = new Request.Builder().url(Config.url+"/listCoupon")
                 .addHeader("source", Config.REQUEST_HEADER)// 自定义的header
                 .post(formBody)
                 .build();

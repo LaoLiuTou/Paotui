@@ -228,7 +228,7 @@ public class CouponListActivity extends Activity   {
             @Override
             public void onItemClick(int position) {
                 Intent intent = new Intent();
-                intent.setClass(CouponListActivity.this, NewsDetailActivity.class);
+                intent.setClass(CouponListActivity.this, CouponDetailActivity.class);
                 String order_id=listData.get(position).get("id").toString();
                 intent.putExtra("news_id", order_id);
                 startActivity(intent);

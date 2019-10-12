@@ -41,8 +41,9 @@
         <activity android:name=".activity.OrderDetailActivity"/>
         <activity android:name=".activity.OrderListActivity"/>
         <activity android:name=".activity.NewsListActivity"/>
-        <activity android:name=".activity.CouponListActivity"/>
         <activity android:name=".activity.NewsDetailActivity"/>
+        <activity android:name=".activity.CouponListActivity"/>
+        <activity android:name=".activity.CouponDetailActivity"/>
         <activity android:name=".activity.MyinfoActivity"/>
         <activity android:name=".activity.BannerDetailActivity"/>
         <activity android:name=".activity.RaffleActivity"/>

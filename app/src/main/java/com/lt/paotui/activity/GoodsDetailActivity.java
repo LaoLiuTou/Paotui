@@ -33,6 +33,8 @@ import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
+import com.zzhoujay.richtext.ImageHolder;
+import com.zzhoujay.richtext.RichText;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -128,8 +130,17 @@ public class GoodsDetailActivity extends Activity implements OnBannerListener {
                     cstextView.setText(dataMap.get("oldlevel")+"");
                     pztextView.setText(dataMap.get("configure")+"");
                     wltextView.setText(dataMap.get("network")+"");
-                    CharSequence desc = Html.fromHtml(dataMap.get("content")+"");
-                    content.setText(desc);
+                    //CharSequence desc = Html.fromHtml(dataMap.get("content")+"");
+                    //content.setText(desc);
+                    //在第一次调用RichText之前先调用RichText.initCacheDir()方法设置缓存目录，不设置会报错
+                    RichText.initCacheDir(GoodsDetailActivity.this);
+                    //这里是取后台返回的集合数据
+
+                    RichText.from(dataMap.get("content")+"").bind(this)
+                            .showBorder(false)
+                            .size(ImageHolder.MATCH_PARENT, ImageHolder.WRAP_CONTENT)
+                            .into(content);
+
                     break;
                 case 1://轮播图失败
                     Toast.makeText(GoodsDetailActivity.this,"获取数据失败!!!",Toast.LENGTH_LONG).show();
@@ -141,6 +152,8 @@ public class GoodsDetailActivity extends Activity implements OnBannerListener {
             super.handleMessage(msg);
         }
     };
+
+
     private void initBanner() {
 
         //设置内置样式，共有六种可以点入方法内逐一体验使用。
@@ -239,5 +252,12 @@ public class GoodsDetailActivity extends Activity implements OnBannerListener {
             default:
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //结束时清空内容
+        RichText.clear(this);
     }
 }

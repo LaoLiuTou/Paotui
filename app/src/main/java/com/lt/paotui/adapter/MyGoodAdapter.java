@@ -47,9 +47,11 @@ public class MyGoodAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         RecyclerView.ViewHolder holder = null;
         switch (i) {
             case Line:
-                view = LayoutInflater.from(context).inflate(R.layout.item_goods_xrecyclelin, null);
+                view = LayoutInflater.from(context).inflate(R.layout.item_goods_xrecyclelin,null);
+
                 holder = new LineHolder(view);
                 break;
+
             case Grid:
                 view = LayoutInflater.from(context).inflate(R.layout.item_goods_xrecyclegrid, null);
                 holder = new GridHolder(view);
@@ -75,9 +77,9 @@ public class MyGoodAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             JSONArray imageList = JSON.parseArray(list.get(i).get("banners")+"");
             Glide.with(context).load(Config.url+imageList.get(0)).into(((LineHolder) viewHolder).lin_item_img);
         } else {
-            ((GridHolder) viewHolder).grid_item_price.setText("型号："+list.get(i).get("brand")+" "+list.get(i).get("model")+"");
+            //((GridHolder) viewHolder).grid_item_price.setText("型号："+list.get(i).get("brand")+" "+list.get(i).get("model")+"");
             ((GridHolder) viewHolder).grid_item_title.setText(list.get(i).get("title")+"");
-            ((GridHolder) viewHolder).grid_item_salenum.setText("成色："+list.get(i).get("oldlevel")+"");
+            //((GridHolder) viewHolder).grid_item_salenum.setText("成色："+list.get(i).get("oldlevel")+"");
             JSONArray imageList = JSON.parseArray(list.get(i).get("banners")+"");
             Glide.with(context).load(Config.url+imageList.get(0)).into(((GridHolder) viewHolder).grid_item_img);
         }
@@ -141,15 +143,15 @@ public class MyGoodAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         private ImageView grid_item_img;
         private TextView grid_item_title;
-        private TextView grid_item_price;
-        private TextView grid_item_salenum;
+        //private TextView grid_item_price;
+        //private TextView grid_item_salenum;
 
         public GridHolder(@NonNull View itemView) {
             super(itemView);
             grid_item_img = itemView.findViewById(R.id.grid_item_img);
             grid_item_title = itemView.findViewById(R.id.grid_item_title);
-            grid_item_price = itemView.findViewById(R.id.grid_item_price);
-            grid_item_salenum = itemView.findViewById(R.id.grid_item_salenum);
+            //grid_item_price = itemView.findViewById(R.id.grid_item_price);
+            //grid_item_salenum = itemView.findViewById(R.id.grid_item_salenum);
         }
     }
 

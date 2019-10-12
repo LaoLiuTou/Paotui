@@ -180,9 +180,6 @@ public class GoodsActivity extends Activity {
     private void initListView(){
 
 
-        //       这是一个线性布局
-         LinearLayoutManager manager = new LinearLayoutManager(this);
-         recycler.setLayoutManager(manager);
 
         //recycler.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
         //recycler.setAdapter(new StaggeredGridAdapter(PuRecyclerViewActivity.this));
@@ -190,13 +187,32 @@ public class GoodsActivity extends Activity {
 
         //RecyclerView.LayoutManager manager = new GridLayoutManager(this, 2);
         //recycler.setLayoutManager(manager);
-//        下拉刷新的代码
-//        添加的一些样式
+
+
+
+
+        Intent intent = getIntent();
+        String type = intent.getStringExtra("type");
+        if(type.equals("1")){
+            //       这是一个线性布局
+            LinearLayoutManager manager = new LinearLayoutManager(this);
+            recycler.setLayoutManager(manager);
+            goodAdapter = new MyGoodAdapter(list, this, 1);
+
+        }
+        else if(type.equals("2")){
+            recycler.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+            goodAdapter = new MyGoodAdapter(list, this, 2);
+
+        }
+        else if(type.equals("3")){
+            recycler.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+            goodAdapter = new MyGoodAdapter(list, this, 2);
+        }
+
         recycler.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         recycler.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
         //recycler.setArrowImageView(R.drawable.ic_launcher_background);
-
-        goodAdapter = new MyGoodAdapter(list, this, 1);
         recycler.setAdapter(goodAdapter);
 
         goodAdapter.setOnItemClickListener(new LeavingAdapter.ItemClickListener() {

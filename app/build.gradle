@@ -60,4 +60,5 @@ dependencies {
     implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation 'com.just.agentweb:agentweb:4.0.3-alpha@aar'
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+    implementation 'com.zzhoujay.richtext:richtext:3.0.7'
 }
