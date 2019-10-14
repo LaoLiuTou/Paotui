@@ -638,6 +638,12 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
     }
     private void initBottomBanner() {
 
+        if(bottom_list_path.size()>0){
+            bottombanner.setVisibility(View.VISIBLE);
+        }
+        else{
+            bottombanner.setVisibility(View.GONE);
+        }
         //设置内置样式，共有六种可以点入方法内逐一体验使用。
         //banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
         bottombanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
@@ -688,7 +694,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
             R.id.dxyyt,R.id.yhtc, R.id.sjbj,R.id.esjss,R.id.lhss,
             R.id.cskx,R.id.mflsj,R.id.bmfw,
             R.id.wgsh,R.id.yjcs,R.id.tjcx,R.id.xyk,
-            R.id.news1,R.id.news2,R.id.news3,R.id.jlattv,R.id.more_shop})//多个控件可以一起发在里面进行监听
+            R.id.news1,R.id.news2,R.id.news3,R.id.jlattvimg,R.id.more_shop})//多个控件可以一起发在里面进行监听
     public void btnClick(View view) {
         Intent intent = new Intent();
         String [] phonenumbers={"5059898","5059696"};
@@ -821,7 +827,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 intent.setClass(getActivity(), AntugovActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.jlattv:
+            case R.id.jlattvimg:
                 intent.setClass(getActivity(), JlattvActivity.class);
                 startActivity(intent);
                 break;
