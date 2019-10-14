@@ -19,6 +19,8 @@ import com.lt.paotui.R;
 import com.lt.paotui.utils.Config;
 import com.lt.paotui.utils.MD5Util;
 import com.lt.paotui.utils.SPUtils;
+import com.zzhoujay.richtext.ImageHolder;
+import com.zzhoujay.richtext.RichText;
 
 import java.io.IOException;
 import java.util.Map;
@@ -61,7 +63,16 @@ public class BannerDetailActivity extends Activity {
                 case 0:
                     Map detailMap = (Map)msg.obj;
                     title.setText(detailMap.get("title").toString());
-                    content.setText(detailMap.get("content").toString());
+                    //content.setText(detailMap.get("content").toString());
+                    //在第一次调用RichText之前先调用RichText.initCacheDir()方法设置缓存目录，不设置会报错
+                    RichText.initCacheDir(BannerDetailActivity.this);
+                    //这里是取后台返回的集合数据
+
+                    RichText.from(detailMap.get("content").toString()).bind(this)
+                            .showBorder(false)
+                            .size(ImageHolder.MATCH_PARENT, ImageHolder.WRAP_CONTENT)
+                            .into(content);
+
                     Glide.with(BannerDetailActivity.this).load(Config.url+detailMap.get("image").toString()).into(image);
 
                     break;
@@ -133,5 +144,12 @@ public class BannerDetailActivity extends Activity {
 
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //结束时清空内容
+        RichText.clear(this);
     }
 }

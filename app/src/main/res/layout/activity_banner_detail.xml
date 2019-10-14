@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="@color/color_right_bg">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -11,15 +12,17 @@
         <include layout="@layout/top_bar_back"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_height="match_parent"
             android:orientation="vertical">
             <TextView
                 android:id="@+id/banner_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="18dp"
-                android:textColor="@color/color_666666"
+                android:layout_marginTop="10dp"
+                android:padding="15dp"
+                android:background="@color/color_white"
+                android:textColor="@color/color_333333"
                 android:gravity="center"
                  />
             <ImageView
@@ -30,13 +33,33 @@
                 android:layout_marginBottom="10dp"
                 android:scaleType="fitXY"
                 android:adjustViewBounds="true"/>
-            <TextView
-                android:id="@+id/banner_content"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16dp"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:clickable="true" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="---- 详细 ----"
+                    android:textSize="16dp"/>
 
-                />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+                <TextView
+                    android:id="@+id/banner_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:textSize="14dp"/>
+
+            </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
 
