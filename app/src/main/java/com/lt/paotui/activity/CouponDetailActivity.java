@@ -32,7 +32,7 @@ public class CouponDetailActivity extends Activity   {
         //加载启动界面
         setContentView(R.layout.activity_new_web);
         ButterKnife.bind(this);
-        top_bar_title.setText("资讯详情");
+        top_bar_title.setText("详情");
         Intent intent = getIntent();
         String news_id = intent.getStringExtra("news_id");
         mAgentWeb=AgentWeb.with(CouponDetailActivity.this)

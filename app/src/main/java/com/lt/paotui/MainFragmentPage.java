@@ -841,7 +841,11 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 Toast.makeText(getActivity(),"正在开发中。。。",Toast.LENGTH_LONG).show();
                 break;
             case R.id.yjcs:
-                Toast.makeText(getActivity(),"正在开发中。。。",Toast.LENGTH_LONG).show();
+                intent.setClass(getActivity(), CouponListActivity.class);
+                intent.putExtra("type", "100");
+                intent.putExtra("title", "翼家超市");
+                startActivity(intent);
+
                 break;
             case R.id.tjcx:
                 Toast.makeText(getActivity(),"正在开发中。。。",Toast.LENGTH_LONG).show();

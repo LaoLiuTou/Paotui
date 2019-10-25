@@ -189,24 +189,30 @@ public class GoodsActivity extends Activity {
         //recycler.setLayoutManager(manager);
 
 
-
+        final StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
+        manager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
 
         Intent intent = getIntent();
         String type = intent.getStringExtra("type");
         if(type.equals("1")){
             //       这是一个线性布局
-            LinearLayoutManager manager = new LinearLayoutManager(this);
-            recycler.setLayoutManager(manager);
+            LinearLayoutManager linearManager = new LinearLayoutManager(this);
+            recycler.setLayoutManager(linearManager);
             goodAdapter = new MyGoodAdapter(list, this, 1);
 
         }
         else if(type.equals("2")){
-            recycler.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+
+
+            //RecyclerView.LayoutManager manager = new GridLayoutManager(this, 2);
+            recycler.setLayoutManager(manager);
+
             goodAdapter = new MyGoodAdapter(list, this, 2);
 
         }
         else if(type.equals("3")){
-            recycler.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+
+            recycler.setLayoutManager(manager);
             goodAdapter = new MyGoodAdapter(list, this, 2);
         }
 
@@ -244,6 +250,13 @@ public class GoodsActivity extends Activity {
                 page++;
                 getGoodsData(page,size);
                 //recycler.loadMoreComplete();
+            }
+        });
+        recycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                manager.invalidateSpanAssignments();//这行主要解决了当加载更多数据时，底部需要重绘，否则布局可能衔接不上。
             }
         });
     }
