@@ -7,7 +7,13 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
     <include layout="@layout/top_bar_back"/>
-
+    <ImageView
+        android:id="@+id/grid_item_img"
+        android:src="@mipmap/fupin"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     <com.jcodecraeer.xrecyclerview.XRecyclerView
         android:id="@+id/xrecycle"
         android:paddingTop="2dp"

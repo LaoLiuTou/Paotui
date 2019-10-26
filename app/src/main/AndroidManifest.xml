@@ -58,6 +58,7 @@
         <activity android:name=".activity.AntugovActivity"/>
         <activity android:name=".activity.JlattvActivity"/>
         <activity android:name=".activity.GoodsActivity"/>
+        <activity android:name=".activity.GoodsFupinActivity"/>
         <activity android:name=".activity.GoodsDetailActivity"/>
         <activity android:name=".activity.BmfwActivity"/>
         <activity android:name=".activity.LhssActivity"/>

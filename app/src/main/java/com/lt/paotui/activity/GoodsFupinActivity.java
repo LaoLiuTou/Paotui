@@ -5,24 +5,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
-import com.just.agentweb.AgentWeb;
 import com.lt.paotui.R;
 import com.lt.paotui.adapter.LeavingAdapter;
 import com.lt.paotui.adapter.MyGoodAdapter;
 import com.lt.paotui.utils.Config;
-import com.lt.paotui.utils.SPUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -43,7 +39,7 @@ import okhttp3.Response;
  * Created by Administrator on 2019/4/16.
  */
 
-public class GoodsActivity extends Activity {
+public class GoodsFupinActivity extends Activity {
     //private TimeCount time;
     @BindView(R.id.xrecycle)
     XRecyclerView recycler;
@@ -57,7 +53,7 @@ public class GoodsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //加载启动界面
-        setContentView(R.layout.activity_goods_list);
+        setContentView(R.layout.activity_goods_fupin_list);
         ButterKnife.bind(this);
         Intent intent = getIntent();
         String title = intent.getStringExtra("title");
@@ -90,11 +86,11 @@ public class GoodsActivity extends Activity {
                 case 2:
                     recycler.refreshComplete();
                     recycler.loadMoreComplete();
-                    Toast.makeText(GoodsActivity.this, msg.obj.toString(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(GoodsFupinActivity.this, msg.obj.toString(),Toast.LENGTH_LONG).show();
                     break;
                 case 3:
                     recycler.refreshComplete();
-                    Toast.makeText(GoodsActivity.this,"暂无更多数据！",Toast.LENGTH_LONG).show();
+                    Toast.makeText(GoodsFupinActivity.this,"暂无更多数据！",Toast.LENGTH_LONG).show();
                     break;
                 default:
                     break;
@@ -230,7 +226,7 @@ public class GoodsActivity extends Activity {
             @Override
             public void onItemClick(int position) {
                 Intent intent = new Intent();
-                intent.setClass(GoodsActivity.this, GoodsDetailActivity.class);
+                intent.setClass(GoodsFupinActivity.this, GoodsDetailActivity.class);
                 String goods_id=list.get(position).get("id").toString();
                 intent.putExtra("goods_id", goods_id);
                 startActivity(intent);

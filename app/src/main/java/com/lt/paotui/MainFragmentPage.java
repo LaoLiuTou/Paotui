@@ -47,6 +47,7 @@ import com.lt.paotui.activity.CouponListActivity;
 import com.lt.paotui.activity.CskxActivity;
 import com.lt.paotui.activity.DxyytActivity;
 import com.lt.paotui.activity.GoodsActivity;
+import com.lt.paotui.activity.GoodsFupinActivity;
 import com.lt.paotui.activity.JlattvActivity;
 import com.lt.paotui.activity.LhssActivity;
 import com.lt.paotui.activity.LoginActivity;
@@ -808,9 +809,15 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 startActivity(intent);
                 break;
             case R.id.news1:
-                intent.setClass(getActivity(), NewsListActivity.class);
+                /*intent.setClass(getActivity(), NewsListActivity.class);
                 intent.putExtra("type", "1");
                 intent.putExtra("title", "电信资讯");
+                startActivity(intent);*/
+
+
+                intent.setClass(getActivity(), GoodsFupinActivity.class);
+                intent.putExtra("type", "4");
+                intent.putExtra("title", "扶贫专区");
                 startActivity(intent);
                 break;
             case R.id.news2:
