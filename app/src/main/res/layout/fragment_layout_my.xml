@@ -286,6 +286,37 @@
                     android:src="@mipmap/right" />
             </RelativeLayout>
             <RelativeLayout
+                android:id="@+id/qrcodefx"
+                android:background="@drawable/corner_view"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:clickable="true" >
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="10dp"
+                    android:scaleType="fitXY"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/xiugaigeren" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="45dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:text="二维码分享"
+                    android:textSize="16dp"/>
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_centerInParent="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="8dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/right" />
+            </RelativeLayout>
+            <RelativeLayout
                 android:id="@+id/bbjs"
                 android:background="@drawable/corner_view"
                 android:layout_width="wrap_content"
