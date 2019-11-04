@@ -35,7 +35,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class RegisterActivity extends Activity {
+public class PasswordActivity extends Activity {
     @BindView(R.id.top_bar_title)
     TextView top_bar_title;
     @BindView(R.id.username)
@@ -53,10 +53,10 @@ public class RegisterActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_password);
         ButterKnife.bind(this);
         time = new TimeCount(60000, 1000);
-        top_bar_title.setText("用户注册");
+        top_bar_title.setText("重置密码");
     }
     /**
      * 接收解析后传过来的数据
@@ -67,16 +67,11 @@ public class RegisterActivity extends Activity {
             //Object model = (Object) msg.obj;
             switch (msg.what){
                 case 0:
-                    SPUtils.put(RegisterActivity.this,"islogin",true);
-                    SPUtils.put(RegisterActivity.this,"userinfo",msg.obj.toString());
-                    Intent intent = new Intent();
-
-                    intent.setClass(RegisterActivity.this, MainActivity.class);
-                    startActivity(intent);
+                    Toast.makeText(PasswordActivity.this, "修改成功，请重新登录！",Toast.LENGTH_LONG).show();
                     finish();
                     break;
                 case 1:
-                    Toast.makeText(RegisterActivity.this, msg.obj.toString(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(PasswordActivity.this, msg.obj.toString(),Toast.LENGTH_LONG).show();
                     break;
 
                 default:
@@ -85,30 +80,28 @@ public class RegisterActivity extends Activity {
             super.handleMessage(msg);
         }
     };
-    @OnClick({R.id.btn_submit,R.id.btn_cancel,R.id.sendcode,R.id.top_back_btn})
+    @OnClick({R.id.btn_submit,R.id.sendcode,R.id.top_back_btn})
     public void btnClick(View view) {
 
         switch (view.getId()) {
             case R.id.btn_submit:
                 if(!isMobileNO(username.getText().toString())){
-                    Toast.makeText(RegisterActivity.this, "请输入正确的手机号！",Toast.LENGTH_LONG).show();
+                    Toast.makeText(PasswordActivity.this, "请输入正确的手机号！",Toast.LENGTH_LONG).show();
                 }
                 else if(password.getText().toString().equals("")){
-                    Toast.makeText(RegisterActivity.this, "请输入密码！",Toast.LENGTH_LONG).show();
+                    Toast.makeText(PasswordActivity.this, "请输入新密码！",Toast.LENGTH_LONG).show();
                 }
                 else if(!password.getText().toString().equals(re_password.getText().toString())){
-                    Toast.makeText(RegisterActivity.this, "两次输入的密码不一致！",Toast.LENGTH_LONG).show();
+                    Toast.makeText(PasswordActivity.this, "两次输入的密码不一致！",Toast.LENGTH_LONG).show();
                 }
                 else if(code.equals("")||!code.equals(idcode.getText().toString())){
-                    Toast.makeText(RegisterActivity.this, "验证码错误！",Toast.LENGTH_LONG).show();
+                    Toast.makeText(PasswordActivity.this, "验证码错误！",Toast.LENGTH_LONG).show();
                 }
                 else{
                     register();
                 }
                 break;
-            case R.id.btn_cancel:
-                finish();
-                break;
+
             case R.id.sendcode:
                 sendIdcode();
                 time.start();
@@ -143,7 +136,7 @@ public class RegisterActivity extends Activity {
     }
     private void sendIdcode(){
         if(!isMobileNO(username.getText().toString())){
-            Toast.makeText(RegisterActivity.this, "请输入正确的手机号！",Toast.LENGTH_LONG).show();
+            Toast.makeText(PasswordActivity.this, "请输入正确的手机号！",Toast.LENGTH_LONG).show();
             return;
         }
         code=((int)((Math.random()*9+1)*100000))+"";
@@ -190,7 +183,7 @@ public class RegisterActivity extends Activity {
                 .add("phone", username.getText().toString())
                 .add("password", MD5Util.MD5(password.getText().toString()))
                 .build();
-        Request request = new Request.Builder().url(Config.url+"/registerCustomer")
+        Request request = new Request.Builder().url(Config.url+"/passwordCustomer")
                 .addHeader("source", Config.REQUEST_HEADER)// 自定义的header
                 .post(formBody)
                 .build();

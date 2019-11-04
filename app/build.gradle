@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'key0'
             keyPassword '13028775'
-            storeFile file('E:/Android/workspace/Paotui/app/src/main/java/com/lt/paotui/utils/mysign.jks')
+            storeFile file('F:/Workspaces/AndroidStudio/Paotui/app/src/main/java/com/lt/paotui/utils/mysign.jks')
             storePassword '13028775'
         }
     }
@@ -14,7 +14,7 @@ android {
         applicationId "com.lt.paotui"
         minSdkVersion 14
         targetSdkVersion 27
-        versionCode 40
+        versionCode 41
         versionName "1.6.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -61,4 +61,5 @@ dependencies {
     implementation 'com.just.agentweb:agentweb:4.0.3-alpha@aar'
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
     implementation 'com.zzhoujay.richtext:richtext:3.0.7'
+    implementation 'com.google.zxing:core:3.3.0'
 }

@@ -37,6 +37,8 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class LoginActivity extends Activity {
+    @BindView(R.id.top_bar_title)
+    TextView top_bar_title;
     @BindView(R.id.username)
     EditText username;
     @BindView(R.id.password)
@@ -46,6 +48,7 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        top_bar_title.setText("用户登录");
         /*if((boolean)SPUtils.get(this,"islogin",false)){
             Intent intent = new Intent();
             intent.setClass(LoginActivity.this, MainActivity.class);
@@ -79,7 +82,7 @@ public class LoginActivity extends Activity {
             super.handleMessage(msg);
         }
     };
-    @OnClick({R.id.btn_login,R.id.btn_register})
+    @OnClick({R.id.btn_login,R.id.btn_register,R.id.forget_pwd,R.id.top_back_btn})
     public void btnClick(View view) {
 
 
@@ -96,9 +99,16 @@ public class LoginActivity extends Activity {
                 Intent intent = new Intent();
                 intent.setClass(this, RegisterActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.forget_pwd:
+                Intent intentpwd = new Intent();
+                intentpwd.setClass(this, PasswordActivity.class);
+                startActivity(intentpwd);
 
                 break;
-
+            case R.id.top_back_btn:
+                finish();
+                break;
             default:
                 break;
         }

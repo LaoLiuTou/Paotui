@@ -62,6 +62,8 @@
         <activity android:name=".activity.GoodsDetailActivity"/>
         <activity android:name=".activity.BmfwActivity"/>
         <activity android:name=".activity.LhssActivity"/>
+        <activity android:name=".activity.ShowQrcodeActivity"/>
+        <activity android:name=".activity.PasswordActivity"/>
         <activity android:name=".wxapi.WXPayActivity">
 
         </activity>

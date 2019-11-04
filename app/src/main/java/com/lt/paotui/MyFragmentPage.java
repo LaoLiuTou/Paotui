@@ -25,6 +25,7 @@ import com.lt.paotui.activity.LoginActivity;
 import com.lt.paotui.activity.MyinfoActivity;
 import com.lt.paotui.activity.OrderListActivity;
 import com.lt.paotui.activity.OrderptListActivity;
+import com.lt.paotui.activity.ShowQrcodeActivity;
 import com.lt.paotui.utils.Config;
 import com.lt.paotui.utils.SPUtils;
 import com.youth.banner.Banner;
@@ -249,7 +250,8 @@ public class MyFragmentPage extends Fragment  {
                 }
                 break;
             case R.id.qrcodefx:
-
+                intent.setClass(getActivity(), ShowQrcodeActivity.class);
+                getActivity().startActivity(intent);
 
                 break;
             case R.id.lyjl:
