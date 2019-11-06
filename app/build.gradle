@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'key0'
             keyPassword '13028775'
-            storeFile file('F:/Workspaces/AndroidStudio/Paotui/app/src/main/java/com/lt/paotui/utils/mysign.jks')
+            storeFile file('F:/IdeaWS/Paotui/app/src/main/java/com/lt/paotui/utils/mysign.jks')
             storePassword '13028775'
         }
     }
