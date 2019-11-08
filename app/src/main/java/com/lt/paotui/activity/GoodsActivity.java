@@ -113,7 +113,14 @@ public class GoodsActivity extends Activity {
         String subtype = intent.getStringExtra("subtype");
         OkHttpClient okHttpClient = new OkHttpClient();
         FormBody formBody =null;
-        if(type.equals("2")){
+        if(type.equals("1")){
+            formBody = new FormBody.Builder()
+                    .add("page", page+"")
+                    .add("size", size+"")
+                    .add("type", type)
+                    .build();
+        }
+        else if(type.equals("2")){
             formBody = new FormBody.Builder()
                     .add("page", page+"")
                     .add("size", size+"")
@@ -121,11 +128,26 @@ public class GoodsActivity extends Activity {
                     .add("subtype", subtype)
                     .build();
         }
-        else{
+        else if(type.equals("3")){
             formBody = new FormBody.Builder()
                     .add("page", page+"")
                     .add("size", size+"")
                     .add("type", type)
+                    .build();
+        }
+        else if(type.equals("4")){
+            formBody = new FormBody.Builder()
+                    .add("page", page+"")
+                    .add("size", size+"")
+                    .add("type", type)
+                    .build();
+        }
+        else if(type.equals("5")){
+            formBody = new FormBody.Builder()
+                    .add("page", page+"")
+                    .add("size", size+"")
+                    .add("type", type)
+                    .add("subtype", subtype)
                     .build();
         }
 
@@ -192,8 +214,9 @@ public class GoodsActivity extends Activity {
         final StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
         manager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
 
-        Intent intent = getIntent();
-        String type = intent.getStringExtra("type");
+        final Intent intent = getIntent();
+        final String type = intent.getStringExtra("type");
+        final String title = intent.getStringExtra("title");
         if(type.equals("1")){
             //       这是一个线性布局
             LinearLayoutManager linearManager = new LinearLayoutManager(this);
@@ -215,10 +238,15 @@ public class GoodsActivity extends Activity {
             recycler.setLayoutManager(manager);
             goodAdapter = new MyGoodAdapter(list, this, 2);
         }
-        else{
+        else if(type.equals("4")){
 
             recycler.setLayoutManager(manager);
             goodAdapter = new MyGoodAdapter(list, this, 2);
+        }
+        else if(type.equals("5")){
+
+            recycler.setLayoutManager(manager);
+            goodAdapter = new MyGoodAdapter(list, this, 3);
         }
 
         recycler.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
@@ -229,11 +257,23 @@ public class GoodsActivity extends Activity {
         goodAdapter.setOnItemClickListener(new LeavingAdapter.ItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                Intent intent = new Intent();
-                intent.setClass(GoodsActivity.this, GoodsDetailActivity.class);
-                String goods_id=list.get(position).get("id").toString();
-                intent.putExtra("goods_id", goods_id);
-                startActivity(intent);
+                if(type.equals("5")){
+                    Intent intent = new Intent();
+                    intent.setClass(GoodsActivity.this, Goods5GDetailActivity.class);
+                    String goods_id=list.get(position).get("id").toString();
+                    intent.putExtra("goods_id", goods_id);
+                    intent.putExtra("title", title);
+                    startActivity(intent);
+                }
+                else{
+                    Intent intent = new Intent();
+                    intent.setClass(GoodsActivity.this, GoodsDetailActivity.class);
+                    String goods_id=list.get(position).get("id").toString();
+                    intent.putExtra("goods_id", goods_id);
+                    intent.putExtra("title", title);
+                    startActivity(intent);
+                }
+
 
                 //Toast.makeText(GoodsActivity.this,"正在开发中。。。！",Toast.LENGTH_LONG).show();
             }

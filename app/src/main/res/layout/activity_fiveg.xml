@@ -13,7 +13,7 @@
             android:id="@+id/title_cardView"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_marginTop="51dp"
+            android:layout_marginTop="61dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             app:cardBackgroundColor="#ffffffff"
@@ -37,7 +37,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/corner_view"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_below="@+id/title_cardView"
                 android:orientation="horizontal">
             <LinearLayout
@@ -50,17 +50,17 @@
                     android:clickable="true"
                     android:id="@+id/znjj">
                 <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
                         android:layout_marginTop="10dp"
                         android:scaleType="fitXY"
-                        android:src="@mipmap/first1" />
+                        android:src="@mipmap/zhinengjiaju" />
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="智能家居"
                         android:layout_marginTop="5dp"
-                        android:textSize="16dp"
+                        android:textSize="14dp"
                         android:layout_marginBottom="10dp"/>
             </LinearLayout>
             <LinearLayout
@@ -73,17 +73,17 @@
                     android:clickable="true"
                     android:id="@+id/zncd">
                 <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
                         android:layout_marginTop="10dp"
                         android:scaleType="fitXY"
-                        android:src="@mipmap/first2" />
+                        android:src="@mipmap/zhinengchuandai" />
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="智能穿戴"
                         android:layout_marginTop="5dp"
-                        android:textSize="16dp"
+                        android:textSize="14dp"
                         android:layout_marginBottom="10dp"/>
             </LinearLayout>
             <LinearLayout
@@ -96,17 +96,17 @@
                     android:clickable="true"
                     android:id="@+id/wgwl">
                 <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
                         android:layout_marginTop="10dp"
                         android:scaleType="fitXY"
-                        android:src="@mipmap/first3" />
+                        android:src="@mipmap/wujiwulian" />
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="5G物联"
                         android:layout_marginTop="5dp"
-                        android:textSize="16dp"
+                        android:textSize="14dp"
                         android:layout_marginBottom="10dp"/>
             </LinearLayout>
         </LinearLayout>
@@ -128,19 +128,19 @@
                     android:orientation="vertical"
                     android:layout_weight="1"
                     android:clickable="true"
-                    android:id="@+id/znjj2">
+                    android:id="@+id/zhjy">
                 <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
                         android:layout_marginTop="10dp"
                         android:scaleType="fitXY"
-                        android:src="@mipmap/first1" />
+                        android:src="@mipmap/zhihuijiaoyu" />
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="帮我买"
+                        android:text="智慧教育"
                         android:layout_marginTop="5dp"
-                        android:textSize="16dp"
+                        android:textSize="14dp"
                         android:layout_marginBottom="10dp"/>
             </LinearLayout>
             <LinearLayout
@@ -153,17 +153,17 @@
                     android:clickable="true"
                     android:id="@+id/zhnc">
                 <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
                         android:layout_marginTop="10dp"
                         android:scaleType="fitXY"
-                        android:src="@mipmap/first2" />
+                        android:src="@mipmap/zhihuinongcun" />
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="智慧农村"
                         android:layout_marginTop="5dp"
-                        android:textSize="16dp"
+                        android:textSize="14dp"
                         android:layout_marginBottom="10dp"/>
             </LinearLayout>
             <LinearLayout
@@ -176,17 +176,17 @@
                     android:clickable="true"
                     android:id="@+id/paxq">
                 <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
                         android:layout_marginTop="10dp"
                         android:scaleType="fitXY"
-                        android:src="@mipmap/first3" />
+                        android:src="@mipmap/pinganxiaoqu" />
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="平安小区"
                         android:layout_marginTop="5dp"
-                        android:textSize="16dp"
+                        android:textSize="14dp"
                         android:layout_marginBottom="10dp"/>
             </LinearLayout>
         </LinearLayout>
@@ -211,17 +211,17 @@
                     android:clickable="true"
                     android:id="@+id/zhyl">
                 <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
                         android:layout_marginTop="10dp"
                         android:scaleType="fitXY"
-                        android:src="@mipmap/first1" />
+                        android:src="@mipmap/zhihuiyiliao" />
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="智慧医疗"
                         android:layout_marginTop="5dp"
-                        android:textSize="16dp"
+                        android:textSize="14dp"
                         android:layout_marginBottom="10dp"/>
             </LinearLayout>
             <LinearLayout
@@ -232,19 +232,19 @@
                     android:orientation="vertical"
                     android:layout_weight="1"
                     android:clickable="true"
-                    android:id="@+id/zhet">
+                    android:id="@+id/zhlret">
                 <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
                         android:layout_marginTop="10dp"
                         android:scaleType="fitXY"
-                        android:src="@mipmap/first2" />
+                        android:src="@mipmap/zhihuilaorenertong" />
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="智慧儿童"
+                        android:text="智慧老人儿童"
                         android:layout_marginTop="5dp"
-                        android:textSize="16dp"
+                        android:textSize="14dp"
                         android:layout_marginBottom="10dp"/>
             </LinearLayout>
             <LinearLayout
@@ -257,17 +257,17 @@
                     android:clickable="true"
                     android:id="@+id/ycjk">
                 <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
                         android:layout_marginTop="10dp"
                         android:scaleType="fitXY"
-                        android:src="@mipmap/first3" />
+                        android:src="@mipmap/yuanchengjiankong" />
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="远程监控"
                         android:layout_marginTop="5dp"
-                        android:textSize="16dp"
+                        android:textSize="14dp"
                         android:layout_marginBottom="10dp"/>
             </LinearLayout>
         </LinearLayout>
@@ -292,17 +292,17 @@
                     android:clickable="true"
                     android:id="@+id/zxsj">
                 <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
                         android:layout_marginTop="10dp"
                         android:scaleType="fitXY"
-                        android:src="@mipmap/first1" />
+                        android:src="@mipmap/zuixinshoujiwuji" />
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="最新手机5G"
                         android:layout_marginTop="5dp"
-                        android:textSize="16dp"
+                        android:textSize="14dp"
                         android:layout_marginBottom="10dp"/>
             </LinearLayout>
             <LinearLayout
@@ -312,21 +312,8 @@
                     android:gravity="center"
                     android:orientation="vertical"
                     android:layout_weight="1"
-                    android:clickable="true"
-                    android:id="@+id/zhjy">
-                <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_marginTop="10dp"
-                        android:scaleType="fitXY"
-                        android:src="@mipmap/first2" />
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="智慧教育"
-                        android:layout_marginTop="5dp"
-                        android:textSize="16dp"
-                        android:layout_marginBottom="10dp"/>
+                    android:clickable="true" >
+
             </LinearLayout>
             <LinearLayout
                     android:background="@drawable/layout_selected_bg"

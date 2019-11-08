@@ -60,10 +60,12 @@
         <activity android:name=".activity.GoodsActivity"/>
         <activity android:name=".activity.GoodsFupinActivity"/>
         <activity android:name=".activity.GoodsDetailActivity"/>
+        <activity android:name=".activity.Goods5GDetailActivity"/>
         <activity android:name=".activity.BmfwActivity"/>
         <activity android:name=".activity.LhssActivity"/>
         <activity android:name=".activity.ShowQrcodeActivity"/>
         <activity android:name=".activity.PasswordActivity"/>
+        <activity android:name=".activity.WugActivity"/>
         <activity android:name=".wxapi.WXPayActivity">
 
         </activity>

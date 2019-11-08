@@ -23,6 +23,7 @@ public class MyGoodAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private Context context;
     private final int Line = 1;
     private final int Grid = 2;
+    private final int GridPrice = 3;
     private int type;
 
     private LeavingAdapter.ItemClickListener mItemClickListener ;
@@ -48,13 +49,15 @@ public class MyGoodAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         switch (i) {
             case Line:
                 view = LayoutInflater.from(context).inflate(R.layout.item_goods_xrecyclelin,null);
-
                 holder = new LineHolder(view);
                 break;
-
             case Grid:
                 view = LayoutInflater.from(context).inflate(R.layout.item_goods_xrecyclegrid, null);
                 holder = new GridHolder(view);
+                break;
+            case GridPrice:
+                view = LayoutInflater.from(context).inflate(R.layout.item_goods_xrecyclegridprice, null);
+                holder = new GridHolderPrice(view);
                 break;
         }
         return holder;
@@ -70,18 +73,19 @@ public class MyGoodAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             ((LineHolder) viewHolder).network.setText(list.get(i).get("network")+"");
             ((LineHolder) viewHolder).oldlevel.setText(list.get(i).get("oldlevel")+"");
             ((LineHolder) viewHolder).configure.setText("配置："+list.get(i).get("configure")+"");
-
-
-
-
             JSONArray imageList = JSON.parseArray(list.get(i).get("banners")+"");
             Glide.with(context).load(Config.url+imageList.get(0)).into(((LineHolder) viewHolder).lin_item_img);
-        } else {
-            //((GridHolder) viewHolder).grid_item_price.setText("型号："+list.get(i).get("brand")+" "+list.get(i).get("model")+"");
+        } else if (viewHolder instanceof GridHolder) {
             ((GridHolder) viewHolder).grid_item_title.setText(list.get(i).get("title")+"");
-            //((GridHolder) viewHolder).grid_item_salenum.setText("成色："+list.get(i).get("oldlevel")+"");
             JSONArray imageList = JSON.parseArray(list.get(i).get("banners")+"");
             Glide.with(context).load(Config.url+imageList.get(0)).into(((GridHolder) viewHolder).grid_item_img);
+        }
+        else if (viewHolder instanceof GridHolderPrice) {
+            ((GridHolderPrice) viewHolder).grid_item_price.setText("￥"+list.get(i).get("model")+"");
+            ((GridHolderPrice) viewHolder).grid_item_title.setText(list.get(i).get("title")+"");
+            ((GridHolderPrice) viewHolder).grid_item_detail.setText(list.get(i).get("brand")+"");
+            JSONArray imageList = JSON.parseArray(list.get(i).get("banners")+"");
+            Glide.with(context).load(Config.url+imageList.get(0)).into(((GridHolderPrice) viewHolder).grid_item_img);
         }
         // 点击事件一般都写在绑定数据这里，当然写到上边的创建布局时候也是可以的
         if (mItemClickListener != null){
@@ -138,22 +142,33 @@ public class MyGoodAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         }
     }
 
-    //    设置网格视图
+    //    设置网格视图 无价格
     class GridHolder extends RecyclerView.ViewHolder {
 
         private ImageView grid_item_img;
         private TextView grid_item_title;
-        //private TextView grid_item_price;
-        //private TextView grid_item_salenum;
 
         public GridHolder(@NonNull View itemView) {
             super(itemView);
             grid_item_img = itemView.findViewById(R.id.grid_item_img);
             grid_item_title = itemView.findViewById(R.id.grid_item_title);
-            //grid_item_price = itemView.findViewById(R.id.grid_item_price);
-            //grid_item_salenum = itemView.findViewById(R.id.grid_item_salenum);
         }
     }
+    //    设置网格视图 有价格
+    class GridHolderPrice extends RecyclerView.ViewHolder {
 
+        private ImageView grid_item_img;
+        private TextView grid_item_title;
+        private TextView grid_item_price;
+        private TextView grid_item_detail;
+
+        public GridHolderPrice(@NonNull View itemView) {
+            super(itemView);
+            grid_item_img = itemView.findViewById(R.id.grid_item_img);
+            grid_item_title = itemView.findViewById(R.id.grid_item_title);
+            grid_item_price = itemView.findViewById(R.id.grid_item_price);
+            grid_item_detail = itemView.findViewById(R.id.grid_item_detail);
+        }
+    }
 
 }

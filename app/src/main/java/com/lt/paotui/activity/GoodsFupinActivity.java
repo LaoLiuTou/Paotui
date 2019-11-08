@@ -190,6 +190,7 @@ public class GoodsFupinActivity extends Activity {
 
         Intent intent = getIntent();
         String type = intent.getStringExtra("type");
+        final String title = intent.getStringExtra("title");
         if(type.equals("1")){
             //       这是一个线性布局
             LinearLayoutManager linearManager = new LinearLayoutManager(this);
@@ -229,6 +230,7 @@ public class GoodsFupinActivity extends Activity {
                 intent.setClass(GoodsFupinActivity.this, GoodsDetailActivity.class);
                 String goods_id=list.get(position).get("id").toString();
                 intent.putExtra("goods_id", goods_id);
+                intent.putExtra("title", title);
                 startActivity(intent);
 
                 //Toast.makeText(GoodsActivity.this,"正在开发中。。。！",Toast.LENGTH_LONG).show();

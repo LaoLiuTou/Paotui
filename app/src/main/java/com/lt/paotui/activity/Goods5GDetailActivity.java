@@ -1,33 +1,24 @@
 package com.lt.paotui.activity;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.widget.GridLayoutManager;
-import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.bumptech.glide.Glide;
-import com.just.agentweb.AgentWeb;
-import com.lt.paotui.MainFragmentPage;
 import com.lt.paotui.R;
-import com.lt.paotui.adapter.MyGoodAdapter;
-import com.lt.paotui.adapter.MyRVAdapter;
 import com.lt.paotui.utils.Config;
-import com.lt.paotui.utils.SPUtils;
-import com.lt.paotui.utils.rollingtextview.RollingTextAdapter;
-import com.lt.paotui.utils.update.UpdateApk;
-import com.lt.paotui.wxapi.WXPayActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -35,39 +26,25 @@ import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
 import com.zzhoujay.richtext.ImageHolder;
 import com.zzhoujay.richtext.RichText;
+import okhttp3.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-
 /**
  * Created by Administrator on 2019/4/12.
  */
 
-public class GoodsDetailActivity extends Activity implements OnBannerListener {
+public class Goods5GDetailActivity extends Activity implements OnBannerListener {
     @BindView(R.id.banner)
     Banner banner;
-    @BindView(R.id.pp)
-    TextView pptextView;
-    @BindView(R.id.xh)
-    TextView xhtextView;
-    @BindView(R.id.cs)
-    TextView cstextView;
-    @BindView(R.id.pz)
-    TextView pztextView;
-    @BindView(R.id.wl)
-    TextView wltextView;
+    @BindView(R.id.canshu)
+    TextView canshutextView;
+    @BindView(R.id.jiage)
+    TextView jiagetextView;
+
     @BindView(R.id.title)
     TextView title;
     @BindView(R.id.content)
@@ -87,22 +64,12 @@ public class GoodsDetailActivity extends Activity implements OnBannerListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //加载启动界面
-        setContentView(R.layout.activity_goods_details);
+        setContentView(R.layout.activity_goods5g_details);
         ButterKnife.bind(this);
         Intent intent = getIntent();
         String title = intent.getStringExtra("title");
         top_bar_title.setText(title);
         getBannerData();
-       /* mAgentWeb=AgentWeb.with(GoodsDetailActivity.this)
-                .setAgentWebParent(mLinearLayout, new LinearLayout.LayoutParams(-1, -1))
-                .useDefaultIndicator()//进度条
-                //.setAgentWebWebSettings()
-                //.setReceivedTitleCallback(mCallback) //设置 Web 页面的 title 回调
-                .createAgentWeb()
-                .ready()
-                .go(Config.url+"pages/app_news_detail.html?id=");
-        mAgentWeb.getAgentWebSettings().getWebSettings().setUseWideViewPort(true); //将图片调整到适合webview的大小
-        mAgentWeb.getAgentWebSettings().getWebSettings().setLoadWithOverviewMode(true); // 缩放至屏幕的大小*/
 
 
     }
@@ -117,25 +84,13 @@ public class GoodsDetailActivity extends Activity implements OnBannerListener {
                 case 0://轮播图成功
                     initBanner();
                     Map dataMap= (Map) msg.obj;
-                    String type=dataMap.get("type")+"";
-                    if(type.equals("1")){
-                        configLin.setVisibility(View.VISIBLE);
-                    }
-                    else{
-                        configLin.setVisibility(View.GONE);
-                    }
-
 
                     title.setText(dataMap.get("title")+"");
-                    pptextView.setText(dataMap.get("brand")+"");
-                    xhtextView.setText(dataMap.get("model")+"");
-                    cstextView.setText(dataMap.get("oldlevel")+"");
-                    pztextView.setText(dataMap.get("configure")+"");
-                    wltextView.setText(dataMap.get("network")+"");
-                    //CharSequence desc = Html.fromHtml(dataMap.get("content")+"");
-                    //content.setText(desc);
+                    canshutextView.setText(dataMap.get("brand")+"");
+                    jiagetextView.setText("￥"+dataMap.get("model")+"");
+
                     //在第一次调用RichText之前先调用RichText.initCacheDir()方法设置缓存目录，不设置会报错
-                    RichText.initCacheDir(GoodsDetailActivity.this);
+                    RichText.initCacheDir(Goods5GDetailActivity.this);
                     //这里是取后台返回的集合数据
 
                     RichText.from(dataMap.get("content")+"").bind(this)
@@ -145,7 +100,7 @@ public class GoodsDetailActivity extends Activity implements OnBannerListener {
 
                     break;
                 case 1://轮播图失败
-                    Toast.makeText(GoodsDetailActivity.this,"获取数据失败!!!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(Goods5GDetailActivity.this,"获取数据失败!!!",Toast.LENGTH_LONG).show();
                     break;
 
                 default:

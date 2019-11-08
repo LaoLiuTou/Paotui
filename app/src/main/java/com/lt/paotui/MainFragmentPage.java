@@ -40,25 +40,7 @@ import com.hb.dialog.dialog.LoadingDialog;
 import com.hb.dialog.myDialog.ActionSheetDialog;
 import com.hb.dialog.myDialog.MyAlertDialog;
 import com.hb.dialog.myDialog.MyAlertInputDialog;
-import com.lt.paotui.activity.AntugovActivity;
-import com.lt.paotui.activity.BannerDetailActivity;
-import com.lt.paotui.activity.BmfwActivity;
-import com.lt.paotui.activity.CouponListActivity;
-import com.lt.paotui.activity.CskxActivity;
-import com.lt.paotui.activity.DxyytActivity;
-import com.lt.paotui.activity.GoodsActivity;
-import com.lt.paotui.activity.GoodsFupinActivity;
-import com.lt.paotui.activity.JlattvActivity;
-import com.lt.paotui.activity.LhssActivity;
-import com.lt.paotui.activity.LoginActivity;
-import com.lt.paotui.activity.MyinfoActivity;
-import com.lt.paotui.activity.NewsDetailActivity;
-import com.lt.paotui.activity.NewsListActivity;
-import com.lt.paotui.activity.OrderDetailActivity;
-import com.lt.paotui.activity.OrderListActivity;
-import com.lt.paotui.activity.PaotuiActivity;
-import com.lt.paotui.activity.RaffleActivity;
-import com.lt.paotui.activity.TicketActivity;
+import com.lt.paotui.activity.*;
 import com.lt.paotui.adapter.MyRVAdapter;
 import com.lt.paotui.utils.Config;
 import com.lt.paotui.utils.Constant;
@@ -845,7 +827,8 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 startActivity(intent);
                 break;
             case R.id.wgsh:
-                Toast.makeText(getActivity(),"正在开发中。。。",Toast.LENGTH_LONG).show();
+                intent.setClass(getActivity(), WugActivity.class);
+                startActivity(intent);
                 break;
             case R.id.yjcs:
                 intent.setClass(getActivity(), CouponListActivity.class);
