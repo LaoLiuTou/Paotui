@@ -285,7 +285,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                     rollingText.setAdapter(new RollingTextAdapter() {
                         @Override
                         public int getCount() {
-                            return data.size()/2;
+                            return data.size();
                         }
                         @SuppressLint("ResourceAsColor")
                         @Override
@@ -431,6 +431,7 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                             phone = phone.substring(0, 3) + "****" + phone.substring(7, phone.length());
                         }
                         String message=time+" 用户"+phone+"使用代金券"+price+"元支付打车费";
+                        data.add(new RollTextItem(message));
                         data.add(new RollTextItem(message));
                     }
                     message.what=11;
@@ -797,9 +798,9 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 startActivity(intent);*/
 
 
-                intent.setClass(getActivity(), GoodsFupinActivity.class);
-                intent.putExtra("type", "4");
-                intent.putExtra("title", "扶贫专区");
+                intent.setClass(getActivity(), FupinActivity.class);
+                //intent.putExtra("type", "4");
+                //intent.putExtra("title", "扶贫专区");
                 startActivity(intent);
                 break;
             case R.id.news2:

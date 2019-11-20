@@ -139,6 +139,7 @@ public class GoodsActivity extends Activity {
             formBody = new FormBody.Builder()
                     .add("page", page+"")
                     .add("size", size+"")
+                    .add("subtype", subtype)
                     .add("type", type)
                     .build();
         }
