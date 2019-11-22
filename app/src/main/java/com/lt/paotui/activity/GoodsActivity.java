@@ -10,11 +10,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.hb.dialog.myDialog.MyAlertDialog;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.just.agentweb.AgentWeb;
@@ -49,8 +51,11 @@ public class GoodsActivity extends Activity {
     XRecyclerView recycler;
     @BindView(R.id.top_bar_title)
     TextView top_bar_title;
+    StaggeredGridLayoutManager manager;
     List<Map> list = new ArrayList<>();
     MyGoodAdapter goodAdapter;
+    @BindView(R.id.addleaving)
+    ImageView addleaving;
     private int page;
     private int size=10;
     @Override
@@ -61,7 +66,19 @@ public class GoodsActivity extends Activity {
         ButterKnife.bind(this);
         Intent intent = getIntent();
         String title = intent.getStringExtra("title");
-        //String type = intent.getStringExtra("type");
+        String type = intent.getStringExtra("type");
+
+
+        if(type!=null&&type.equals("6")){
+            String subtype = intent.getStringExtra("subtype");
+            if(subtype!=null&&(subtype.equals("606")||subtype.equals("607")||subtype.equals("608")||subtype.equals("609")||subtype.equals("610")||subtype.equals("611"))) {
+                addleaving.setVisibility(View.VISIBLE);
+            }
+
+        }
+
+
+
 
         top_bar_title.setText(title);
         initListView();
@@ -78,6 +95,9 @@ public class GoodsActivity extends Activity {
             //Object model = (Object) msg.obj;
             switch (msg.what){
                 case 0:
+                    if(list.size()>1){
+                        manager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
+                    }
 
                     recycler.refreshComplete();
                     goodAdapter.notifyDataSetChanged();
@@ -151,7 +171,14 @@ public class GoodsActivity extends Activity {
                     .add("subtype", subtype)
                     .build();
         }
-
+        else if(type.equals("6")){
+            formBody = new FormBody.Builder()
+                    .add("page", page+"")
+                    .add("size", size+"")
+                    .add("type", type)
+                    .add("subtype", subtype)
+                    .build();
+        }
         Request request = new Request.Builder().url(Config.url+"/listGoods")
                 .addHeader("source", Config.REQUEST_HEADER)// 自定义的header
                 .post(formBody)
@@ -212,8 +239,11 @@ public class GoodsActivity extends Activity {
         //recycler.setLayoutManager(manager);
 
 
-        final StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
-        manager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
+        //final StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
+        //manager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
+
+        manager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
+
 
         final Intent intent = getIntent();
         final String type = intent.getStringExtra("type");
@@ -249,7 +279,11 @@ public class GoodsActivity extends Activity {
             recycler.setLayoutManager(manager);
             goodAdapter = new MyGoodAdapter(list, this, 3);
         }
+        else if(type.equals("6")){
 
+            recycler.setLayoutManager(manager);
+            goodAdapter = new MyGoodAdapter(list, this, 3);
+        }
         recycler.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         recycler.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
         //recycler.setArrowImageView(R.drawable.ic_launcher_background);
@@ -259,6 +293,14 @@ public class GoodsActivity extends Activity {
             @Override
             public void onItemClick(int position) {
                 if(type.equals("5")){
+                    Intent intent = new Intent();
+                    intent.setClass(GoodsActivity.this, Goods5GDetailActivity.class);
+                    String goods_id=list.get(position).get("id").toString();
+                    intent.putExtra("goods_id", goods_id);
+                    intent.putExtra("title", title);
+                    startActivity(intent);
+                }
+                else if(type.equals("6")){
                     Intent intent = new Intent();
                     intent.setClass(GoodsActivity.this, Goods5GDetailActivity.class);
                     String goods_id=list.get(position).get("id").toString();
@@ -306,7 +348,7 @@ public class GoodsActivity extends Activity {
             }
         });
     }
-    @OnClick({R.id.top_back_btn})
+    @OnClick({R.id.top_back_btn,R.id.addleaving})
     public void btnClick(View view) {
 
 
@@ -314,9 +356,44 @@ public class GoodsActivity extends Activity {
             case R.id.top_back_btn:
                 finish();
                 break;
+            case R.id.addleaving:
+                if((boolean)SPUtils.get(GoodsActivity.this,"islogin",false)){
+                    Intent intent = getIntent();
+                    String title = intent.getStringExtra("title");
+                    String type = intent.getStringExtra("type");
+                    String subtype = intent.getStringExtra("subtype");
+                    intent = new Intent();
+                    intent.setClass(this, TicketActivity.class);
+                    intent.putExtra("type", subtype);
+                    intent.putExtra("title", title+"留言");
+                    startActivity(intent);
+                }
+                else{
+                    showUnloginDialog();
+                }
 
+                break;
             default:
                 break;
         }
+    }
+    private void showUnloginDialog(){
+        MyAlertDialog myAlertDialog = new MyAlertDialog(GoodsActivity.this).builder()
+                .setTitle("未登录")
+                .setMsg("即将前往登录")
+                .setPositiveButton("确认", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent();
+                        intent.setClass(GoodsActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                    }
+                }).setNegativeButton("取消", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+        myAlertDialog.show();
     }
 }

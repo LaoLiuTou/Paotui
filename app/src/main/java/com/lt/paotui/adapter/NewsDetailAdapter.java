@@ -12,9 +12,6 @@ import android.widget.TextView;
 
 import com.andview.refreshview.recyclerview.BaseRecyclerAdapter;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.target.Target;
 import com.lt.paotui.R;
 import com.lt.paotui.utils.Config;
 import com.lt.paotui.utils.DensityUtil;

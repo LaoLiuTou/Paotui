@@ -58,24 +58,29 @@ public class BmfwActivity extends Activity {
                 }
                 break;
             case R.id.wzcx:
-                Toast.makeText(BmfwActivity.this,"正在开发中。。。！",Toast.LENGTH_LONG).show();
+                intent.setClass(this, CouponListActivity.class);
+                intent.putExtra("type", "34");
+                intent.putExtra("title", "违章查询");
+                startActivity(intent);
                 break;
             case R.id.dc:
                 if((boolean)SPUtils.get(this,"islogin",false)){
                     int random=((int)(1+Math.random()*(10-1+1)))%2;
-                    showAlterDialog("一键叫车",phonenumbers[random]);
+                    showAlterDialog("订餐",phonenumbers[random]);
                 }
                 else{
                     showUnloginDialog();
                 }
                 break;
             case R.id.bmfwrx:
-                Toast.makeText(BmfwActivity.this,"正在开发中。。。！",Toast.LENGTH_LONG).show();
+                intent.setClass(this, HotLineActivity.class);
+                intent.putExtra("title", "便民服务热线");
+                startActivity(intent);
                 break;
             case R.id.cljy:
                 if((boolean)SPUtils.get(this,"islogin",false)){
                     int random=((int)(1+Math.random()*(10-1+1)))%2;
-                    showAlterDialog("一键叫车",phonenumbers[random]);
+                    showAlterDialog("车辆救援",phonenumbers[random]);
                 }
                 else{
                     showUnloginDialog();

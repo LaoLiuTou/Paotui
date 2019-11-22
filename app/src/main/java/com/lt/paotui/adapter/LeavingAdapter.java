@@ -43,6 +43,9 @@ public class LeavingAdapter extends BaseRecyclerAdapter<LeavingAdapter.LeavingAd
         if(item.get("type").toString().equals("10")){
             holder.type.setText("购票");
         }
+        else if(item.get("type").toString().equals("9")){
+            holder.type.setText("购票");
+        }
         else if(item.get("type").toString().equals("1")){
             holder.type.setText("电信资讯");
         }
@@ -57,9 +60,6 @@ public class LeavingAdapter extends BaseRecyclerAdapter<LeavingAdapter.LeavingAd
         }
         else if(item.get("type").toString().equals("7")){
             holder.type.setText("二手机收售");
-        }
-        else if(item.get("type").toString().equals("11")){
-            holder.type.setText("靓号收集");
         }
         else if(item.get("type").toString().equals("21")){
             holder.type.setText("房屋信息");
@@ -82,10 +82,45 @@ public class LeavingAdapter extends BaseRecyclerAdapter<LeavingAdapter.LeavingAd
         else if(item.get("type").toString().equals("27")){
             holder.type.setText("便民信息港");
         }
+        else if(item.get("type").toString().equals("28")){
+            holder.type.setText("二手车");
+        }
+        else if(item.get("type").toString().equals("29")){
+            holder.type.setText("兼职");
+        }
+        else if(item.get("type").toString().equals("30")){
+            holder.type.setText("惠民信息");
+        }
+        else if(item.get("type").toString().equals("31")){
+            holder.type.setText("家政服务");
+        }
+        else if(item.get("type").toString().equals("33")){
+            holder.type.setText("信用卡");
+        }
+        else if(item.get("type").toString().equals("34")){
+            holder.type.setText("违章查询");
+        }
+        else if(item.get("type").toString().equals("606")){
+            holder.type.setText("家电专区");
+        }
+        else if(item.get("type").toString().equals("607")){
+            holder.type.setText("农村家禽类");
+        }
+        else if(item.get("type").toString().equals("608")){
+            holder.type.setText("延百超市");
+        }
+        else if(item.get("type").toString().equals("609")){
+            holder.type.setText("翼支付专区");
+        }
+        else if(item.get("type").toString().equals("610")){
+            holder.type.setText("优惠专区");
+        }
+        else if(item.get("type").toString().equals("611")){
+            holder.type.setText("商圈代购区");
+        }
         else{
             holder.type.setText("其它");
         }
-
 
 
         holder.note.setText(item.get("note").toString());

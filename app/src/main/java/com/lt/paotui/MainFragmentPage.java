@@ -832,14 +832,15 @@ public class MainFragmentPage extends Fragment implements OnBannerListener {
                 startActivity(intent);
                 break;
             case R.id.yjcs:
-                intent.setClass(getActivity(), CouponListActivity.class);
-                intent.putExtra("type", "100");
-                intent.putExtra("title", "翼家超市");
-                startActivity(intent);
 
+                intent.setClass(getActivity(), YijiaActivity.class);
+                startActivity(intent);
                 break;
             case R.id.tjcx:
-                Toast.makeText(getActivity(),"正在开发中。。。",Toast.LENGTH_LONG).show();
+                intent.setClass(getActivity(), CouponListActivity.class);
+                intent.putExtra("type", "35");
+                intent.putExtra("title", "特价促销");
+                startActivity(intent);
                 break;
             case R.id.xyk:
                 intent.setClass(getActivity(), CouponListActivity.class);

@@ -77,6 +77,9 @@ public class NewsListActivity extends Activity   {
                 ||type.equals("24")||type.equals("25")||type.equals("26")||type.equals("27"))){
             addleaving.setVisibility(View.VISIBLE);
         }
+        else{
+            addleaving.setVisibility(View.GONE);
+        }
 
 
     }

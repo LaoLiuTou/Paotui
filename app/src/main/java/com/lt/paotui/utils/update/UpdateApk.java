@@ -101,7 +101,7 @@ public class UpdateApk {
                 try {
                     is = response.body().byteStream();//获取输入流
                     long total = response.body().contentLength();//获取文件大小
-                    setMax(total, context);//为progressDialog设置大小
+                    setMax(total/1024, context);//为progressDialog设置大小
                     File file = null;
                     if (is != null) {
                         file = new File(Environment.getExternalStorageDirectory(), "paotui.apk");// 设置路径
@@ -112,7 +112,7 @@ public class UpdateApk {
                         while ((ch = is.read(buf)) != -1) {
                             fos.write(buf, 0, ch);
                             process += ch;
-                            downLoading(process, context);       //这里就是关键的实时更新进度了！
+                            downLoading(process/1024, context);       //这里就是关键的实时更新进度了！
                         }
                     }
                     fos.flush();

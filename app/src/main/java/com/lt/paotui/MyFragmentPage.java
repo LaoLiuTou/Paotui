@@ -251,6 +251,7 @@ public class MyFragmentPage extends Fragment  {
                 break;
             case R.id.qrcodefx:
                 intent.setClass(getActivity(), ShowQrcodeActivity.class);
+                intent.putExtra("type", "1");
                 getActivity().startActivity(intent);
 
                 break;

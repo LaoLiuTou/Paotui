@@ -14,6 +14,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.bumptech.glide.Glide;
 import com.lt.paotui.R;
 import com.lt.paotui.utils.Config;
+import com.lt.paotui.utils.update.CommonUtil;
 
 import java.util.List;
 import java.util.Map;
@@ -65,6 +66,7 @@ public class MyGoodAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, final int i) {
+
         //判断前一个参数是否是后一个参数的一个实例
         if (viewHolder instanceof LineHolder) {
             ((LineHolder) viewHolder).lin_item_title.setText(list.get(i).get("title")+"");
@@ -78,14 +80,14 @@ public class MyGoodAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         } else if (viewHolder instanceof GridHolder) {
             ((GridHolder) viewHolder).grid_item_title.setText(list.get(i).get("title")+"");
             JSONArray imageList = JSON.parseArray(list.get(i).get("banners")+"");
-            Glide.with(context).load(Config.url+imageList.get(0)).into(((GridHolder) viewHolder).grid_item_img);
+            Glide.with(context).load(Config.url+imageList.get(0)).placeholder(R.mipmap.placehold).into(((GridHolder) viewHolder).grid_item_img);
         }
         else if (viewHolder instanceof GridHolderPrice) {
             ((GridHolderPrice) viewHolder).grid_item_price.setText("￥"+list.get(i).get("model")+"");
             ((GridHolderPrice) viewHolder).grid_item_title.setText(list.get(i).get("title")+"");
             ((GridHolderPrice) viewHolder).grid_item_detail.setText(list.get(i).get("brand")+"");
             JSONArray imageList = JSON.parseArray(list.get(i).get("banners")+"");
-            Glide.with(context).load(Config.url+imageList.get(0)).into(((GridHolderPrice) viewHolder).grid_item_img);
+            Glide.with(context).load(Config.url+imageList.get(0)).placeholder(R.mipmap.placehold).into(((GridHolderPrice) viewHolder).grid_item_img);
         }
         // 点击事件一般都写在绑定数据这里，当然写到上边的创建布局时候也是可以的
         if (mItemClickListener != null){
