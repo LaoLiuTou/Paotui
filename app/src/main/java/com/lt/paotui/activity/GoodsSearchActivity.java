@@ -5,48 +5,38 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.alibaba.fastjson.JSON;
 import com.hb.dialog.myDialog.MyAlertDialog;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
-import com.just.agentweb.AgentWeb;
 import com.lt.paotui.R;
 import com.lt.paotui.adapter.LeavingAdapter;
 import com.lt.paotui.adapter.MyGoodAdapter;
 import com.lt.paotui.utils.Config;
 import com.lt.paotui.utils.SPUtils;
+import com.lt.paotui.utils.SearchEditText;
+import okhttp3.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import com.lt.paotui.utils.SearchEditText;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-
 /**
  * Created by Administrator on 2019/4/16.
  */
 
-public class GoodsActivity extends Activity {
+public class GoodsSearchActivity extends Activity {
     //private TimeCount time;
     @BindView(R.id.xrecycle)
     XRecyclerView recycler;
@@ -65,21 +55,17 @@ public class GoodsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //加载启动界面
-        setContentView(R.layout.activity_goods_list);
+        setContentView(R.layout.activity_goods_search_list);
         ButterKnife.bind(this);
         Intent intent = getIntent();
         String title = intent.getStringExtra("title");
         String type = intent.getStringExtra("type");
 
-
-        if(type!=null&&type.equals("6")){
-            String subtype = intent.getStringExtra("subtype");
-            if(subtype!=null&&(subtype.equals("606")||subtype.equals("607")||subtype.equals("608")||subtype.equals("609")||subtype.equals("610")||subtype.equals("611"))) {
-                addleaving.setVisibility(View.VISIBLE);
-            }
-
-        }
-
+        top_bar_title.setText(title);
+        initListView();
+        page=1;
+        //getGoodsData(page,size);
+        //recycler.refresh();
 
         /** 搜索框实现 */
         // 实现TextWatcher监听即可
@@ -87,17 +73,10 @@ public class GoodsActivity extends Activity {
             @Override
             public void onSearchClick(View view) {
                 //Toast.makeText(WugActivity.this, "i'm going to seach"+mSearchEditTextOne.getText(), Toast.LENGTH_SHORT).show();
-                list.clear();
-                goodAdapter.notifyDataSetChanged();
-                getGoodsData(1,size,mSearchEditTextOne.getText().toString());
+                getGoodsData(page,size,mSearchEditTextOne.getText().toString());
             }
         });
 
-        top_bar_title.setText(title);
-        initListView();
-        page=1;
-        //getGoodsData(page,size);
-        recycler.refresh();
     }
     /**
      * 接收解析后传过来的数据
@@ -123,11 +102,11 @@ public class GoodsActivity extends Activity {
                 case 2:
                     recycler.refreshComplete();
                     recycler.loadMoreComplete();
-                    Toast.makeText(GoodsActivity.this, msg.obj.toString(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(GoodsSearchActivity.this, msg.obj.toString(),Toast.LENGTH_LONG).show();
                     break;
                 case 3:
                     recycler.refreshComplete();
-                    Toast.makeText(GoodsActivity.this,"暂无更多数据！",Toast.LENGTH_LONG).show();
+                    Toast.makeText(GoodsSearchActivity.this,"暂无更多数据！",Toast.LENGTH_LONG).show();
                     break;
                 default:
                     break;
@@ -135,7 +114,7 @@ public class GoodsActivity extends Activity {
             super.handleMessage(msg);
         }
     };
-    private void getGoodsData(final int page,int size,String searchtext){
+    private void getGoodsData(final int page,int size,String searchText){
 
         ///Map userInfo = JSON.parseObject(SPUtils.get(GoodsActivity.this,"userinfo","{}").toString());
         //final  String cus_id=userInfo.get("id").toString();
@@ -151,7 +130,6 @@ public class GoodsActivity extends Activity {
                     .add("page", page+"")
                     .add("size", size+"")
                     .add("type", type)
-                    .add("searchtext", searchtext)
                     .build();
         }
         else if(type.equals("2")){
@@ -160,7 +138,6 @@ public class GoodsActivity extends Activity {
                     .add("size", size+"")
                     .add("type", type)
                     .add("subtype", subtype)
-                    .add("searchtext", searchtext)
                     .build();
         }
         else if(type.equals("3")){
@@ -168,16 +145,14 @@ public class GoodsActivity extends Activity {
                     .add("page", page+"")
                     .add("size", size+"")
                     .add("type", type)
-                    .add("searchtext", searchtext)
                     .build();
         }
         else if(type.equals("4")){
             formBody = new FormBody.Builder()
                     .add("page", page+"")
                     .add("size", size+"")
-                    .add("type", type)
                     .add("subtype", subtype)
-                    .add("searchtext", searchtext)
+                    .add("type", type)
                     .build();
         }
         else if(type.equals("5")){
@@ -186,7 +161,6 @@ public class GoodsActivity extends Activity {
                     .add("size", size+"")
                     .add("type", type)
                     .add("subtype", subtype)
-                    .add("searchtext", searchtext)
                     .build();
         }
         else if(type.equals("6")){
@@ -195,7 +169,6 @@ public class GoodsActivity extends Activity {
                     .add("size", size+"")
                     .add("type", type)
                     .add("subtype", subtype)
-                    .add("searchtext", searchtext)
                     .build();
         }
         Request request = new Request.Builder().url(Config.url+"/listGoods")
@@ -226,7 +199,6 @@ public class GoodsActivity extends Activity {
                     else{
                         if (page == 1) {
                             message.what=0;
-                            list.clear();
                             list.addAll(tempData);
                         }
                         else{
@@ -314,7 +286,7 @@ public class GoodsActivity extends Activity {
             public void onItemClick(int position) {
                 if(type.equals("5")){
                     Intent intent = new Intent();
-                    intent.setClass(GoodsActivity.this, Goods5GDetailActivity.class);
+                    intent.setClass(GoodsSearchActivity.this, Goods5GDetailActivity.class);
                     String goods_id=list.get(position).get("id").toString();
                     intent.putExtra("goods_id", goods_id);
                     intent.putExtra("title", title);
@@ -322,7 +294,7 @@ public class GoodsActivity extends Activity {
                 }
                 else if(type.equals("6")){
                     Intent intent = new Intent();
-                    intent.setClass(GoodsActivity.this, Goods5GDetailActivity.class);
+                    intent.setClass(GoodsSearchActivity.this, Goods5GDetailActivity.class);
                     String goods_id=list.get(position).get("id").toString();
                     intent.putExtra("goods_id", goods_id);
                     intent.putExtra("title", title);
@@ -330,7 +302,7 @@ public class GoodsActivity extends Activity {
                 }
                 else{
                     Intent intent = new Intent();
-                    intent.setClass(GoodsActivity.this, GoodsDetailActivity.class);
+                    intent.setClass(GoodsSearchActivity.this, GoodsDetailActivity.class);
                     String goods_id=list.get(position).get("id").toString();
                     intent.putExtra("goods_id", goods_id);
                     intent.putExtra("title", title);
@@ -377,7 +349,7 @@ public class GoodsActivity extends Activity {
                 finish();
                 break;
             case R.id.addleaving:
-                if((boolean)SPUtils.get(GoodsActivity.this,"islogin",false)){
+                if((boolean)SPUtils.get(GoodsSearchActivity.this,"islogin",false)){
                     Intent intent = getIntent();
                     String title = intent.getStringExtra("title");
                     String type = intent.getStringExtra("type");
@@ -398,14 +370,14 @@ public class GoodsActivity extends Activity {
         }
     }
     private void showUnloginDialog(){
-        MyAlertDialog myAlertDialog = new MyAlertDialog(GoodsActivity.this).builder()
+        MyAlertDialog myAlertDialog = new MyAlertDialog(GoodsSearchActivity.this).builder()
                 .setTitle("未登录")
                 .setMsg("即将前往登录")
                 .setPositiveButton("确认", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent();
-                        intent.setClass(GoodsActivity.this, LoginActivity.class);
+                        intent.setClass(GoodsSearchActivity.this, LoginActivity.class);
                         startActivity(intent);
                     }
                 }).setNegativeButton("取消", new View.OnClickListener() {

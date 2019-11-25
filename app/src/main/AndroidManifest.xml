@@ -69,6 +69,7 @@
         <activity android:name=".activity.FupinActivity"/>
         <activity android:name=".activity.HotLineActivity"/>
         <activity android:name=".activity.YijiaActivity"/>
+        <activity android:name=".activity.GoodsSearchActivity"/>
         <activity android:name=".wxapi.WXPayActivity">
 
         </activity>

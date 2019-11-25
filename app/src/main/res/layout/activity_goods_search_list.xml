@@ -11,18 +11,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
             android:background="@color/main_background">
         <com.lt.paotui.utils.SearchEditText
                 android:id="@+id/m_search_one"
                 style="@style/editTextStylebai"
-                android:layout_margin="6dp" />
+                android:layout_margin="10dp" />
     </LinearLayout>
     <com.jcodecraeer.xrecyclerview.XRecyclerView
         android:id="@+id/xrecycle"
         android:paddingTop="2dp"
-        android:layout_marginTop="94dp"
+        android:layout_marginTop="100dp"
         android:background="@color/color_right_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

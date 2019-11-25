@@ -5,11 +5,23 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <include layout="@layout/top_bar_back"/>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:background="@color/main_background">
+        <com.lt.paotui.utils.SearchEditText
+                android:id="@+id/m_search_one"
+                style="@style/editTextStylebai"
+                android:layout_margin="6dp" />
+    </LinearLayout>
     <com.andview.refreshview.XRefreshView
         android:id="@+id/xrefreshview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="49dp"
+        android:layout_marginTop="94dp"
         android:background="#fff">
 
         <android.support.v7.widget.RecyclerView

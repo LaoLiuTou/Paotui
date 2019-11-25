@@ -8,7 +8,26 @@
     android:layout_height="match_parent"
     android:background="@color/main_background">
     <include layout="@layout/top_bar_back"/>
-
+        <!--<LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="61dp"
+                android:background="#FFF">
+            <com.lt.paotui.utils.SearchEditText
+                    android:id="@+id/m_search_one"
+                    style="@style/editTextStyle"
+                    android:layout_margin="10dp"/>
+        </LinearLayout>-->
+        <!--<LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:background="@color/main_background">
+            <com.lt.paotui.utils.SearchEditText
+                    android:id="@+id/m_search_one"
+                    style="@style/editTextStylebai"
+                    android:layout_margin="10dp" />
+        </LinearLayout>-->
         <android.support.v7.widget.CardView
             android:id="@+id/title_cardView"
             android:layout_width="match_parent"

@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.just.agentweb.AgentWeb;
 import com.lt.paotui.R;
+import com.lt.paotui.utils.SearchEditText;
 
 /**
  * Created by Administrator on 2019/4/16.
@@ -19,6 +21,7 @@ import com.lt.paotui.R;
 public class WugActivity extends Activity {
     @BindView(R.id.top_bar_title)
     TextView top_bar_title;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,8 +29,6 @@ public class WugActivity extends Activity {
         setContentView(R.layout.activity_fiveg);
         ButterKnife.bind(this);
         top_bar_title.setText("5G生活");
-
-
 
     }
     @OnClick({R.id.top_back_btn,R.id.znjj,R.id.zncd,R.id.wgwl,R.id.zhjy,R.id.zhnc,R.id.paxq,R.id.zhyl,R.id.zhlret,R.id.ycjk,R.id.zxsj})
@@ -108,6 +109,7 @@ public class WugActivity extends Activity {
                 intent.putExtra("title", "最新手机5G");
                 startActivity(intent);
                 break;
+
 
 
             default:

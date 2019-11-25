@@ -30,6 +30,7 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import com.lt.paotui.utils.SearchEditText;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -52,6 +53,8 @@ public class NewsListActivity extends Activity   {
     XRefreshView xRefreshView;
     @BindView(R.id.addleaving)
     ImageView addleaving;
+    @BindView(R.id.m_search_one)
+    SearchEditText mSearchEditTextOne;
     NewsAdapter adapter;
     List<Map> listData = new ArrayList<>();
     LinearLayoutManager layoutManager;
@@ -65,7 +68,7 @@ public class NewsListActivity extends Activity   {
         setContentView(R.layout.activity_order_list);
         ButterKnife.bind(this);
         page=1;
-        getOrderData(page,size);
+        getOrderData(page,size,"");
         Intent intent = getIntent();
         String title = intent.getStringExtra("title");
         String type = intent.getStringExtra("type");
@@ -80,7 +83,17 @@ public class NewsListActivity extends Activity   {
         else{
             addleaving.setVisibility(View.GONE);
         }
-
+        /** 搜索框实现 */
+        // 实现TextWatcher监听即可
+        mSearchEditTextOne.setOnSearchClickListener(new SearchEditText.OnSearchClickListener() {
+            @Override
+            public void onSearchClick(View view) {
+                //Toast.makeText(WugActivity.this, "i'm going to seach"+mSearchEditTextOne.getText(), Toast.LENGTH_SHORT).show();
+                listData.clear();
+                adapter.notifyDataSetChanged();
+                getOrderData(1,size,mSearchEditTextOne.getText().toString());
+            }
+        });
 
     }
     /**
@@ -110,7 +123,7 @@ public class NewsListActivity extends Activity   {
             super.handleMessage(msg);
         }
     };
-    private void getOrderData(final int page,int size){
+    private void getOrderData(final int page,int size,String searchtext){
         xRefreshView.startRefresh();
         Intent intent = getIntent();
         String type = intent.getStringExtra("type");
@@ -122,6 +135,7 @@ public class NewsListActivity extends Activity   {
         FormBody.Builder builder = new FormBody.Builder();
         builder.add("page", page+"");
         builder.add("size", size+"");
+        builder.add("searchtext", searchtext);
         if(type!=null){
             builder.add("type", type);
         }
@@ -220,14 +234,14 @@ public class NewsListActivity extends Activity   {
                     }
                 }, 500);*/
                 page=1;
-                getOrderData(page,size);
+                getOrderData(page,size,mSearchEditTextOne.getText().toString());
             }
 
             @Override
             public void onLoadMore(boolean isSilence) {
 
                 page++;
-                getOrderData(page,size);
+                getOrderData(page,size,mSearchEditTextOne.getText().toString());
 
             }
         });
