@@ -53,7 +53,7 @@ public class ShowQrcodeActivity extends Activity {
         else{
             qrcodetitle.setText("翼支付付款二维码");
             top_bar_title.setText("付款二维码");
-            qrcodeImage.setImageDrawable(ContextCompat.getDrawable(ShowQrcodeActivity.this, R.mipmap.yzfqrcode));
+            qrcodeImage.setImageDrawable(ContextCompat.getDrawable(ShowQrcodeActivity.this, R.mipmap.yzfewm));
         }
 
 

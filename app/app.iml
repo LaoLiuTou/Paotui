@@ -200,5 +200,19 @@
     <orderEntry type="module" module-name="base_dialog" />
     <orderEntry type="module" module-name="banner" />
     <orderEntry type="library" name="Gradle: android-android-28" level="project" />
+    <orderEntry type="module" module-name="pictureselector" />
+    <orderEntry type="module" module-name="xrecyclerview" />
+    <orderEntry type="module" module-name="zxing-simplify" />
+    <orderEntry type="module" module-name="mainnavigatetabbar" />
+    <orderEntry type="module" module-name="xrefreshview" />
+    <orderEntry type="module" module-name="base_dialog" />
+    <orderEntry type="module" module-name="banner" />
+    <orderEntry type="module" module-name="pictureselector" />
+    <orderEntry type="module" module-name="xrecyclerview" />
+    <orderEntry type="module" module-name="zxing-simplify" />
+    <orderEntry type="module" module-name="mainnavigatetabbar" />
+    <orderEntry type="module" module-name="xrefreshview" />
+    <orderEntry type="module" module-name="base_dialog" />
+    <orderEntry type="module" module-name="banner" />
   </component>
 </module>
